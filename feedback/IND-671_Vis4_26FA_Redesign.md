@@ -90,9 +90,9 @@ Fridays, Sep 18 – Dec 18. Thanksgiving takes Nov 27, so 13 teaching sessions.
 | Wk | Date | Topic | Homework (due before next class) |
 |---|---|---|---|
 | 1 | Sep 18 | Intro, tools setup, **project brief & common kit order** | Configure tools; order common kit; identify a prior studio project to carry forward |
-| 2 | Sep 25 | HTML & CSS for interface design | Build a page; **begin project UI**; first UI test on the number counter |
-| 3 | Oct 2 | JavaScript basics & interactive elements | Number Adder; continue project UI; UI test |
-| 4 | Oct 9 | React components + Routes · **hardware preview (30 min)** — what the second half needs, why lead time matters | Enhanced Number Adder in React; **project parts list due**; place order; **run UI test that feeds the midterm** |
+| 2 | Sep 25 | HTML & CSS for interface design | Number Adder; **begin project UI**; first UI test on the number counter |
+| 3 | Oct 2 | JavaScript basics & interactive elements | Enhanced Number Adder; continue project UI; UI test |
+| 4 | Oct 9 | React components + Routes · **hardware preview (30 min)** — what the second half needs, why lead time matters | React Number Adder — convert Week 3 to React; **project parts list due**; place order; **run UI test that feeds the midterm** |
 | 5 | Oct 16 | **Midterm: software project presentation** | Act on midterm feedback; parts arriving |
 | 6 | Oct 23 | **Electronics fundamentals** — soldering, voltage, voltmeter, breadboard, Fritzing | Solder a working circuit; document it in Fritzing |
 | 7 | Oct 30 | **Arduino + IDE + WebSocket** — worked example, hands-on | Build the worked example; extend it toward your project |
