@@ -1,0 +1,165 @@
+<!-- Canvas page: Week 1 - Course Introduction and Tools Setup -->
+<!-- Paste the contents of this file into the Canvas HTML editor. -->
+
+<h3>In class agenda:</h3>
+<ul>
+    <li>Introductions</li>
+    <li>Course overview</li>
+    <li>Grading expectations</li>
+    <li>Equipment &amp; setup</li>
+    <li>GitHub &amp; basic commands (OPTIONAL)</li>
+</ul>
+
+<h3>Introductions:</h3>
+<p>We will spend the first hour getting to know everyone in the room, and for your instructor to introduce himself and the background that is relevant to your course and degree. We will allow some time for Q&amp;A before continuing on.</p>
+
+<h3>Course Overview:</h3>
+<p>As a class we will go through the syllabus documentation together. Questions and answers are welcome during this time.</p>
+
+<h3>Grading Expectations:</h3>
+<p>The syllabus covers the grading expectations, so we will walk through them together to make sure they are well understood and reasonable.</p>
+
+<h3>Equipment &amp; Setup for Apple Computers (Mac)</h3>
+<p>At this time we will need students to ideally bring a MacBook with them so that we are all developing on the same platform. We will need computers with admin privileges in order to not be limited during setup.</p>
+<p>We will go over how to install the following applications on your machines:</p>
+<ul>
+    <li>Homebrew</li>
+    <li>Node.js</li>
+    <li>Dash</li>
+    <li>Sublime Text editor</li>
+    <li>Arduino IDE</li>
+    <li>Setting up GitHub online (OPTIONAL)</li>
+</ul>
+<p>We will then go over how to set up your own GitHub account and how to link it to your machine so that you can <code>git pull</code> projects down to your machine.</p>
+
+<h3>Installation of Software for Apple Computers (Mac)</h3>
+<p>NOTE: A video recording of the steps to follow has been added to your Modules section for Mac specifically.</p>
+
+<h4>Homebrew</h4>
+<p>Within Terminal, copy and paste <code>/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"</code> and press enter. You may need administrative rights to do this.</p>
+
+<h4>Node.js</h4>
+<p>After installing Homebrew, copy and paste <code>brew install node</code> into Terminal and press return.</p>
+
+<h4>Dash</h4>
+<p>To install Dash, go to <a class="inline_disabled" title="Link" href="https://www.kapeli.com/dash" target="_blank" rel="noopener">kapeli.com/dash</a>, click <strong>download</strong>, unzip the downloaded file, and drag and drop it into your <strong>Applications</strong> folder.</p>
+<p>Open Dash and download the following libraries:</p>
+<ul>
+    <li>JavaScript</li>
+    <li>Arduino</li>
+    <li>React</li>
+    <li>CSS</li>
+    <li>HTML</li>
+    <li>Optional:
+        <ul>
+            <li>Node.js</li>
+            <li>Bootstrap 5</li>
+        </ul>
+    </li>
+</ul>
+
+<h4>Sublime Text Editor</h4>
+<p>Go to <a href="https://www.sublimetext.com/" target="_blank" rel="noopener">sublimetext.com</a>, click the <strong>download</strong> tab, and click macOS. Unzip the app and drag and drop the application into your <strong>Applications</strong> folder.</p>
+<p>In Terminal, copy and paste the following:</p>
+<p><code>sudo mkdir /usr/local/bin</code><br /><code>sudo ln -s "/Applications/Sublime Text.app/Contents/SharedSupport/bin/subl" /usr/local/bin/subl</code></p>
+<p>This creates a shortcut so you can open Sublime Text from Terminal, for example with <code>subl .</code></p>
+<p>In order to test JavaScript files inside Sublime Text you will need to create a new build system. With Sublime Text open, click <strong>Tools</strong> &gt; <strong>Build System</strong> &gt; <strong>New Build System</strong>. This opens a new file. Replace all of the content with:</p>
+<pre><code>// Sublime Text - Build System for JavaScript
+{
+    "cmd": ["node", "$file"],
+    "selector": "source.js"
+}</code></pre>
+<p>Save the file as <code>JavaScript.sublime-build</code> and close it.</p>
+<p>To test whether that worked, create a new file and save it as <code>test.js</code>. Inside the file, add <code>console.log("This is a test");</code> and save.</p>
+<p>Make sure the build system is selected under <strong>Tools</strong> &gt; <strong>Build System</strong> &gt; <strong>JavaScript</strong>.</p>
+<p>Press <strong>Command + B</strong> and you should get the output <code>This is a test</code> at the bottom.</p>
+
+<h4>Arduino IDE</h4>
+<p>Go to <a href="https://www.arduino.cc/en/software" target="_blank" rel="noopener">arduino.cc/en/software</a> and download the appropriate <strong>macOS</strong> app for your machine. Click <strong>JUST DOWNLOAD</strong>. Open the downloaded file and drag and drop it into your <strong>Applications</strong> folder.</p>
+
+<h4>GitHub Signup and Configuration (OPTIONAL)</h4>
+<p>Go to <a href="https://github.com/" target="_blank" rel="noopener">github.com</a> and create a new account with your personal or ArtCenter email (choose depending on whether you want to keep the account after ArtCenter).</p>
+<p>Once created, you will need to bind your Mac to your GitHub profile.</p>
+<p>Create an SSH key in Terminal using <code>ssh-keygen -t ed25519 -C "your@emailaddress.com"</code></p>
+<p>Then copy it to your clipboard with <code>pbcopy &lt; ~/.ssh/id_ed25519.pub</code></p>
+<p>Go to <a href="https://github.com/settings/keys" target="_blank" rel="noopener">github.com/settings/keys</a> without losing the copied content, click the green <strong>New SSH key</strong> button, and add a title describing the machine the key was created on. Paste the copied key into the key field and click <strong>Add SSH key</strong>.</p>
+<p>To test that this is working, open Terminal and run <code>git clone git@github.com:julesmoretti/ACCD-IND671-VIS4.git</code>. If successful you should see output similar to:</p>
+<pre><code>Cloning into 'ACCD-IND671-VIS4'...
+remote: Enumerating objects: 6, done.
+remote: Counting objects: 100% (6/6), done.
+remote: Compressing objects: 100% (4/4), done.
+remote: Total 6 (delta 0), reused 0 (delta 0), pack-reused 0 (from 0)
+Receiving objects: 100% (6/6), done.</code></pre>
+
+<h3>Equipment &amp; Setup for Windows Machines</h3>
+<p>NOTE: A video recording of the steps to follow has been added to your Modules section for Windows specifically.</p>
+<p>For students not equipped with a Mac, you can follow the steps below to get your Windows machine ready for our class.</p>
+<p>NOTE: using a Windows machine will have limitations down the road, such as the inability to deploy and run iPhone applications — this can only be done on a Mac. Additionally, tools such as Homebrew and Dash are Mac only.</p>
+<p>We will go over how to install the following applications on your machines:</p>
+<ul>
+    <li>Node.js</li>
+    <li>Sublime Text editor</li>
+    <li>Arduino IDE</li>
+    <li>Git</li>
+    <li>Setting up GitHub online</li>
+</ul>
+
+<h3>Installation of Software for Windows Machines</h3>
+
+<h4>Node.js</h4>
+<p>To download Node.js, go to the <a class="inline_disabled" title="Link" href="https://nodejs.org/en/download" target="_blank" rel="noopener">Node.js download page</a> and select the latest version marked <code>(Current)</code>. Run the installer completely. At the end of the installation, a command prompt window may appear asking you to press any key several times — do that and the installation will complete.</p>
+
+<h4>Sublime Text Editor</h4>
+<p>Go to the <a class="inline_disabled" href="https://www.sublimetext.com/download" target="_blank" rel="noopener">Sublime Text download page</a> and click <strong>Windows</strong>. Run the installer.</p>
+<p>In order to test JavaScript files inside Sublime Text you will need to create a new build system. With Sublime Text open, click <strong>Tools</strong> &gt; <strong>Build System</strong> &gt; <strong>New Build System</strong>. Replace all of the content with:</p>
+<pre><code>// Sublime Text - Build System for JavaScript
+{
+    "cmd": ["node", "$file"],
+    "selector": "source.js"
+}</code></pre>
+<p>Save the file as <code>JavaScript.sublime-build</code> and close it.</p>
+<p>To test whether that worked, create a new file and save it as <code>test.js</code>. Inside the file, add <code>console.log("This is a test");</code> and save.</p>
+<p>Make sure the build system is selected under <strong>Tools</strong> &gt; <strong>Build System</strong> &gt; <strong>JavaScript</strong>.</p>
+<p>Press <strong>Control + B</strong> and you should get the output <code>This is a test</code> at the bottom.</p>
+
+<h4>Arduino IDE</h4>
+<p>Go to <a class="inline_disabled" href="https://www.arduino.cc/en/software" target="_blank" rel="noopener">arduino.cc/en/software</a> and click <strong>Windows (Win 10 and newer, 64 bits)</strong>, then <strong>Just Download</strong>. Run the installer.</p>
+
+<h4>Git Install (OPTIONAL)</h4>
+<p>Go to <a class="inline_disabled" href="https://git-scm.com/download/win" target="_blank" rel="noopener">git-scm.com/download/win</a> and click <strong>64-bit Git for Windows Setup</strong>. Run the installer. Feel free to launch Git Bash at the end and test git by typing <code>git -v</code>, which returns the git version.</p>
+
+<h4>GitHub Signup and Configuration (OPTIONAL)</h4>
+<p>Go to <a href="https://github.com/" target="_blank" rel="noopener">github.com</a> and create a new account with your personal or ArtCenter email (choose depending on whether you want to keep the account after ArtCenter).</p>
+<p>Once created, you will need to bind your Windows machine to your GitHub profile.</p>
+<p>NOTE: Make sure to replace the email address with the one you used for your GitHub account in the next step.</p>
+<p>Create an SSH key in <strong>Git Bash</strong> using <code>ssh-keygen -t ed25519 -C "your_email@example.com"</code>. Keep pressing <strong>Return</strong> or <strong>Enter</strong> until it completes, without entering a filename or passphrase.</p>
+<p>To copy the SSH key, in the same Git Bash window run <code>clip &lt; ~/.ssh/id_ed25519.pub</code> and press <strong>return</strong>. This copies your SSH key to the clipboard.</p>
+<p>Go to <a href="https://github.com/settings/keys" target="_blank" rel="noopener">github.com/settings/keys</a> without losing the copied content, click the green <strong>New SSH key</strong> button, and add a title describing the machine the key was created on. Paste the copied key into the key field and click <strong>Add SSH key</strong>.</p>
+<p>To test that this is working, open Git Bash and run <code>git clone git@github.com:julesmoretti/ACCD-IND671-VIS4.git</code>. If successful you should see output similar to:</p>
+<pre><code>Cloning into 'ACCD-IND671-VIS4'...
+remote: Enumerating objects: 6, done.
+remote: Counting objects: 100% (6/6), done.
+remote: Compressing objects: 100% (4/4), done.
+remote: Total 6 (delta 0), reused 0 (delta 0), pack-reused 0 (from 0)
+Receiving objects: 100% (6/6), done.</code></pre>
+
+<h4>Getting the subl shortcut working from Git Bash</h4>
+<p>To get your <code>subl</code> shortcut working, follow <a class="inline_disabled" title="Link" href="https://www.freecodecamp.org/news/how-to-launch-sublime-text-from-your-terminal/" target="_blank" rel="noopener">these instructions</a>, with the exception that the line to paste into your <code>.bashrc</code> should point at your installed version:</p>
+<p><code>alias subl='C:/Program\ Files/Sublime\ Text/sublime_text.exe'</code></p>
+<p>That concludes the Windows configuration for your machine.</p>
+
+<h3>GitHub (OPTIONAL)</h3>
+<p>We will go through what GitHub is and how it is used.</p>
+<p>We will walk through some of the basic commands used within Terminal:</p>
+<ul>
+    <li><code>git init</code></li>
+    <li><code>git clone</code></li>
+    <li><code>git status</code></li>
+    <li><code>git add [file]</code></li>
+    <li><code>git reset [file]</code></li>
+    <li><code>git commit -m "[descriptive message of changes]"</code></li>
+    <li><code>git push [alias] [branch]</code></li>
+    <li><code>git pull</code></li>
+</ul>
+<p>For reference: <a href="https://education.github.com/git-cheat-sheet-education.pdf" target="_blank" rel="noopener">GitHub Git cheat sheet</a></p>
+<p>This concludes your first week. A separate page details your assignment, which will be revealed during class.</p>

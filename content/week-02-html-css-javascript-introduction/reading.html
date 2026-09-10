@@ -1,0 +1,234 @@
+<!-- Canvas page: Week 2 - HTML, CSS, JavaScript introduction (Reading) -->
+<!-- Paste the contents of this file into the Canvas HTML editor. -->
+
+<h3><strong>Part 1: Theoretical Overview (1st half of the class)</strong></h3>
+
+<h4><strong>1. Introduction to HTML</strong></h4>
+<ul>
+    <li><strong>What is HTML?</strong>
+        <ul>
+            <li>HTML (HyperText Markup Language) is the standard language for creating web pages. It structures content on a webpage using "tags."</li>
+            <li><strong>Key concept</strong>: HTML is the skeleton of a webpage. It defines elements such as headings, paragraphs, lists, links, and images.</li>
+        </ul>
+    </li>
+    <li><strong>HTML Syntax</strong>:
+        <ul>
+            <li>Tags are written within angle brackets: <code>&lt;tagname&gt;Content&lt;/tagname&gt;</code>.</li>
+            <li>Tags are opened with <code>&lt;tagname&gt;</code> and closed with a forward slash: <code>&lt;/tagname&gt;</code>.</li>
+            <li>Common tags:
+                <ul>
+                    <li><code>&lt;!DOCTYPE html&gt;</code>: Declares the document type.</li>
+                    <li><code>&lt;html&gt;</code>: Wraps the entire content of the webpage.</li>
+                    <li><code>&lt;head&gt;</code>: Contains metadata (e.g. title, linked resources like CSS).</li>
+                    <li><code>&lt;body&gt;</code>: Contains the visible content (e.g. headings, paragraphs, links).</li>
+                </ul>
+            </li>
+        </ul>
+    </li>
+    <li><strong>Example</strong>:
+        <pre><code>&lt;html&gt;
+    &lt;head&gt;
+        &lt;title&gt;My Webpage&lt;/title&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+        &lt;h1&gt;Welcome to My Webpage&lt;/h1&gt;
+        &lt;p&gt;This is a simple HTML page.&lt;/p&gt;
+    &lt;/body&gt;
+&lt;/html&gt;</code></pre>
+    </li>
+</ul>
+
+<h4><strong>2. Introduction to CSS</strong></h4>
+<ul>
+    <li><strong>What is CSS?</strong>
+        <ul>
+            <li>CSS (Cascading Style Sheets) is a language used to style and lay out web pages, making them visually appealing.</li>
+            <li><strong>Key concept</strong>: CSS controls the look and feel of a webpage by applying rules to HTML elements.</li>
+        </ul>
+    </li>
+    <li><strong>CSS Syntax</strong>:
+        <ul>
+            <li>Selectors target HTML elements.</li>
+            <li>Declaration blocks contain properties and their values.</li>
+            <li>Example:
+                <pre><code>h1 {
+    color: blue;
+    font-size: 24px;
+}</code></pre>
+            </li>
+        </ul>
+    </li>
+    <li><strong>Inline vs. Internal vs. External CSS</strong>:
+        <ul>
+            <li><strong>Inline</strong>: Style rules directly within an HTML tag.</li>
+            <li><strong>Internal</strong>: Style rules placed inside a <code>&lt;style&gt;</code> tag within the document's <code>&lt;head&gt;</code>.</li>
+            <li><strong>External</strong>: Style rules stored in an external <code>.css</code> file, linked via the <code>&lt;link&gt;</code> tag.</li>
+        </ul>
+    </li>
+    <li><strong>Example:</strong>
+        <pre><code>&lt;html&gt;
+    &lt;head&gt;
+        &lt;title&gt;CSS Example: Inline, Internal, and External&lt;/title&gt;
+
+        &lt;!-- External CSS: Linking to an external CSS file --&gt;
+        &lt;link rel="stylesheet" href="styles.css"&gt;
+
+        &lt;!-- Internal CSS: Styling within the HTML file --&gt;
+        &lt;style&gt;
+            body {
+                font-family: Arial, sans-serif;
+                background-color: #f4f4f4;
+            }
+            h1 {
+                color: darkblue;
+                text-align: center;
+            }
+            p {
+                color: gray;
+                font-size: 16px;
+            }
+        &lt;/style&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+        &lt;h1&gt;Welcome to My Website&lt;/h1&gt;
+
+        &lt;!-- Inline CSS: Applied directly to the element --&gt;
+        &lt;p style="color: red; font-weight: bold;"&gt;This paragraph uses inline CSS.&lt;/p&gt;
+
+        &lt;p&gt;This paragraph uses internal and external CSS rules.&lt;/p&gt;
+    &lt;/body&gt;
+&lt;/html&gt;</code></pre>
+    </li>
+</ul>
+
+<h4><strong>3. Combining HTML and CSS</strong></h4>
+<ul>
+    <li><strong>How HTML and CSS Work Together</strong>:
+        <ul>
+            <li>CSS styles are applied to HTML elements by referencing them in the CSS.</li>
+            <li><strong>Example</strong> of linking an external CSS file:
+                <pre><code>&lt;head&gt;
+    &lt;link rel="stylesheet" href="styles.css"&gt;
+&lt;/head&gt;</code></pre>
+            </li>
+        </ul>
+    </li>
+    <li><strong>How to Break Apart Files</strong>:
+        <ul>
+            <li>Discuss the separation of concerns: HTML for structure, CSS for style.</li>
+            <li>Example: Move inline or internal CSS to an external file for reusability and maintainability.</li>
+        </ul>
+    </li>
+</ul>
+
+<h4><strong>4. Introduction to Google Chrome DevTools</strong></h4>
+<p><strong>Google Chrome DevTools</strong> is a set of tools built directly into the Chrome browser. It allows developers to inspect, debug, and optimize web pages by providing access to the underlying HTML, CSS, and JavaScript.</p>
+<ul>
+    <li><strong>Accessing DevTools</strong>:
+        <ul>
+            <li>Right-click on any element on a webpage and select <strong>Inspect</strong>.</li>
+            <li>Or use the shortcut <code>Cmd + Option + I</code> on Mac, or <code>Ctrl + Shift + I</code> on Windows/Linux.</li>
+            <li>This opens the DevTools panel, where you can navigate to tabs like <strong>Elements</strong>, <strong>Console</strong>, and <strong>Sources</strong>.</li>
+        </ul>
+    </li>
+</ul>
+
+<h4><strong>5. Inspecting Elements (Elements Panel)</strong></h4>
+<p>The <strong>Elements Panel</strong> is where you can see the structure of an HTML page and inspect or modify the elements and styles.</p>
+<ul>
+    <li><strong>Key Features</strong>:
+        <ul>
+            <li><strong>View HTML Structure</strong>: On the left, you can see the document's HTML elements organized in a nested structure. This reflects the actual <strong>Document Object Model (DOM)</strong> of the page.</li>
+            <li><strong>View CSS Styles</strong>: On the right, you'll see the applied CSS styles, including where each style comes from (internal styles, external stylesheets, inline styles).</li>
+            <li><strong>Edit HTML and CSS on the Fly</strong>: You can modify the HTML and CSS directly within DevTools to see how changes affect the page in real time.</li>
+        </ul>
+    </li>
+    <li><strong>Exercise</strong>:
+        <ul>
+            <li>Inspect a heading element (<code>&lt;h1&gt;</code>) and modify its color directly in DevTools to see the immediate effect. Look for a section called <code>element.style</code> and between the <code>{ }</code> add <code>color: red;</code></li>
+        </ul>
+        <pre><code>&lt;h1&gt;Welcome to My Website&lt;/h1&gt;</code></pre>
+    </li>
+</ul>
+<p><strong>Steps to Follow</strong>:</p>
+<ol>
+    <li>Right-click on the heading in the browser and choose <strong>Inspect</strong>.</li>
+    <li>In the <strong>Elements</strong> panel, find the <code>h1</code> tag and click on it.</li>
+    <li>On the right, under the <strong>Styles</strong> pane, find the CSS rules applied to the <code>h1</code> tag.</li>
+    <li>Modify the <code>color</code> property in the <strong>Styles</strong> pane and watch the heading change color in real time.</li>
+</ol>
+
+<h4><strong>6. Introduction to JavaScript</strong></h4>
+<ul>
+    <li><strong>What is JavaScript?</strong>
+        <ul>
+            <li>JavaScript is the programming language of the web, used to add interactivity and logic to HTML and CSS.</li>
+            <li><strong>Key concept</strong>: JavaScript can manipulate HTML and CSS via the DOM (Document Object Model).</li>
+        </ul>
+    </li>
+    <li><strong>JavaScript in HTML</strong>:
+        <ul>
+            <li>Inline JavaScript vs. internal (within <code>&lt;script&gt;</code> tags) vs. external (using <code>.js</code> files).</li>
+            <li>Ensure that <code>&lt;script&gt;</code> tags are located just before the closing <code>&lt;/body&gt;</code> tag of your HTML page, so the script is the last thing read after the whole page has loaded.</li>
+            <li><strong>Example</strong> of adding JavaScript in HTML:
+                <pre><code>&lt;script&gt;
+    document
+        .querySelector("h1")
+        .style
+        .color = "red";
+&lt;/script&gt;</code></pre>
+            </li>
+        </ul>
+    </li>
+    <li><strong>Event Listeners and DOM Manipulation</strong>:
+        <ul>
+            <li>JavaScript can respond to user interactions (e.g. button clicks) using event listeners.</li>
+            <li><strong>Example</strong>: Add a button that changes a heading's color:
+                <pre><code>document
+    .getElementById("myButton")
+    .addEventListener("click", function() {
+        document
+            .querySelector("h1")
+            .style
+            .color = "green";
+    });</code></pre>
+            </li>
+        </ul>
+    </li>
+</ul>
+
+<h4><strong>7. Using the Console for JavaScript (Console Panel)</strong></h4>
+<p>The <strong>Console</strong> panel lets you run JavaScript directly in the browser and check for errors or output from your scripts.</p>
+<ul>
+    <li><strong>Key Features</strong>:
+        <ul>
+            <li><strong>Execute JavaScript</strong>: Write JavaScript directly in the console and see the results instantly.</li>
+            <li><strong>Check for Errors</strong>: Any JavaScript errors on the page are logged in the console.</li>
+            <li><strong>Logging Information</strong>: Use <code>console.log()</code> in your JavaScript to print messages or variables to the console.</li>
+        </ul>
+    </li>
+    <li><strong>Exercise</strong>:
+        <ul>
+            <li>Open the Console (<code>Cmd + Option + J</code> on Mac, or <code>Ctrl + Shift + J</code> on Windows/Linux) and run:
+                <pre><code>document
+    .querySelector("h1")
+    .style
+    .color = "blue";</code></pre>
+            </li>
+            <li>This command instantly changes the color of the <code>&lt;h1&gt;</code> element to blue, showing how JavaScript can dynamically interact with the DOM.</li>
+        </ul>
+    </li>
+    <li><strong>Testing Event Listeners</strong>:
+        <ul>
+            <li>Use the console to test the event listener you created in class. For example:
+                <pre><code>document
+    .getElementById("colorButton")
+    .addEventListener("click", function() {
+        console.log("Button clicked!");
+        // This logs a message every time the button is clicked
+    });</code></pre>
+            </li>
+            <li>When clicking the button, you will see "Button clicked!" appear in the console.</li>
+        </ul>
+    </li>
+</ul>

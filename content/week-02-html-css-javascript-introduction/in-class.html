@@ -1,0 +1,205 @@
+<!-- Canvas page: Week 2 - HTML, CSS, JavaScript introduction (In-Class Exercises) -->
+<!-- Paste the contents of this file into the Canvas HTML editor. -->
+
+<h3><strong>Exercise 1: Building a Basic HTML and CSS Page</strong></h3>
+<h4><strong>Step 1: Create the Basic Structure with Two Divs (Rows for Layout)</strong></h4>
+<ol>
+    <li><strong>Objective</strong>: Build a basic webpage structure using <code>&lt;div&gt;</code> tags. This will consist of two sections: a top navigation bar and a main content section below it.</li>
+    <li><strong>Instructions</strong>:
+        <ul>
+            <li>Create a new HTML file (<code>index.html</code>).</li>
+            <li>Add two <code>&lt;div&gt;</code> elements:
+                <ul>
+                    <li><strong>Top div</strong>: For the navigation bar. It should take up 100% width and 150px height.</li>
+                    <li><strong>Bottom div</strong>: This takes up the remaining vertical space on the page.</li>
+                </ul>
+            </li>
+            <li><strong>Example HTML</strong>:
+                <pre><code>&lt;body&gt;
+    &lt;div id="navbar"&gt;
+        &lt;h1&gt;Navigation Bar&lt;/h1&gt;
+    &lt;/div&gt;
+    &lt;div id="main-content"&gt;
+        &lt;h2&gt;Main Content Area&lt;/h2&gt;
+    &lt;/div&gt;
+&lt;/body&gt;</code></pre>
+            </li>
+        </ul>
+    </li>
+    <li><strong>Add Basic CSS for Layout</strong>:
+        <ul>
+            <li>Style the <code>#navbar</code> and <code>#main-content</code> divs using internal CSS.</li>
+            <li>Set distinct background colors to visually separate them, and ensure the bottom div takes the remaining vertical space using <code>height: calc(100vh - 150px);</code></li>
+            <li><strong>Example CSS</strong>:
+                <pre><code>#navbar {
+    background-color: #333;
+    color: white;
+    height: 150px;
+    width: 100%;
+    text-align: center;
+}
+
+#main-content {
+    background-color: #f4f4f4;
+    height: calc(100vh - 150px);
+    padding: 20px;
+}</code></pre>
+            </li>
+        </ul>
+    </li>
+</ol>
+
+<hr />
+
+<h3><strong>Exercise 2: Breaking Apart HTML and CSS</strong></h3>
+<h4><strong>Step 1: Separate Internal CSS into an External CSS File</strong></h4>
+<ol>
+    <li><strong>Objective</strong>: Refactor the HTML by moving internal styles into an external stylesheet for better organization and reusability.</li>
+    <li><strong>Instructions</strong>:
+        <ul>
+            <li>Create an external CSS file named <code>styles.css</code>.</li>
+            <li>Move the CSS rules from the <code>&lt;style&gt;</code> block in the HTML document into this new file.</li>
+            <li>Link the <code>styles.css</code> file in the <code>&lt;head&gt;</code> section using the <code>&lt;link&gt;</code> tag.</li>
+        </ul>
+    </li>
+    <li><strong>Example HTML (after moving styles to an external file)</strong>:
+        <pre><code>&lt;head&gt;
+    &lt;link rel="stylesheet" href="styles.css"&gt;
+&lt;/head&gt;</code></pre>
+    </li>
+    <li><strong>Example CSS (in <code>styles.css</code>)</strong>:
+        <pre><code>#navbar {
+    background-color: #333;
+    color: white;
+    height: 150px;
+    width: 100%;
+    text-align: center;
+}
+
+#main-content {
+    background-color: #f4f4f4;
+    height: calc(100vh - 150px);
+    padding: 20px;
+}</code></pre>
+    </li>
+</ol>
+
+<hr />
+
+<h3><strong>Exercise 3: Introducing Flexbox Layout</strong></h3>
+<h4><strong>Step 1: Add Nested Divs and Use Flexbox for Layout</strong></h4>
+<ol>
+    <li><strong>Objective</strong>: Add two nested <code>&lt;div&gt;</code> elements inside the <code>#main-content</code> section to create a sidebar and a content area. Use <strong>Flexbox</strong> to manage the layout.</li>
+    <li><strong>Instructions</strong>:
+        <ul>
+            <li>Inside <code>#main-content</code>, create two divs with classes <code>.sidebar</code> and <code>.content</code>.</li>
+            <li>Use Flexbox to arrange them in a horizontal row.</li>
+        </ul>
+    </li>
+    <li><strong>Updated HTML</strong>:
+        <pre><code>&lt;div id="main-content"&gt;
+    &lt;div class="sidebar"&gt;
+        &lt;h3&gt;Sidebar Navigation&lt;/h3&gt;
+    &lt;/div&gt;
+    &lt;div class="content"&gt;
+        &lt;h3&gt;Main Content&lt;/h3&gt;
+    &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+    </li>
+    <li><strong>Add Flexbox CSS</strong>:
+        <ul>
+            <li>Refactor the CSS to apply a Flexbox layout to <code>#main-content</code>.</li>
+            <li>The sidebar should have a fixed width of 400px, and the content area should take the remaining space.</li>
+        </ul>
+    </li>
+    <li><strong>Example CSS (in <code>styles.css</code>)</strong>:
+        <pre><code>#main-content {
+    display: flex;
+    height: calc(100vh - 150px);
+}
+
+.sidebar {
+    background-color: #ddd;
+    width: 400px;
+    height: 100%;
+}
+
+.content {
+    background-color: #fff;
+    flex: 1;
+    padding: 20px;
+}</code></pre>
+    </li>
+    <li><strong>Responsive Design</strong>:
+        <ul>
+            <li>To make the layout more responsive, add a media query that reduces the sidebar width on smaller screens.</li>
+        </ul>
+    </li>
+    <li><strong>Example Media Query</strong>:
+        <pre><code>@media (max-width: 800px) {
+    .sidebar {
+        width: 200px;
+    }
+}</code></pre>
+    </li>
+    <li><strong>Learn more about the power of flex</strong>:
+        <ul>
+            <li><a class="inline_disabled" href="https://css-tricks.com/snippets/css/a-guide-to-flexbox/" target="_blank" rel="noopener">A Complete Guide to Flexbox (CSS-Tricks)</a></li>
+        </ul>
+    </li>
+</ol>
+
+<hr />
+
+<h3><strong>Exercise 4: JavaScript Event Listeners and DOM Manipulation</strong></h3>
+<h4><strong>Step 1: Add Interactivity with JavaScript Event Listeners</strong></h4>
+<ol>
+    <li><strong>Objective</strong>: Add a button that changes the color of the heading inside the <code>#navbar</code> when clicked.</li>
+    <li><strong>Instructions</strong>:
+        <ul>
+            <li>Add a button inside the <code>#navbar</code>:
+                <pre><code>&lt;button id="changeColorBtn"&gt;Change Header Color&lt;/button&gt;</code></pre>
+            </li>
+            <li>Write JavaScript that listens for the button click and changes the header's text color.</li>
+        </ul>
+    </li>
+    <li><strong>Example JavaScript</strong>:
+        <pre><code>&lt;script&gt;
+document
+    .getElementById("changeColorBtn")
+    .addEventListener("click", function() {
+
+        document
+            .querySelector("#navbar h1")
+            .style
+            .color = "green";
+});
+&lt;/script&gt;</code></pre>
+    </li>
+</ol>
+
+<h4><strong>Step 2: Inject Content Dynamically Using JavaScript</strong></h4>
+<ol>
+    <li><strong>Objective</strong>: Use JavaScript to inject content into the <code>.content</code> div when the button is clicked.</li>
+    <li><strong>Instructions</strong>:
+        <ul>
+            <li>Inside the same event listener, add a line of code that injects content into the <code>.content</code> div.</li>
+        </ul>
+    </li>
+    <li><strong>Example JavaScript</strong>:
+        <pre><code>&lt;script&gt;
+document
+    .getElementById("changeColorBtn")
+    .addEventListener("click", function() {
+        document
+            .querySelector("#navbar h1")
+            .style
+            .color = "green";
+
+        document
+            .querySelector(".content")
+            .innerHTML = "&lt;p&gt;New content added!&lt;/p&gt;";
+});
+&lt;/script&gt;</code></pre>
+    </li>
+</ol>

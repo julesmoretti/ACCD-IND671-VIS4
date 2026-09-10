@@ -1,0 +1,115 @@
+<!-- Canvas page: Week 3 - JavaScript Basics & Interactive Elements (Reading) -->
+<!-- Paste the contents of this file into the Canvas HTML editor. -->
+
+<h3>Introduction</h3>
+<p>This week we are going to learn JavaScript fundamentals such as variables, data types, loops, functions, and more.</p>
+
+<h3>Part 1: Walkthrough / Discussion</h3>
+
+<h4>1. Introduction to Variables and Data Types</h4>
+<ul>
+    <li><strong>Overview</strong>: Variables are used to store data. JavaScript supports multiple data types, including <span style="text-decoration: underline;">strings</span>, <span style="text-decoration: underline;">numbers</span>, <span style="text-decoration: underline;">booleans</span>, <span style="text-decoration: underline;">objects</span>, and <span style="text-decoration: underline;">arrays</span>.</li>
+    <li><strong>Variable Declaration</strong>:
+        <ul>
+            <li><code>var</code>, <code>let</code>, and <code>const</code> (briefly mention hoisting and the difference between <code>var</code> and <code>let</code>/<code>const</code>).</li>
+            <li><strong>Example:</strong>
+                <pre><code>let name = "Alice";   // String
+const age = 30;       // Number
+var isStudent = true; // Boolean</code></pre>
+            </li>
+        </ul>
+    </li>
+    <li><strong>Data Types</strong>:
+        <ul>
+            <li><strong>Primitive Types</strong>: <span style="text-decoration: underline;">String</span>, <span style="text-decoration: underline;">Number</span>, <span style="text-decoration: underline;">Boolean</span>, <span style="text-decoration: underline;">Null</span>, <span style="text-decoration: underline;">Undefined</span>.</li>
+            <li><strong>Objects</strong>: <span style="text-decoration: underline;">Arrays</span> and <span style="text-decoration: underline;">Objects</span>.</li>
+            <li><strong>Example:</strong>
+                <pre><code>const person = {
+    name: "Alice",
+    age: 30,
+    hobbies: ["reading", "hiking", "coding"]
+};
+
+console.log(person.name); // Accessing object property</code></pre>
+            </li>
+        </ul>
+    </li>
+</ul>
+
+<hr />
+
+<h4>2. Functions and Parameters</h4>
+<ul>
+    <li><strong>Overview</strong>: Functions encapsulate reusable blocks of code. They can accept parameters (input values) and return results.</li>
+    <li><strong>Defining Functions</strong>:
+        <ul>
+            <li>Function declaration:
+                <pre><code>function greet(name) {
+    return "Hello, " + name;
+}</code></pre>
+            </li>
+            <li>Arrow function (ES6):
+                <pre><code>const greet = (name) =&gt; "Hello, " + name;</code></pre>
+            </li>
+        </ul>
+    </li>
+    <li><strong>Passing Parameters</strong>:
+        <ul>
+            <li>Functions can take multiple developer-defined parameters and return a result.</li>
+            <li><strong>Example:</strong>
+                <pre><code>function add(a, b) {
+    return a + b;
+}</code></pre>
+            </li>
+        </ul>
+    </li>
+</ul>
+
+<hr />
+
+<h4>3. Scope in JavaScript</h4>
+<ul>
+    <li><strong>Overview</strong>: Scope refers to the visibility of variables within different parts of the code. Variables defined inside a function are local to that function, while variables defined outside have global scope.</li>
+    <li><strong>Local vs Global Scope</strong>:
+        <ul>
+            <li>Local variables are accessible only within the function where they are declared.</li>
+            <li>Global variables can be accessed from anywhere in the code.</li>
+            <li><strong>Example</strong>:
+                <pre><code>let globalVar = "I am global";
+
+function showScope() {
+    let localVar = "I am local";
+    console.log(globalVar); // Can access globalVar
+    console.log(localVar);  // Can access localVar
+}
+
+showScope();
+console.log(localVar); // Error: localVar is not defined</code></pre>
+            </li>
+        </ul>
+    </li>
+</ul>
+
+<hr />
+
+<h4>4. Loops and Conditional Statements</h4>
+<ul>
+    <li><strong>Overview</strong>: Loops allow for repeating blocks of code, and <code>if</code> statements are used for conditional logic.
+        <ul>
+            <li><strong>For Loop</strong>: A common loop for iterating over arrays or running code multiple times, but <strong><span style="text-decoration: underline;">not</span></strong> typically indefinitely.</li>
+            <li><strong>Example:</strong>
+                <pre><code>for (let i = 0; i &lt; 5; i++) {
+    console.log(i);
+}</code></pre>
+            </li>
+            <li><strong>if-else Statements</strong>: <code>if</code> statements are used for conditional checks. They execute a block of code if a condition is true, and optionally another block if it is false.</li>
+            <li><strong>Example:</strong>
+                <pre><code>if (age &gt;= 18) {
+    console.log("You are an adult.");
+} else {
+    console.log("You are a minor.");
+}</code></pre>
+            </li>
+        </ul>
+    </li>
+</ul>
