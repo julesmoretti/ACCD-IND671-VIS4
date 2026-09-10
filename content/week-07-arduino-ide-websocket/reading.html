@@ -185,7 +185,9 @@ console.log(ip.address() + ' listening on port ', port);</code></pre>
 <p>Then run: <code>npm install ws ip</code></p>
 <p>And finally run <code>npm start</code> which should start your server.</p>
 <h4>Step 6c: React App WebSocket Integration</h4>
-<p>Now, we will add WebSocket integration to the React app. Using <code>npx create-react-app react_app_ws</code> we can create a new project for the react app. We will use the <code>react-use-websocket</code> library to handle WebSocket connections. Install it using npm:</p>
+<p>Now, we will add WebSocket integration to the React app. We can create a new project for the react app with Vite:</p>
+<pre><code>npm create vite@latest react_app_ws -- --template react<br>cd react_app_ws<br>npm install</code></pre>
+<p>Choose the plain <code>react</code> template, not <code>react-ts</code>. We will use the <code>react-use-websocket</code> library to handle WebSocket connections. Install it using npm:</p>
 <pre><code>npm install react-use-websocket</code></pre>
 <p>Here is the updated React code with WebSocket functionality:</p>
 <pre><code>import React, { useState, useEffect } from 'react';
