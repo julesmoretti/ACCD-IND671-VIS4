@@ -66,6 +66,30 @@ Every file opens with a two-line comment header naming the Canvas page it maps t
 <!-- Paste the contents of this file into the Canvas HTML editor. -->
 ```
 
+**Assignment files carry a third line giving the due date**, immediately after the paste
+line and before any provenance or known-gap note:
+
+```html
+<!-- Canvas assignment: Week 4 Assignment - [React Number Adder] -->
+<!-- Paste the contents of this file into the Canvas HTML editor. -->
+<!-- DUE: Thursday 15 Oct 2026, 11:59pm (26FA) — rule: Thursday
+     midnight following the Friday class. Recompute each term. -->
+```
+
+The rule is fixed — homework is due at 11:59pm on the Thursday after the Friday class —
+but the dates are term-specific and are the one place in `content/` where that is true.
+**Recompute all of them at the start of each term** and check that each stated date really
+does fall on a Thursday six days after that week's class. `_template/assignment.html`
+carries a `<Thursday DD Mon YYYY>` placeholder rather than a real date.
+
+The comment is the authoritative due date. Where an assignment's body prose also mentions
+a deadline it says "Thursday midnight" without a date, so the two agree by construction —
+if you ever add a dated deadline to prose, keep it in step with the header.
+
+Longer-lived notes use the same comment style: `<!-- Imported from ... -->` for
+provenance, `<!-- KNOWN GAP: ... -->` for something that needs fixing before publishing,
+`<!-- RELINK REQUIRED: ... -->` for an image that must be repointed at Canvas.
+
 Keep to plain semantic HTML: `h3`/`h4` headings, `ul`/`ol`, `pre><code` for code blocks,
 `strong`/`em`, and links with `target="_blank" rel="noopener"`. Use `&lt;` and `&gt;` for
 code samples that contain markup.
