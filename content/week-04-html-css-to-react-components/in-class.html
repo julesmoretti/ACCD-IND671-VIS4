@@ -1,0 +1,159 @@
+<!-- Canvas page: Week 4 - From HTML/CSS to React Components (In-Class Hands-On Coding) -->
+<!-- Paste the contents of this file into the Canvas HTML editor. -->
+
+<p>In this section, we will convert last week’s homework into a React app using <code>create-react-app</code>. We will start by creating a new React project, then gradually convert the HTML sections into React components. Finally, we will refactor the logic so that the button interactions within the main content update the sidebar with the result and operation history.</p>
+<h3>Step 1: Setting up the React App</h3>
+<p>We’ll start by setting up the project in the same way as the previous section.</p>
+<ol>
+    <li><strong>Install Create React App:</strong>
+        <p>If you haven’t installed <code>create-react-app</code> yet, run the following command to install it globally:</p>
+        <pre><code>npm install -g create-react-app</code></pre>
+    </li>
+    <li><strong>Create the React App:</strong>
+        <p>Use <code>create-react-app</code> to generate a new React project:</p>
+        <pre><code>create-react-app number-adder</code></pre>
+    </li>
+    <li><strong>Navigate to the Project Directory:</strong>
+        <p>Navigate to the project folder and start the development server:</p>
+        <pre><code>cd number-adder<br>subl .<br>npm start</code></pre>
+        <p>This will open the app in your browser at <code>http://localhost:3000</code>.</p>
+    </li>
+</ol>
+<h3>Step 2: Convert Header to a React Component</h3>
+<p>We’ll start by refactoring the header section from last week’s homework into its own reusable React component.</p>
+<p>1. First, create a new file in the <code>src</code> folder called <code>Header.js</code>. This file will contain the header component.</p>
+<p>2. In <code>Header.js</code>, define a function component that represents the header:</p>
+<pre><code>import React from 'react';
+
+function Header() {
+  return (
+    &lt;div id="navbar"&gt;
+      &lt;h1&gt;Number Adder&lt;/h1&gt;
+      &lt;h4&gt;Item 1&lt;/h4&gt;
+      &lt;h4&gt;Item 2&lt;/h4&gt;
+      &lt;h4&gt;Item 3&lt;/h4&gt;
+    &lt;/div&gt;
+  );
+}
+
+export default Header;</code></pre>
+<p>3. Next, import this <code>Header</code> component into the <code>App.js</code> file and render it as part of the main app:</p>
+<pre><code>import React from 'react';
+import Header from './Header'; // Import the Header component
+
+function App() {
+  return (
+    &lt;div&gt;
+      &lt;Header /&gt;
+      {/* Other components will go here */}
+    &lt;/div&gt;
+  );
+}
+
+export default App;</code></pre>
+<p>This creates a reusable <code>Header</code> component that you can easily include in other parts of the app or adjust independently.</p>
+<h3>Step 3: Convert Sidebar and Main Content to React Components</h3>
+<p>Now we’ll convert the sidebar and main content into separate React components. These components will manage the layout of the buttons, results, and history.</p>
+<p>1. Create a new file called <code>Sidebar.js</code>:</p>
+<pre><code>import React from 'react';
+
+function Sidebar({ total, history }) {
+  return (
+    &lt;div className="sidebar"&gt;
+      &lt;h3&gt;Result&lt;/h3&gt;
+      &lt;p&gt;Total: {total}&lt;/p&gt;
+      &lt;h3&gt;History&lt;/h3&gt;
+      &lt;ul&gt;
+        {history.map((entry, index) =&gt; (
+          &lt;li key={index}&gt;{entry}&lt;/li&gt;
+        ))}
+      &lt;/ul&gt;
+    &lt;/div&gt;
+  );
+}
+
+export default Sidebar;</code></pre>
+<p><strong>Explanation of the <code>.map()</code> method:</strong></p>
+<p>The <code>.map()</code> method is used to iterate over an array and generate a new array based on the transformation provided in the callback function. In this example, we use <code>.map()</code> to iterate over the <code>history</code> array, and for each entry, we return a <code>&lt;li&gt;</code> element that displays the history entry in the sidebar.</p>
+<p>In simple terms, <code>.map()</code> takes each element of the array and creates a new list item (<code>&lt;li&gt;</code>) to display on the page. The result is an array of list items that React can render dynamically.</p>
+<p><strong>Why use <code>key={index}</code>?</strong></p>
+<p>When rendering lists in React, you need to assign a unique key to each list item. This helps React efficiently track and update items when the list changes. In this case, we're using the array index as the key, which is sufficient here because the order of the items doesn't change. However, in more complex apps, using a unique identifier (such as an ID) is preferred to avoid potential issues when items are added, removed, or reordered.</p>
+<p>2. Create a new file called <code>MainContent.js</code>:</p>
+<pre><code>import React from 'react';
+
+function MainContent({ onAddOne, onAddTwo, onReset, onRemoveOne, onRemoveTwo }) {
+  return (
+    &lt;div className="content"&gt;
+      &lt;h3&gt;Control Center&lt;/h3&gt;
+      &lt;div className="buttonControls"&gt;
+        &lt;button onClick={onRemoveTwo}&gt;-2&lt;/button&gt;
+        &lt;button onClick={onRemoveOne}&gt;-1&lt;/button&gt;
+        &lt;button onClick={onReset}&gt;Reset&lt;/button&gt;
+        &lt;button onClick={onAddOne}&gt;+1&lt;/button&gt;
+        &lt;button onClick={onAddTwo}&gt;+2&lt;/button&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  );
+}
+
+export default MainContent;</code></pre>
+<p>3. Now, import the <code>Sidebar</code> and <code>MainContent</code> components into <code>App.js</code> and render them:</p>
+<pre><code>import React, { useState } from 'react';
+import Header from './Header';
+import Sidebar from './Sidebar';
+import MainContent from './MainContent';
+
+function App() {
+  const [total, setTotal] = useState(0);
+  const [history, setHistory] = useState([]);
+
+  function handleAddOne() {
+    setTotal(total + 1);
+    setHistory([...history, '+1']);
+  }
+
+  function handleAddTwo() {
+    setTotal(total + 2);
+    setHistory([...history, '+2']);
+  }
+
+  function handleRemoveOne() {
+    setTotal(total - 1);
+    setHistory([...history, '-1']);
+  }
+
+  function handleRemoveTwo() {
+    setTotal(total - 2);
+    setHistory([...history, '-2']);
+  }
+
+  function handleReset() {
+    setTotal(0);
+    setHistory([...history, 'Reset']);
+  }
+
+  return (
+    &lt;div&gt;
+      &lt;Header /&gt;
+      &lt;div id="main-content"&gt;
+        &lt;Sidebar total={total} history={history} /&gt;
+        &lt;MainContent
+          onAddOne={handleAddOne}
+          onAddTwo={handleAddTwo}
+          onRemoveOne={handleRemoveOne}
+          onRemoveTwo={handleRemoveTwo}
+          onReset={handleReset}
+        /&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  );
+}
+
+export default App;</code></pre>
+<p><strong>Explanation of <code>[...history]</code> (Spread Operator):</strong></p>
+<p>The <code>[...history]</code> syntax is known as the <strong>spread operator</strong>. It’s used here to create a copy of the existing <code>history</code> array and add a new entry to it (like <code>+1</code> or <code>-2</code>). Without using the spread operator, we would modify the original array directly, which can lead to bugs and unwanted side effects. The spread operator allows us to create a new array while keeping the previous elements intact, ensuring that React properly detects the state update and re-renders the component.</p>
+<h3>Step 4: Refactor Button Logic for State Updates</h3>
+<p>Finally, let’s ensure that when buttons are clicked in the <code>MainContent</code> component, the total and history get updated, and those changes are reflected in the Sidebar component. This is already done in the previous step using the <code>useState</code> hook for managing state.</p>
+<p>For each button click (e.g., <code>onAddOne</code>), the total is updated using <code>setTotal</code>, and the history is updated using <code>setHistory</code> by adding the corresponding action (e.g., <code>'+1'</code>) to the history array.</p>
+<h3>Wrap-up</h3>
+<p>At this point, you should have a fully functioning number adder app that uses React components to structure the app and state management to handle the button interactions and history. The <code>Header</code>, <code>Sidebar</code>, and <code>MainContent</code> components are reusable, and the app’s state is managed centrally within the <code>App</code> component.</p>

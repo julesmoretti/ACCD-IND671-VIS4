@@ -1,0 +1,36 @@
+<!-- Canvas assignment: Week 2 Assignment [Number Adder] -->
+<!-- Paste the contents of this file into the Canvas HTML editor. -->
+
+<h3>Number Adder</h3>
+<p>Create an HTML page with CSS styling in a separate page, and include JavaScript to make some live calculations. The page should display a result, and the capability to add to the result +1, +2, or -1, -2, or the reset the value back to 0. Once all complete push your code to your repo and use that to share that back to me.</p>
+<p>NOTE: This assignment is graded and will contribute to your final grade and is due end of day Thursday.</p>
+<h3>Final Result Screen Shot:</h3>
+<p><!-- RELINK REQUIRED: this image is NOT versioned in the repo — it stays hosted in
+     Canvas. The src below is a placeholder and will not resolve locally; replace
+     it with the Canvas file URL when publishing.
+     Original export ref: $IMS-CC-FILEBASE$/Uploaded%20Media/Number%20Adder.gif -->
+<img src="images/number-adder.gif" alt="Number Adder.gif"></p>
+<h3>Requirements:</h3>
+<ul style="list-style-type: disc;">
+<li>The header title should have your <span style="text-decoration: underline;">first name</span> followed by <span style="text-decoration: underline;">Number Adder</span>
+</li>
+<li>The page should be divided between 3 DIV's (a Header DIV, a sidebar DIV, and a main-content DIV)</li>
+<li>The header DIV should have a series of flex informations (h1, h4, h4 ,h4)</li>
+<li>The sidebar should have an h3 RESULT title followed by a p (paragraph) that uses <code>id="resultId"</code> to keep track of it.</li>
+<li>The main-content section should comprise an H3 header that says: "Control Center", followed by a flex div, that has within it 5 button with unique ID's for each of them</li>
+<li>Your JavaScript section should start off with a variable called total and be assigned the value 0 like so: <code>var total = 0;</code>
+</li>
+<li>Your JavaScript should have five <code>document.getElementById("someUniqueIdPerButtons").addEventlisten...</code>
+</li>
+<li>Within each of those five unique event listeners, the function should start with: <code>total = total -1</code> (the last piece in this case -1 depends on the button operation, it could be -2, +1, +2 or simply <code>total = 0</code>)&nbsp;</li>
+<li>And finally within each of the event listener your file should also include a document.querySelector("#resultId").innerHTML = total;</li>
+<li>Once the above complete when clicking on those buttons you should see the result value change according to your button.</li>
+<li>Styling, take some time to change the styling of your layout by figuring out how to center text, capitalize text, change the font weight, background colors of DIV's, margin's versus padding's, feel free to get creative there.</li>
+<li>Finally commit your work to your repo and push it to GitHub</li>
+</ul>
+<h3>Assignment submission:</h3>
+<ul>
+<li>Your repo link with the files in a folder called "Assignment" within the "Week 2" (make sure it is pushed up, and feel free to use GUI Git client https://github.com/apps/desktop)</li>
+<li>The HTML file that includes the JavaScript component, and the CSS file (in case the repo has issues)</li>
+<li>Due by end of day&nbsp; Thursday (Midnight sharp, after that means no submission and so 0 points).</li>
+</ul>

@@ -1,0 +1,59 @@
+<!-- Canvas assignment: Week 4 Assignment - [React Number Adder wt Redux Implementation] -->
+<!-- Paste the contents of this file into the Canvas HTML editor. -->
+
+<h3><strong>Assignment Overview: Enhanced Number Adder with React and Redux</strong></h3>
+<p>The goal of this Week 4 assignment is to convert your Week 3 Number Adder project into a React application using Redux for state management. You will implement a counter with a history of operations, similar to Week 3, but managed through Redux actions and components.</p>
+<p><strong>Objectives</strong>:</p>
+<ol style="list-style-type: decimal;">
+<li>Create a React web page that matches or improves upon the appearance of your Week 3 page.
+<ul style="list-style-type: disc;">
+<li>
+<strong>Bonus</strong>: Enhance the CSS to improve the visual design.</li>
+</ul>
+</li>
+<li>Implement all Week 3 functionality using Redux, including:
+<ul style="list-style-type: disc;">
+<li>Adding values (+1, +2) and subtracting values (-1, -2) to a counter, tracked in the Redux store’s <code>count</code> and <code>history</code>.</li>
+<li>Resetting the counter and appending <code>RESET</code> to the history (replacing the Week 3 <code>checkTotal()</code> and reset functionality).</li>
+<li>Removing individual history items by clicking them in the history list, using the <code>UPDATE_HISTORY</code> Redux action.</li>
+<li>Clearing the history and results, which can be implemented as a new <code>CLEAR_ALL</code> Redux action.</li>
+</ul>
+</li>
+<li>
+<strong>Bonus Feature</strong>: Enhance the history removal functionality to update the <code>count</code> based on the removed item (e.g., removing a <code>1</code> subtracts 1 from <code>count</code>, removing a <code>-2</code> adds 2 to <code>count</code>).</li>
+</ol>
+<p><strong>Resources</strong>:</p>
+<ul style="list-style-type: disc;">
+<li>Two video recordings are available on this canvas page to guide you through setting up React-Redux and implementing the required functionality.</li>
+<li>Refer to the Redux documentation page for code examples, including the Redux store setup and the <code>ResultBar</code> and <code>ControlCenter</code> components.</li>
+</ul>
+<hr>
+<h3>Implementation Details</h3>
+<p><strong>Redux Store</strong>:</p>
+<ul style="list-style-type: disc;">
+<li>Create a Redux store in <code>src/store.js</code> with a state containing <code>count</code> (the total) and <code>history</code> (an array of operations like <code>1</code>, <code>-2</code>, <code>RESET</code>).</li>
+<li>Define actions: <code>ADD_1</code>, <code>ADD_2</code>, <code>REMOVE_1</code>, <code>REMOVE_2</code>, <code>RESET</code>, and <code>UPDATE_HISTORY</code> (for removing a history item by index).</li>
+<li>For the bonus feature, modify the <code>UPDATE_HISTORY</code> action to adjust <code>count</code> based on the removed item’s value.</li>
+</ul>
+<p><strong>Components</strong>:</p>
+<ul style="list-style-type: disc;">
+<li>
+<strong>ControlCenter</strong>: A component with buttons to dispatch <code>ADD_1</code>, <code>ADD_2</code>, <code>REMOVE_1</code>, <code>REMOVE_2</code>, and <code>RESET</code> actions. Implement a <code>CLEAR_ALL</code> action for the "Clear History &amp; Results" button to reset both <code>count</code> and <code>history</code>.</li>
+<li>
+<strong>ResultBar</strong>: A sidebar component that displays <code>count</code> and renders <code>history</code> as a clickable list. Clicking a history item dispatches <code>UPDATE_HISTORY</code> with the item’s index to remove it.</li>
+<li>For the bonus feature, use <code>useEffect</code> in <code>ResultBar</code> to update elements like <code>totalMessage</code> or <code>summary</code> when <code>count</code> or <code>history</code> changes (e.g., to display a message or summary of operations).</li>
+</ul>
+<hr>
+<h3>Submission Requirements</h3>
+<ul style="list-style-type: disc;">
+<li>Submit your project in a <code>Week4</code> folder in your GitHub repository.</li>
+<li>Ensure all functionality works as expected:
+<ul style="list-style-type: circle;">
+<li>Buttons in <code>ControlCenter</code> correctly update <code>count</code> and <code>history</code>.</li>
+<li>History items in <code>ResultBar</code> can be removed by clicking.</li>
+<li>The "Clear History &amp; Results" button resets the state (implement via <code>CLEAR_ALL</code>).</li>
+</ul>
+</li>
+<li>For the bonus feature, refer to the video recordings for expected behavior (e.g., updating <code>count</code> when removing history items).</li>
+<li>Submit by <strong>11:59 PM on Thursday</strong>. Collaboration with peers is encouraged.</li>
+</ul>

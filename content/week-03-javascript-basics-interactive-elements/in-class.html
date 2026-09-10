@@ -1,0 +1,100 @@
+<!-- Canvas page: Week 3 - JavaScript Basics & Interactive Elements (In-Class Hands-On Coding) -->
+<!-- Paste the contents of this file into the Canvas HTML editor. -->
+
+<h3>Exercise 1: Manipulating Variables and Data Types</h3>
+<ol style="list-style-type: decimal;">
+<li><strong>Objective</strong>: Declare and manipulate different types of variables, including arrays and objects.</li>
+<li><strong>Instructions</strong>:
+<ul style="list-style-type: disc;">
+<li>Declare variables for a person's <span style="text-decoration: underline;">name</span>, <span style="text-decoration: underline;">age</span>, and <span style="text-decoration: underline;">hobbies</span> (using an <span style="text-decoration: underline;">array</span>).</li>
+<li>Log these variables to the console</li>
+<li>Add a new hobby to the array using <code>.push()</code>&nbsp;and log the outcome to see what happened.</li>
+<li>log a specific index of the array using <code>hobbies[</code><em>index_number</em><code>]</code></li>
+<li>Remove the last added hobby of the array using <code>.pop() </code>and log the outcome of the array.</li>
+<li>Extract a section of the array using <code>.slice(</code><em>start_index</em><code>, </code><em>end_index</em><code>)</code> and log that.</li>
+</ul>
+</li>
+<li><strong>Example Code</strong>
+<pre><code>let name = "John";
+let age = 25;
+let hobbies = ["football", "reading"];
+
+console.log(name, age, hobbies);
+
+// Adding a new hobby
+hobbies.push("gaming");
+console.log(hobbies);</code></pre>
+</li>
+<li><strong>Expected Outcome</strong>: Students will see how variables and arrays are manipulated, including using array methods like <code>push()</code>.</li>
+</ol>
+<hr>
+<h3>Exercise 2: Creating and Using Functions</h3>
+<ol style="list-style-type: decimal;">
+<li><strong>Objective</strong>: Create a function that accepts parameters, processes input, and returns a result.</li>
+<li><strong>Instructions</strong>:
+<ul style="list-style-type: disc;">
+<li>Create a function <code>calculateAgeInDays</code> that takes a person's <code>age</code> and returns their age in <span style="text-decoration: underline;">days</span>.</li>
+<li>Call the function with different ages and log the result to the console.</li>
+<li>Rewrite the function in ES6 format using arrow operator <code>=&gt;</code>.</li>
+</ul>
+</li>
+<li><strong>Example Code</strong>:
+<pre><code>function calculateAgeInDays(age) {
+    return age * 365;
+}
+
+console.log(calculateAgeInDays(25)); // 9125
+
+console.log(calculateAgeInDays(30)); // 10950</code></pre>
+</li>
+<li><strong>Expected Outcome</strong>: Students should be able to learn how to define functions and use them to process data.</li>
+</ol>
+<hr>
+<h3>Exercise 3: Demonstrating Scope</h3>
+<ol style="list-style-type: decimal;">
+<li><strong>Objective</strong>: Understand the difference between local and global scope by manipulating variables inside and outside functions.</li>
+<li><strong>Instructions</strong>:
+<ul style="list-style-type: disc;">
+<li>Declare a global variable.</li>
+<li>Create a function that declares a local variable and accesses both local and global variables.</li>
+</ul>
+</li>
+<li><strong>Example Code</strong>:
+<pre><code>let globalVar = "I am global";
+
+function testScope() {
+    let localVar = "I am local";
+    
+    console.log(globalVar); // Accessing global variable
+    console.log(localVar); // Accessing local variable
+}
+
+testScope();
+console.log(localVar); // This will throw an error (localVar is not accessible here)</code></pre>
+</li>
+<li><strong>Expected Outcome</strong>: Students should be able to see the importance of scope and how variables are accessed based on where they are declared.</li>
+</ol>
+<hr>
+<h3>Exercise 4: Loops and Conditionals</h3>
+<ol style="list-style-type: decimal;">
+<li><strong>Objective</strong>: Use loops and conditional statements to process arrays and make decisions in the code.</li>
+<li><strong>Instructions</strong>:
+<ul style="list-style-type: disc;">
+<li>Create an array of numbers.</li>
+<li>Write a <code>for</code> loop that iterates through the array and checks if each number is even or odd using an <code>if-else</code> statement.</li>
+</ul>
+</li>
+<li><strong>Example Code</strong>:
+<pre><code>let numbers = [1, 2, 3, 4, 5, 6];
+for (let i = 0; i &lt; numbers.length; i++) {
+
+    if (numbers[i] % 2 === 0) {
+        console.log(numbers[i] + " is even");
+    } else {
+        console.log(numbers[i] + " is odd");
+    }
+
+}</code></pre>
+</li>
+<li><strong>Expected Outcome</strong>: Students should understand how to iterate over arrays and use conditionals to perform different actions based on conditions.</li>
+</ol>

@@ -1,0 +1,253 @@
+<!-- Canvas page: React Redux -->
+<!-- Paste the contents of this file into the Canvas HTML editor. -->
+
+<h3>Step 1: Install Redux and React-Redux</h3>
+<p>To start using Redux, you need to install two libraries: <code>redux</code> (the core library) and <code>react-redux</code> (which connects Redux to your React components). These must be installed in your project, in this case, <code>react-number-adder</code>. The installation process is the same for both Mac and Windows, but you’ll need to ensure Node.js and npm are installed on your system.</p>
+<p><strong>Prerequisite</strong>: Install Node.js (which includes npm) from <a href="https://nodejs.org">nodejs.org</a>. Choose the LTS version for stability. After installation, verify by running <code>node --version</code> and <code>npm --version</code> in your terminal (Command Prompt or PowerShell on Windows, Terminal on Mac).</p>
+<p><strong>For Mac and Windows</strong>:</p>
+<ul>
+<li>Open a terminal (on Mac: Terminal; on Windows: Command Prompt, PowerShell, or Git Bash).</li>
+<li>Navigate to your project directory and install the required packages:</li>
+</ul>
+<pre><code># Navigate to the project directory and install Redux and React-Redux
+cd react-number-adder
+npm install redux react-redux
+</code></pre>
+<p><strong>Notes</strong>:</p>
+<ul>
+<li>The <code>cd</code> command works the same on both Mac and Windows. For example, if your project is in <code>C:\Users\YourName\react-number-adder</code> on Windows, use <code>cd C:\Users\YourName\react-number-adder</code>.</li>
+<li>The <code>npm install</code> command adds <code>redux</code> and <code>react-redux</code> to your project’s <code>node_modules</code> and updates <code>package.json</code>.</li>
+<li>If you’re using <code>npx</code> for other tasks (e.g., creating a React app with <code>npx create-react-app react-number-adder</code>), note that <code>npx</code> is included with Node.js and works on both platforms, but it’s not needed for this installation step.</li>
+</ul>
+<hr>
+<h3>Step 2: Create and Configure Redux Store</h3>
+<p>Create a central store to hold the application's state. Make a new file called <code>store.js</code> in the <code>src/</code> directory:</p>
+<pre><code>import { createStore } from 'redux';
+
+// Initial state - holds the application's data, including a count and a history of actions
+const initialState = {
+  history: [],
+  count: 0
+};
+
+// Reducer function to handle actions and update the state
+const reducer = (state = initialState, action) =&gt; {
+  switch (action.type) {
+    // Actions to modify the state
+    case 'UPDATE_HISTORY':
+      console.log('UPDATE_HISTORY', state, action.payload);
+      return {
+        ...state,
+        history: [
+          ...state.history.slice(0, action.payload),
+          ...state.history.slice(action.payload + 1)
+        ]
+      };
+
+    case 'RESET':
+      console.log('RESET', state);
+      return {
+        ...state,
+        history: [...state.history, 'RESET'],
+        count: 0
+      };
+
+    case 'ADD_1':
+      console.log('ADD_1', state);
+      return {
+        ...state,
+        history: [...state.history, 1],
+        count: state.count + 1
+      };
+
+    case 'ADD_2':
+      console.log('ADD_2', state);
+      return {
+        ...state,
+        history: [...state.history, 2],
+        count: state.count + 2
+      };
+
+    case 'REMOVE_1':
+      console.log('REMOVE_1', state);
+      return {
+        ...state,
+        history: [...state.history, -1],
+        count: state.count - 1
+      };
+
+    case 'REMOVE_2':
+      console.log('REMOVE_2', state);
+      return {
+        ...state,
+        history: [...state.history, -2],
+        count: state.count - 2
+      };
+
+    default:
+      return state;
+  }
+};
+
+const store = createStore(reducer);
+
+export default store;
+</code></pre>
+<p>Wrap the entire application with the <code>Provider</code> component in <code>index.js</code> to make the store available to all components:</p>
+<pre><code>import React from 'react';
+import ReactDOM from 'react-dom/client';
+import './index.css';
+import App from './App';
+import store from './store';
+import { Provider } from 'react-redux';
+import reportWebVitals from './reportWebVitals';
+
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(
+  &lt;React.StrictMode&gt;
+    &lt;Provider store={store}&gt;
+      &lt;App /&gt;
+    &lt;/Provider&gt;
+  &lt;/React.StrictMode&gt;
+);
+
+// If you want to start measuring performance in your app, pass a function
+// to log results (for example: reportWebVitals(console.log))
+// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
+reportWebVitals();
+</code></pre>
+<hr>
+<h3>Step 3: How Redux Works at a High Level</h3>
+<p>Redux is a predictable state container for JavaScript apps. At a high level:</p>
+<ul>
+<li><strong>Store</strong>: A single source of truth that holds the state (e.g., <code>count</code> and <code>history</code>) of your application.</li>
+<li><strong>Actions</strong>: Descriptions of events (e.g., <code>ADD_1</code>, <code>UPDATE_HISTORY</code>) that change the state.</li>
+<li><strong>Reducers</strong>: Pure functions that take the current state and an action, and return a new state.</li>
+<li><strong>Dispatch</strong>: The mechanism to trigger actions to update the state.</li>
+</ul>
+<hr>
+<h3>Step 4: Reading and Writing Redux Content in a Component</h3>
+<p>Use the <code>useSelector</code> and <code>useDispatch</code> hooks to read data from the Redux store or dispatch actions. Below are two example components: <code>ResultBar</code>, which displays the count and history, and <code>ControlCenter</code>, which provides buttons to modify the state.</p>
+<p><strong>Example 1: ResultBar Component</strong></p>
+<p>This component displays the current count and a list of history items. Clicking a history item removes it from the list by dispatching the <code>UPDATE_HISTORY</code> action with the item's index.</p>
+<pre><code>import './ResultBar.css';
+import React from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+
+function ResultBar() {
+  // Read count and history from the Redux store
+  const count = useSelector((state) =&gt; state.count);
+  const history = useSelector((state) =&gt; state.history);
+  
+  // Get the dispatch function to trigger actions
+  const dispatch = useDispatch();
+
+  return (
+    &lt;div className="resultbar"&gt;
+      &lt;h3&gt;Result&lt;/h3&gt;
+      &lt;p id="resultId"&gt;{count}&lt;/p&gt;
+      &lt;p id="totalMessage"&gt;&lt;/p&gt;
+      &lt;h3&gt;History List&lt;/h3&gt;
+      &lt;div id="summary"&gt;&lt;/div&gt;
+      &lt;ul id="historylist"&gt;
+        {history.map((item, i) =&gt; (
+          &lt;li
+            key={i}
+            onClick={() =&gt; dispatch({ type: 'UPDATE_HISTORY', payload: i })}
+          &gt;{item}&lt;/li&gt;
+        ))}
+      &lt;/ul&gt;
+    &lt;/div&gt;
+  );
+}
+
+export default ResultBar;
+</code></pre>
+<p>In this component:</p>
+<ul>
+<li><code>useSelector</code> reads <code>count</code> and <code>history</code> from the store.</li>
+<li><code>useDispatch</code> provides the <code>dispatch</code> function to trigger actions.</li>
+<li>The <code>history</code> array is rendered as a list, and clicking a list item dispatches the <code>UPDATE_HISTORY</code> action with the item's index as the payload, removing that item from the history.</li>
+</ul>
+<p><strong>Example 2: ControlCenter Component</strong></p>
+<p>This component provides buttons to modify the count and history by dispatching actions like <code>ADD_1</code>, <code>REMOVE_2</code>, and <code>RESET</code>. It uses named handler functions for dispatching, which is a more structured approach for handling multiple actions.</p>
+<pre><code>import './ControlCenter.css';
+import React from 'react';
+import { useDispatch } from 'react-redux';
+
+function ControlCenter() {
+  // Get the dispatch function to trigger actions
+  const dispatch = useDispatch();
+
+  // Handler functions for each action
+  const handleRemove2 = () =&gt; {
+    dispatch({
+      type: 'REMOVE_2'
+    });
+  };
+
+  const handleRemove1 = () =&gt; {
+    dispatch({
+      type: 'REMOVE_1'
+    });
+  };
+
+  const handleReset = () =&gt; {
+    dispatch({
+      type: 'RESET'
+    });
+  };
+
+  const handleAdd1 = (notification) =&gt; {
+    dispatch({
+      type: 'ADD_1',
+      payload: notification
+    });
+  };
+
+  const handleAdd2 = () =&gt; {
+    dispatch({
+      type: 'ADD_2'
+    });
+  };
+
+  return (
+    &lt;div className="controlcenter"&gt;
+      &lt;h3&gt;Control Center&lt;/h3&gt;
+      &lt;div className="controlbuttons"&gt;
+        &lt;button id="minustwo" onClick={() =&gt; {
+          console.log("-2");
+          handleRemove2();
+        }}&gt;-2&lt;/button&gt;
+        &lt;button id="minusone" onClick={() =&gt; {
+          console.log("-1");
+          handleRemove1();
+        }}&gt;-1&lt;/button&gt;
+        &lt;button id="reset" onClick={() =&gt; {
+          console.log("Reset");
+          handleReset();
+        }}&gt;Reset&lt;/button&gt;
+        &lt;button id="plusone" onClick={() =&gt; {
+          console.log("+1");
+          handleAdd1("Jules");
+        }}&gt;+1&lt;/button&gt;
+        &lt;button id="plustwo" onClick={() =&gt; {
+          console.log("+2");
+          handleAdd2();
+        }}&gt;+2&lt;/button&gt;
+      &lt;/div&gt;
+      &lt;button id="clearall" onClick={() =&gt; console.log("Clear History &amp; Results")}&gt;Clear History &amp; Results&lt;/button&gt;
+    &lt;/div&gt;
+  );
+}
+
+export default ControlCenter;
+</code></pre>
+<p>In this component:</p>
+<ul>
+<li><code>useDispatch</code> provides the <code>dispatch</code> function to trigger actions.</li>
+<li>Named handler functions (<code>handleAdd1</code>, <code>handleRemove2</code>, etc.) are defined for each action, making the code more modular and reusable.</li>
+<li>Each button triggers a specific action (e.g., <code>ADD_1</code>, <code>REMOVE_2</code>, <code>RESET</code>) when clicked, updating the <code>count</code> and <code>history</code> in the store.</li>
+<li>The <code>handleAdd1</code> function includes a <code>notification</code> parameter passed as <code>payload: "Jules"</code>, though the reducer currently ignores this payload.</li>
+<li>The "Clear History &amp; Results" button currently only logs a message and does not dispatch an action. You could extend the reducer with a new action (e.g., <code>CLEAR_ALL</code>) to reset both <code>history</code> and <code>count</code>.</li>
+</ul>

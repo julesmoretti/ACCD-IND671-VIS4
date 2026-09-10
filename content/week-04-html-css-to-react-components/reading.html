@@ -1,0 +1,132 @@
+<!-- Canvas page: Week 4 - From HTML/CSS to React Components (Reading) -->
+<!-- Paste the contents of this file into the Canvas HTML editor. -->
+
+<p>This section of the class focuses on helping students understand the fundamentals of React by walking through the steps required to set up and work with a simple React project, including the introduction to JSX, props, components, and state management.</p>
+<h3>0. Setup: Installing and Creating a React App</h3>
+<p>The first step is to install the necessary tools and set up a new React app.</p>
+<ol>
+    <li><strong>Install Create React App:</strong>
+        <p>The tool <code>create-react-app</code> scaffolds a React project, handling all the setup so you can focus on writing React code.</p>
+        <pre><code>npm install -g create-react-app</code></pre>
+    </li>
+    <li><strong>Create a New React App:</strong>
+        <p>Once installed, use <code>create-react-app</code> to generate a new project. For this class, we’ll create a project named <strong>number-adder</strong>.</p>
+        <pre><code>create-react-app number-adder</code></pre>
+    </li>
+    <li><strong>Start the Development Server:</strong>
+        <p>Navigate to the project folder and start the development server:</p>
+        <pre><code>cd number-adder<br>npm start</code></pre>
+        <p>This launches the app in the browser at <code>http://localhost:3000</code> and sets up a live-reloading environment, so changes you make in your code will immediately reflect in the browser.</p>
+    </li>
+</ol>
+<h3>1. Anatomy of a React App</h3>
+<p>Once the React app is generated, it's crucial to understand the basic structure of the project and what each file does. This will help students navigate the project and understand where they should write their code.</p>
+<ul>
+    <li><strong>/public Folder:</strong>
+        <ul>
+            <li><strong>index.html:</strong> This is the base HTML file that serves as the entry point for the entire application. React will inject the app components into this file dynamically.</li>
+            <li>Other files like the favicon and manifest for branding or functionality.</li>
+        </ul>
+    </li>
+    <li><strong>/src Folder:</strong>
+        <ul>
+            <li><strong>index.js:</strong> The entry point for the React app. It renders the root component (usually <code>App.js</code>) into the DOM.</li>
+            <li><strong>App.js:</strong> The main React component. Initially, this is a functional component that returns JSX.</li>
+            <li><strong>App.css:</strong> Styles for <code>App.js</code>.</li>
+            <li><strong>index.css:</strong> Global styles for the app.</li>
+        </ul>
+    </li>
+    <li><strong>package.json:</strong>
+        <p>Lists project dependencies and scripts, such as <code>npm start</code> and <code>npm test</code>.</p>
+    </li>
+</ul>
+<h3>2. JSX Format, Props, and className</h3>
+<p>React uses <strong>JSX</strong> (JavaScript XML) to define the structure of components. JSX is similar to HTML, but with some important differences. We'll cover how JSX works and how to pass data between components using <strong>props</strong>.</p>
+<ul>
+    <li><strong>JSX Basics:</strong>
+        <p>JSX allows HTML-like syntax directly in JavaScript.</p>
+        <pre><code>const title = "Number Adder";
+const subtitle = "React Version";
+
+return (
+  &lt;div&gt;
+    &lt;h1&gt;{title}&lt;/h1&gt;
+    &lt;h3&gt;{subtitle}&lt;/h3&gt;
+  &lt;/div&gt;
+);</code></pre>
+    </li>
+    <li><strong>Props:</strong>
+        <p>Props are how you pass data from a parent component to a child component.</p>
+        <pre><code>function Navbar(props) {
+  return &lt;h1&gt;{props.title}&lt;/h1&gt;;
+}
+
+function App() {
+  return &lt;Navbar title="Number Adder" /&gt;;
+}</code></pre>
+    </li>
+    <li><strong>className vs. class:</strong>
+        <p>Since JSX is embedded in JavaScript, <code>class</code> in HTML is replaced by <code>className</code>.</p>
+        <pre><code>&lt;div className="container"&gt;Hello&lt;/div&gt;</code></pre>
+    </li>
+</ul>
+<h3>3. Creating a React Component and Injecting it into App.js</h3>
+<p>React applications are made up of <strong>components</strong>. Components are JavaScript functions (or classes) that return JSX and represent pieces of the UI. Let’s break down how to create a simple React component and integrate it into the <code>App.js</code> file.</p>
+<ul>
+    <li><strong>Creating a Component:</strong>
+        <pre><code>// in a new file called Navbar.js
+function Navbar() {
+  return (
+    &lt;div id="navbar"&gt;
+      &lt;h1&gt;Number Adder&lt;/h1&gt;
+      &lt;h4&gt;Item 1&lt;/h4&gt;
+      &lt;h4&gt;Item 2&lt;/h4&gt;
+    &lt;/div&gt;
+  );
+}
+
+export default Navbar;</code></pre>
+    </li>
+    <li><strong>Injecting the Component into App.js:</strong>
+        <pre><code>import Navbar from './Navbar';
+
+function App() {
+  return (
+    &lt;div&gt;
+      &lt;Navbar /&gt;
+      &lt;p&gt;This is the main content of the app.&lt;/p&gt;
+    &lt;/div&gt;
+  );
+}
+
+export default App;</code></pre>
+    </li>
+</ul>
+<h3>4. State Management: useState, Props vs. State, Localized vs Distributed</h3>
+<p><strong>State</strong> is one of the core concepts of React, allowing components to "remember" things between renders. State is different from props in that it’s <strong>local</strong> to a component and can change over time, while props are passed down from a parent component and are <strong>read-only</strong>.</p>
+<ul>
+    <li><strong>useState Hook:</strong>
+        <pre><code>import React, { useState } from 'react';
+
+function Counter() {
+  const [count, setCount] = useState(0);
+
+  return (
+    &lt;div&gt;
+      &lt;p&gt;Total: {count}&lt;/p&gt;
+      &lt;button onClick={() =&gt; setCount(count + 1)}&gt;Add 1&lt;/button&gt;
+      &lt;button onClick={() =&gt; setCount(count - 1)}&gt;Remove 1&lt;/button&gt;
+      &lt;button onClick={() =&gt; setCount(0)}&gt;Reset&lt;/button&gt;
+    &lt;/div&gt;
+  );
+}
+
+export default Counter;</code></pre>
+    </li>
+    <li><strong>State vs. Props:</strong>
+        <p>Props are passed into components from parent components and are immutable. State is local to a component and can be updated.</p>
+    </li>
+    <li><strong>Localized vs. Distributed State:</strong>
+        <p>Localized state is managed inside a single component. Distributed state refers to shared state across multiple components, often managed with context or external libraries like Redux.</p>
+    </li>
+</ul>

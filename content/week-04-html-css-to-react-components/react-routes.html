@@ -1,0 +1,312 @@
+<!-- Canvas page: React Routes -->
+<!-- Paste the contents of this file into the Canvas HTML editor. -->
+
+<h3>Step 1: Install Redux and React-Redux</h3>
+<pre><code># Install Redux and React-Redux
+npm install redux react-redux</code></pre>
+<p>To start using Redux, you need to install two libraries: <code>redux</code> (which is the core library) and <code>react-redux</code> (which helps connect Redux to your React components).</p>
+<hr>
+<h3>Step 2: Create and Configure Redux Store</h3>
+<p>To use Redux, you need to create a central store that holds the application's state. First, create a new file called <code>store.js</code> in the <code>src/</code> directory:</p>
+<pre><code>import { createStore } from 'redux';
+
+// Initial state - this is the main data store for your app, in this you will keep a record of anything you want to store or edit within your local app
+const initialState = {
+  // -----------------------------------------
+  user: null,
+  // This is where you would store any variable used within your app.
+  // for example:
+  // instagramPosts: [],
+  // spotifyPlaylists: [],
+  // -----------------------------------------
+};
+
+// Reducer function to handle actions
+const reducer = (state = initialState, action) =&gt; {
+  switch (action.type) {
+
+    // -----------------------------------------
+    // these case's are refered as Actions, and is what you need to define in order to edit the initial state
+    case 'SET_USER':
+      console.log('SET_USER', state, action.payload);
+
+      return {
+        ...state,
+        user: action.payload
+      };
+    case 'CLEAR_USER':
+      console.log('SET_USER', state);
+
+      return {
+        ...state,
+        user: null
+      };
+    // end of the user defined cases, the rest is just default redux implementation.
+    // -----------------------------------------
+
+    default:
+      return state;
+  }
+};
+
+const store = createStore(reducer);
+
+export default store;</code></pre>
+<p>Then wrap the entire application with the <code>Provider</code> component in <code>index.js</code> to make the store available to all components:</p>
+<pre><code>import React from 'react';
+import ReactDOM from 'react-dom/client';
+import './index.css';
+import App from './App';
+import store from './store';
+import { Provider } from 'react-redux';
+import reportWebVitals from './reportWebVitals';
+
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(
+  &lt;React.StrictMode&gt;
+    &lt;Provider store={store}&gt;
+      &lt;App /&gt;
+    &lt;/Provider&gt;,
+  &lt;/React.StrictMode&gt;
+);
+
+// If you want to start measuring performance in your app, pass a function
+// to log results (for example: reportWebVitals(console.log))
+// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
+reportWebVitals();</code></pre>
+<hr>
+<h3>Step 3: How Redux Works at a High Level</h3>
+<p>Redux is a predictable state container for JavaScript apps. At a high level:</p>
+<ul>
+    <li><strong>Store</strong>: A single source of truth that holds the state (list of variables within a single object) of your application.</li>
+    <li><strong>Actions</strong>: Descriptions of events that change the state.</li>
+    <li><strong>Reducers</strong>: Pure functions that take the current state and an action, and return the next state.</li>
+    <li><strong>Dispatch</strong>: The way to trigger an action to update the state.</li>
+</ul>
+<hr>
+<h3>Step 4: Reading and Writing Redux Content in a Component</h3>
+<p>To read data from the Redux store or to dispatch actions to it, you use the <code>useSelector</code> and <code>useDispatch</code> hooks.</p>
+<p>Example of a component reading and writting Redux content:</p>
+<pre><code>import React from 'react';
+// the reading and writting function from redux
+import { useSelector, useDispatch } from 'react-redux';
+
+function SignOut() {
+  // the useSelector in this case allows this component to read the user data from your store.js and any changes it will undergo.
+  const user = useSelector((state) =&gt; state.user);
+  
+  // this allows this function to use dispatch which is a tool from redux that allows you to trigger a defined Action within your Store's reducer.
+  const dispatch = useDispatch();
+  
+  const handleSignOut = () =&gt; {
+    dispatch({
+      // As we can see this dispatches an Action called CLEAR_USER which you have defined in your store, NO payload goes with this Action.
+      type: 'CLEAR_USER'
+    });
+  };
+
+  return (
+    &lt;div&gt;
+        &lt;img src={user.photoURL.slice(0, -6)} alt="profile" /&gt;
+        &lt;p&gt;Welcom, {user.displayName}&lt;/p&gt;
+        &lt;button onClick={handleSignOut}&gt;Sign Out&lt;/button&gt;
+    &lt;/div&gt;
+  );
+}
+
+export default SignOut;</code></pre>
+<p>Example of a component writting Redux content:</p>
+<pre><code>import React from 'react';
+import {
+  GoogleAuthProvider,
+  signInWithPopup,
+} from 'firebase/auth';
+
+// the writting function from redux
+import { useDispatch } from 'react-redux';
+import { auth } from './firebase';
+
+function SignIn() {  
+  // this allows this function to use dispatch which is a tool from redux that allows you to trigger a defined Action within your Store's reducer.
+  const dispatch = useDispatch();
+  
+  const handleLogin = (user) =&gt; {
+  	// As we can see this dispatches an Action called SET_USER which you have defined in your store, and at the same time it is passing a payload with user
+    dispatch({
+      type: 'SET_USER',
+      payload: user,
+    });
+  };
+  
+  const signInWithGoogle = () =&gt; {
+    const provider = new GoogleAuthProvider();
+    signInWithPopup(auth, provider)
+      .then((result) =&gt; handleLogin(result.user))
+      .catch((error) =&gt; alert(error.message));
+  };
+
+  return &lt;button onClick={signInWithGoogle}&gt; Sign In with Google&lt;/button&gt;;
+}
+
+export default SignIn;</code></pre>
+<hr>
+<h3>Step 5: Install and Set Up React-Router</h3>
+<pre><code># Install React-Router
+npm install react-router-dom</code></pre>
+<p>To configure the app with React-Router, import the necessary components in <code>App.js</code>:</p>
+<pre><code>import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
+import React, { useEffect } from 'react';
+import { useSelector } from 'react-redux';
+import { onAuthStateChanged } from 'firebase/auth';
+import { auth } from './firebase';
+import './App.css';
+import Profile from './Profile';
+import About from './About';
+import SignIn from './SignIn';
+import SignOut from './SignOut';
+
+function App() {
+  // new redux method
+  const user = useSelector((state) =&gt; state.user);
+
+  useEffect(() =&gt; {
+    const unsubscribe = onAuthStateChanged(auth, (currentUser) =&gt; {});
+    return () =&gt; unsubscribe();
+  }, []);
+
+  return (
+  	// Router only gets defined once in the entire app
+    &lt;Router&gt;
+      &lt;div className="App"&gt;
+        &lt;nav&gt;
+          &lt;ul&gt;
+            &lt;li&gt;&lt;Link to="/"&gt;Home&lt;/Link&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;Link to="/profile"&gt;Profile&lt;/Link&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;Link to="/about"&gt;About&lt;/Link&gt;&lt;/li&gt;
+          &lt;/ul&gt;
+        &lt;/nav&gt;
+        &lt;header className="App-header"&gt;
+          &lt;Routes&gt;
+            &lt;Route path="/" element={user ? &lt;SignOut /&gt; : &lt;SignIn /&gt;} /&gt;
+            &lt;Route 
+              // using the /* at the end of /profile allows you to have within the profile page another set of Link's and Routes and Route
+              path="/profile/*" 
+              element={user ? &lt;Profile /&gt; : &lt;SignIn /&gt;} 
+            /&gt;
+            &lt;Route path="/about" element={user ? &lt;About /&gt; : &lt;SignIn /&gt;} /&gt;
+          &lt;/Routes&gt;
+        &lt;/header&gt;
+      &lt;/div&gt;
+    &lt;/Router&gt;
+  );
+}
+
+export default App;</code></pre>
+<hr>
+<h3>Step 6: Creating a Profile component with a Sidebar div navigation</h3>
+<p>In the <code>UserProfile</code> component, you can add a left sidebar with links for different profile sections.</p>
+<pre><code>import React from 'react';
+import { BrowserRouter as Routes, Route, Link } from 'react-router-dom';
+import './Profile.css';
+
+function Profile() {
+  return (
+    // No Router used as this is a secondary navigation underneath the main one.
+    &lt;div className="Profile"&gt;
+      &lt;div className="Sidebar"&gt;
+        &lt;ul&gt;
+          &lt;li&gt;
+            &lt;Link to=""&gt;Base&lt;/Link&gt;
+          &lt;/li&gt;
+          &lt;li&gt;
+            &lt;Link to="jules"&gt;Jules&lt;/Link&gt;
+          &lt;/li&gt;
+          &lt;li&gt;
+            &lt;Link to="lulu"&gt;Lulu&lt;/Link&gt;
+          &lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/div&gt;
+      &lt;div className="ProfileContent"&gt;
+        &lt;Routes&gt;
+          // note that we are not using any / for the path as the App.js already has that included when using /*
+          &lt;Route path="" element=&lt;p&gt;Base Profile&lt;/p&gt; /&gt;
+          &lt;Route path="jules" element=&lt;p&gt;Jules's Profile&lt;/p&gt; /&gt;
+          &lt;Route path="lulu" element=&lt;p&gt;Lulu's Profile&lt;/p&gt; /&gt;
+        &lt;/Routes&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  );
+}
+
+export default Profile;</code></pre>
+<p>Ensure you add styles for the <code>Profile</code> in a <code>Profile.css</code> file:</p>
+<pre><code>.Profile {
+  width: 100vw;
+  height: calc(100vh - 38px);
+  display: flex;
+}
+
+.Profile .Sidebar {
+  width: 200px;
+}
+
+.ProfileContent {
+  width: calc(100vw - 200px);
+}</code></pre>
+<hr>
+<h3>Step 7: Update your App.css styling accordingly</h3>
+<p>Update your CSS:</p>
+<pre><code>.App {
+  text-align: center;
+}
+
+.App nav ul {
+  display: flex;
+}
+
+.App nav li {
+  flex: 1;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+  border-radius: 20vmin;
+}
+
+img {
+  border-radius: 50%;
+  width: 50vw;
+}
+
+button {
+  margin-top: 20px;
+  padding: 10px;
+}
+
+.instaFeed {
+  padding-top: 40px;
+  display: flex;
+}
+
+.instagrams {
+  border-radius: 0;
+  width: calc(100vw / 6);
+  object-fit: cover;
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}</code></pre>
+<p>With this configuration, you can have a sidebar with links for easy navigation between different pages in the app.</p>
