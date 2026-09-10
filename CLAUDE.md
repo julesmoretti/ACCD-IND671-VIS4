@@ -19,12 +19,40 @@ content/
     reading.html      → Canvas page "(Reading)"
     in-class.html     → Canvas page "(In-Class Exercises)"
     assignment.html   → Canvas assignment
+    images/           → local image assets for that week
   _template/          → starting points for new weeks
+  _extras/            → optional material with no week slot
 syllabus/             → exported syllabus PDF per term
 feedback/             → end-of-term feedback and the decisions it drove
 ```
 
-Weeks 1–3 are populated. Weeks 4–14 are scaffolded with `.gitkeep` and need content.
+The 26FA week structure, set by `feedback/IND-671_Vis4_26FA_Redesign.md` §3:
+
+| Week | Folder | State |
+|---|---|---|
+| 1 | `week-01-course-introduction-and-tools-setup` | reading, assignment |
+| 2 | `week-02-html-css-javascript-introduction` | reading, in-class, assignment |
+| 3 | `week-03-javascript-basics-interactive-elements` | reading, in-class, assignment |
+| 4 | `week-04-react-components` | reading, in-class, assignment |
+| 5 | `week-05-midterm-software-project-presentation` | empty |
+| 6 | `week-06-electronics-fundamentals` | empty |
+| 7 | `week-07-arduino-ide-websocket` | reading + images |
+| 8 | `week-08-hmi-applied-arduino` | reading, assignment |
+| 9 | `week-09-low-fidelity-prototype-testing` | empty |
+| 10 | `week-10-high-fidelity-prototype` | empty |
+| 11 | `week-11-thanksgiving-no-class` | empty, stays empty |
+| 12 | `week-12-user-testing-refine` | empty |
+| 13 | `week-13-final-build-integration` | empty |
+| 14 | `week-14-final-presentations` | empty |
+
+Weeks 5, 6, 9, 10, 12, 13 and 14 are scaffolded with `.gitkeep` and need content. Week 2's
+folder name still says "javascript-introduction" because its files genuinely cover a
+JavaScript intro, even though the 26FA plan titles the week "HTML & CSS for interface
+design".
+
+`_extras/` holds material cut from the core course but kept for reference: Redux, React
+Routes, React Native, and the Google Sign-In / Firebase / API page. Do not reintroduce
+these into week folders without checking the redesign document first.
 
 ## HTML conventions
 
