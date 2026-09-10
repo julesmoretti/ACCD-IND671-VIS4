@@ -1,0 +1,266 @@
+<!-- Canvas page: Week 5 - Mobile App Building using React-Native (Reading) -->
+<!-- Paste the contents of this file into the Canvas HTML editor. -->
+
+<h3>Step 1: What is React Native?</h3>
+<p><strong>React Native</strong> is an open-source framework developed by Facebook that allows developers to build mobile applications using JavaScript and React. Unlike traditional mobile development, which requires separate codebases for iOS and Android, React Native enables developers to write a single codebase that works across both platforms. It combines the best parts of native development with React, allowing you to create rich and responsive user interfaces that feel native on any device.</p>
+<p>React Native is used for building cross-platform mobile applications, meaning you can develop apps for both iOS and Android with the same codebase. This reduces development time and costs while maintaining the performance and look-and-feel of a native app. Companies like Facebook, Instagram, Airbnb, and many others have successfully used React Native to build their apps, making it a popular choice for modern mobile app development.</p>
+<hr>
+<h3>Step 2: React vs. React Native</h3>
+<p><strong>React</strong> is a JavaScript library primarily used for building web applications. It focuses on creating reusable UI components, which makes web development more efficient and scalable. React, being a library, works within the browser to build single-page applications and manage the user interface effectively.</p>
+<p><strong>React Native</strong>, on the other hand, is a framework built on top of React, designed specifically for mobile development. It allows developers to create mobile apps using JavaScript and React, but the output is not web-based; instead, it compiles to native code. This means React Native applications have a native look and feel and can take full advantage of the mobile device's hardware capabilities. Unlike React, which uses HTML for web development, React Native uses native components for iOS and Android, such as <code>View</code>, <code>Text</code>, and <code>Image</code>, to build mobile UI.</p>
+<p>In summary, React is used to build web applications, whereas React Native is used to build cross-platform mobile applications. React Native builds upon the core concepts of React but extends them to create native mobile apps that perform well on both iOS and Android devices.</p>
+<h4>Using Native React Native Modules</h4>
+<p>React Native allows developers to access native functionalities of mobile devices through the use of native modules. These modules are written in the native language of the platform—Objective-C or Swift for iOS, and Java or Kotlin for Android—and are then linked to the JavaScript code. This allows developers to access features like the camera, GPS, and device sensors that would otherwise require platform-specific code. You can use existing native modules, or even write your own if necessary.</p>
+<p>Expo, the framework we use in this curriculum, provides a standard library of native modules that work seamlessly with Expo Go, simplifying access to device features. For example, to use the device's camera, you can install the <code>expo-camera</code> package, which is compatible with Expo Go and provides a simple API for camera functionality:</p>
+<pre><code>npx expo install expo-camera</code></pre>
+<p>After installing, configure camera permissions in your <code>app.json</code> file:</p>
+<pre><code>{
+  "expo": {
+    "plugins": [
+      [
+        "expo-camera",
+        {
+          "cameraPermission": "Allow $(PRODUCT_NAME) to access your camera",
+          "microphonePermission": "Allow $(PRODUCT_NAME) to access your microphone",
+          "recordAudioAndroid": true
+        }
+      ]
+    ]
+  }
+}</code></pre>
+<p>Once installed and configured, you can import and use the <code>expo-camera</code> module in your JavaScript code. For example, in a file like <code>screen3.tsx</code>, you can create a camera screen with a button to flip between front and back cameras:</p>
+<pre><code>import { CameraView, CameraType, useCameraPermissions } from 'expo-camera';
+import { useState } from 'react';
+import { Button, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+
+export default function Screen3() {
+  const [facing, setFacing] = useState&lt;CameraType&gt;('back');
+  const [permission, requestPermission] = useCameraPermissions();
+
+  if (!permission) {
+    return &lt;View /&gt;;
+  }
+
+  if (!permission.granted) {
+    return (
+      &lt;View style={styles.container}&gt;
+        &lt;Text style={styles.message}&gt;We need your permission to show the camera&lt;/Text&gt;
+        &lt;Button onPress={requestPermission} title="grant permission" /&gt;
+      &lt;/View&gt;
+    );
+  }
+
+  function toggleCameraFacing() {
+    setFacing(current =&gt; (current === 'back' ? 'front' : 'back'));
+  }
+
+  return (
+    &lt;View style={styles.container}&gt;
+      &lt;CameraView style={styles.camera} facing={facing} /&gt;
+      &lt;View style={styles.buttonContainer}&gt;
+        &lt;TouchableOpacity style={styles.button} onPress={toggleCameraFacing}&gt;
+          &lt;Text style={styles.text}&gt;Flip Camera&lt;/Text&gt;
+        &lt;/TouchableOpacity&gt;
+      &lt;/View&gt;
+    &lt;/View&gt;
+  );
+}
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+  },
+  message: {
+    textAlign: 'center',
+    paddingBottom: 10,
+  },
+  camera: {
+    flex: 1,
+  },
+  buttonContainer: {
+    position: 'absolute',
+    bottom: 64,
+    flexDirection: 'row',
+    backgroundColor: 'transparent',
+    width: '100%',
+    paddingHorizontal: 64,
+  },
+  button: {
+    flex: 1,
+    alignItems: 'center',
+  },
+  text: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    color: 'white',
+  },
+});
+</code></pre>
+<p>The <code>expo-camera</code> module is a robust and Expo-friendly library for accessing the device’s camera. It supports features like taking photos, recording videos, and switching cameras, and works out of the box with Expo Go. For more details, refer to the official Expo Camera documentation: <a href="https://docs.expo.dev/versions/latest/sdk/camera/">https://docs.expo.dev/versions/latest/sdk/camera/</a>.</p>
+<hr>
+<h3>Step 3: Configuring Your System for React Native Development</h3>
+<p>To get started with React Native, you'll need to configure your computer to develop and run React Native applications. Here, we'll cover the setup process for both Mac and Windows PCs.</p>
+<h4>Step 3a: Setting Up React Native on a Mac</h4>
+<p>We recommend using Expo, a framework that simplifies the process of developing React Native apps. Expo provides developer tooling that makes app development easier, such as file-based routing and a standard library of native modules.</p>
+<ol>
+    <li><strong>Install Xcode</strong> using the app store.</li>
+    <li><strong>Install Expo CLI:</strong> Install Expo CLI globally by running:</li>
+</ol>
+<pre><code>npm install -g expo-cli</code></pre>
+<ol>
+    <li><strong>Create a New Expo Project:</strong> Use the following command to create a new Expo project:</li>
+</ol>
+<pre><code>npx create-expo-app@latest</code></pre>
+<ol>
+    <li><strong>Install iOS Simulator:</strong> Open Xcode, then go to Preferences &gt; Components, and install the latest iOS version to use the simulator for testing your app.</li>
+    <li><strong>Install Watchman:</strong> Watchman is a tool for monitoring changes in the filesystem. Installing it will improve performance:</li>
+</ol>
+<pre><code>brew install watchman</code></pre>
+<h4>Step 3b: Setting Up React Native on a Windows PC</h4>
+<p>We recommend using Expo, a framework that simplifies the process of developing React Native apps. Expo provides developer tooling that makes app development easier, such as file-based routing and a standard library of native modules.</p>
+<ol>
+    <li><strong>Install Expo CLI:</strong> Install Expo CLI globally by running:</li>
+</ol>
+<pre><code>npm install -g expo-cli</code></pre>
+<ol>
+    <li><strong>Create a New Expo Project:</strong> Use the following command to create a new Expo project:</li>
+</ol>
+<pre><code>npx create-expo-app@latest</code></pre>
+<ol>
+    <li><strong>Install Android Studio (Optional):</strong> If you also want to build Android apps, download and install Android Studio from <a href="https://developer.android.com/studio">developer.android.com</a>. Make sure to install the Android SDK and set up an Android Virtual Device (AVD) for testing.</li>
+</ol>
+<hr>
+<h3>Step 4: Creating Your First React Native App</h3>
+<ol>
+    <li><strong>Navigate to Your Project Directory:</strong> Open your terminal or command prompt and navigate to the directory of your newly created Expo project:</li>
+</ol>
+<pre><code>cd MyExpoApp</code></pre>
+<ol>
+    <li><strong>Reset the Project:</strong> Run the following command to reset the project and set up a basic app structure with a single screen:</li>
+</ol>
+<pre><code>npm run reset-project</code></pre>
+<ol>
+    <li><strong>Add Bottom Tab Navigation:</strong> To create an app with multiple screens, use Expo Router’s file-based routing to add a bottom tab navigation bar with three screens: Home, Screen 2, and Screen 3 (Camera). Follow these steps:</li>
+    <ol>
+        <li><strong>Update <code>app/_layout.tsx</code>:</strong> Replace the default <code>Stack</code> navigator with a <code>Tabs</code> navigator to create a bottom tab bar. Create or modify <code>app/_layout.tsx</code> as follows:</li>
+    </ol>
+</ol>
+<pre><code>import { Tabs } from "expo-router";
+import { Text } from "react-native";
+
+export default function RootLayout() {
+  return (
+    &lt;Tabs
+      screenOptions={{
+        headerShown: false,
+        tabBarStyle: {
+          backgroundColor: "#fff",
+          borderTopWidth: 1,
+          borderTopColor: "#ccc",
+        },
+        tabBarActiveTintColor: "#007AFF",
+        tabBarInactiveTintColor: "#888",
+      }}
+    &gt;
+      &lt;Tabs.Screen
+        name="index"
+        options={{
+          title: "Home",
+          tabBarIcon: ({ color, size }) =&gt; (
+            &lt;Text style={{ color, fontSize: size }}&gt;🏠&lt;/Text&gt;
+          ),
+        }}
+      /&gt;
+      &lt;Tabs.Screen
+        name="screen2"
+        options={{
+          title: "Screen 2",
+          tabBarIcon: ({ color, size }) =&gt; (
+            &lt;Text style={{ color, fontSize: size }}&gt;📖&lt;/Text&gt;
+          ),
+        }}
+      /&gt;
+      &lt;Tabs.Screen
+        name="screen3"
+        options={{
+          title: "Screen 3",
+          tabBarIcon: ({ color, size }) =&gt; (
+            &lt;Text style={{ color, fontSize: size }}&gt;⚙️&lt;/Text&gt;
+          ),
+        }}
+      /&gt;
+    &lt;/Tabs&gt;
+  );
+}
+</code></pre>
+<ol>
+    <ol>
+        <li><strong>Create <code>app/screen2.tsx</code>:</strong> Add a second screen for the tab navigation:</li>
+    </ol>
+</ol>
+<pre><code>import { Text, View } from "react-native";
+
+export default function Screen2() {
+  return (
+    &lt;View
+      style={{
+        flex: 1,
+        justifyContent: "center",
+        alignItems: "center",
+      }}
+    &gt;
+      &lt;Text&gt;Welcome to Screen 2!&lt;/Text&gt;
+    &lt;/View&gt;
+  );
+}
+</code></pre>
+<ol>
+    <ol>
+        <li><strong>Create <code>app/screen3.tsx</code> with Camera:</strong> Convert Screen 3 to use the camera with <code>expo-camera</code>, as shown in the native modules section above.</li>
+        <li><strong>Install <code>expo-camera</code>:</strong> Run the following command to install the camera module:</li>
+    </ol>
+</ol>
+<pre><code>npx expo install expo-camera</code></pre>
+<ol>
+    <ol>
+        <li><strong>Start the Development Server:</strong> Run the following command to start the development server:</li>
+    </ol>
+</ol>
+<pre><code>npx expo start</code></pre>
+<ol>
+    <li><strong>Open the App:</strong> Open the app in an iOS simulator, Android emulator, or on your physical device using Expo Go. To open in the iOS simulator, press <code>i</code>. To open in the Android emulator, press <code>a</code>. On a physical device, scan the QR code with the Expo Go app.</li>
+    <li><strong>Test the App:</strong> Navigate to the tabs (Home, Screen 2, Screen 3). On Screen 3, grant camera permissions when prompted to display the camera feed and test the "Flip Camera" button.</li>
+    <li><strong>Edit Your App:</strong> Open the project in your code editor (e.g., VS Code) and edit <code>app/index.tsx</code>, <code>app/screen2.tsx</code>, or <code>app/screen3.tsx</code> to customize your app further.</li>
+</ol>
+<hr>
+<h3>Step 5: Deploying Your React Native App</h3>
+<h4>Step 5a: Deploying to iOS TestFlight</h4>
+<p>To deploy your React Native app to iOS TestFlight, follow these steps:</p>
+<ol>
+    <li><strong>Open Xcode Project:</strong> Open the iOS folder of your React Native project in Xcode by navigating to <code>ios/MyReactNativeApp.xcodeproj</code>.</li>
+    <li><strong>Update App Information:</strong> Update the app's information, such as version and build number, in the <code>General</code> tab in Xcode.</li>
+    <li><strong>Archive the App:</strong> Choose <code>Product &gt; Archive</code> from the top menu in Xcode. This will create a build of your app that you can upload to App Store Connect.</li>
+    <li><strong>Upload to App Store Connect:</strong> After the archive is created, select <code>Distribute App</code>, and follow the prompts to upload your app to App Store Connect.</li>
+    <li><strong>TestFlight Testing:</strong> Once the app is uploaded, use TestFlight to invite testers and distribute your app.</li>
+</ol>
+<h4>Step 5b: Deploying to Android Play Store (Using Mac or Windows)</h4>
+<p>To deploy your React Native app to the Google Play Store, follow these steps:</p>
+<ol>
+    <li><strong>Generate a Signed APK:</strong> Navigate to the <code>android</code> directory of your project, and run the following command to generate a signed APK:</li>
+</ol>
+<pre><code>cd android
+./gradlew assembleRelease</code></pre>
+<ol>
+    <li><strong>Sign the APK:</strong> You need to sign your APK using the Java Keytool. If you haven't already, create a keystore by running the following command:</li>
+</ol>
+<pre><code>keytool -genkey -v -keystore my-release-key.keystore -alias my-key-alias -keyalg RSA -keysize 2048 -validity 10000</code></pre>
+<ol>
+    <li><strong>Configure Gradle for Signing:</strong> Edit <code>android/app/build.gradle</code> to include the signing configuration for your release build.</li>
+    <li><strong>Upload to Google Play Console:</strong> After generating the signed APK, go to the <a href="https://play.google.com/console">Google Play Console</a>, create a new app, and upload the signed APK to the Play Store.</li>
+</ol>
+<h4>Step 5c: Final Steps for Deployment</h4>
+<p>Once your app is available on TestFlight or the Google Play Store, you can invite users to test it and gather feedback. Make sure to monitor the feedback and fix any bugs or usability issues. This step is crucial to ensure a smooth experience for your end users.</p>
+<hr>
+<h3>Step 6: Summary</h3>
+<p>In this lesson, we introduced React Native, a powerful framework for building cross-platform mobile applications using JavaScript and React. We discussed the main differences between React and React Native, covered how to set up both Mac and Windows systems for React Native development, and created and ran a React Native app with a bottom tab navigation bar and a camera feature using <code>expo-camera</code>. We also explored using native modules to extend app functionality. Finally, we discussed how to deploy your React Native app to iOS TestFlight and the Google Play Store. With React Native and Expo, you can develop mobile apps efficiently and effectively, using a single codebase for both iOS and Android.</p>

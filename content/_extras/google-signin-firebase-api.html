@@ -1,0 +1,199 @@
+<!-- Canvas page: Google Sign-In with Firebase & API Integration (Optional) -->
+<!-- Paste the contents of this file into the Canvas HTML editor. -->
+
+<h3>Step 1: Create a New React App</h3>
+<pre><code># Create a new React app
+npx create-react-app sign-in-app
+cd sign-in-app</code></pre>
+<hr>
+<h3>Step 2: Set Up Firebase Project &amp; Enable Google Sign-In</h3>
+<ol>
+<li>Go to the <a href="https://console.firebase.google.com">Firebase Console</a>.</li>
+<li>Click on <strong>Create a project</strong>, follow the steps to create a project, and disable Google Analytics.</li>
+<li>In the Firebase dashboard, register a <strong>Web App</strong> by clicking on the <strong>&lt;/&gt;</strong> icon.
+<ul>
+<li>Copy the Firebase SDK configuration; you'll need it later.</li>
+</ul>
+</li>
+<li>Enable <strong>Google Sign-In</strong> in <strong>Authentication &gt; Sign-in Method</strong>. By clicking on <strong>Get started</strong> and selecting <strong>Google</strong>. Toggle enable on and select your e-mail, then click save.</li>
+</ol>
+<hr>
+<h3>Step 3: Install Firebase SDK</h3>
+<pre><code>npm install firebase</code></pre>
+<p>Create a <code>firebase.js</code> file in the <code>src/</code> directory:</p>
+<pre><code>import { initializeApp } from 'firebase/app';
+import { getAuth } from 'firebase/auth';
+
+const firebaseConfig = {
+  apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
+  authDomain: process.env.REACT_APP_FIREBASE_AUTH_DOMAIN,
+  projectId: process.env.REACT_APP_FIREBASE_PROJECT_ID,
+  storageBucket: process.env.REACT_APP_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: process.env.REACT_APP_FIREBASE_MESSAGING_SENDER_ID,
+  appId: process.env.REACT_APP_FIREBASE_APP_ID
+};
+
+const app = initializeApp(firebaseConfig);
+export const auth = getAuth(app);</code></pre>
+<p>Ensure you add environment variables in <code>.env</code> (place in the root directory):</p>
+<pre><code>REACT_APP_FIREBASE_API_KEY=your_api_key
+REACT_APP_FIREBASE_AUTH_DOMAIN=your_auth_domain
+REACT_APP_FIREBASE_PROJECT_ID=your_project_id
+REACT_APP_FIREBASE_STORAGE_BUCKET=your_storage_bucket
+REACT_APP_FIREBASE_MESSAGING_SENDER_ID=your_messaging_sender_id
+REACT_APP_FIREBASE_APP_ID=your_app_id</code></pre>
+<hr>
+<h3>Step 4: Implement Google Sign-In and Display User Info</h3>
+<p>In <code>App.js</code>, add Google Sign-In logic:</p>
+<pre><code>import React, { useState, useEffect } from 'react';
+import {
+  GoogleAuthProvider,
+  signInWithPopup,
+  onAuthStateChanged,
+  signOut,
+} from 'firebase/auth';
+import { auth } from './firebase';
+import './App.css';
+
+function App() {
+  const [googleUser, setGoogleUser] = useState(null);
+
+  useEffect(() =&gt; {
+    const unsubscribe = onAuthStateChanged(auth, (currentUser) =&gt; {
+      setGoogleUser(currentUser);
+    });
+    return () =&gt; unsubscribe();
+  }, []);
+
+  const signInWithGoogle = () =&gt; {
+    const provider = new GoogleAuthProvider();
+    signInWithPopup(auth, provider)
+      .then((result) =&gt; setGoogleUser(result.user))
+      .catch((error) =&gt; alert(error.message));
+  };
+
+  const handleSignOut = () =&gt; signOut(auth);
+
+  return (
+    &lt;div className="App"&gt;
+      &lt;header className="App-header"&gt;
+        {googleUser ? (
+          &lt;div&gt;
+            &lt;img src={googleUser.photoURL.slice(0, -6)} alt="profile" /&gt;
+            &lt;p&gt;Welcome, {googleUser.displayName}&lt;/p&gt;
+            &lt;button onClick={handleSignOut}&gt;Sign Out&lt;/button&gt;
+          &lt;/div&gt;
+        ) : (
+          &lt;button onClick={signInWithGoogle}&gt;Sign In with Google&lt;/button&gt;
+        )}
+      &lt;/header&gt;
+    &lt;/div&gt;
+  );
+}
+
+export default App;</code></pre>
+<hr>
+<h3>Step 5: Style the App</h3>
+<p>Update <code>App.css</code> with the following styles:</p>
+<pre><code>.App {
+  text-align: center;
+}
+
+img {
+  border-radius: 50%;
+  width: 50vw;
+  margin-top: 40px;
+}
+
+button {
+  margin-top: 20px;
+  padding: 10px;
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}</code></pre>
+<hr>
+<h3>Step 6: API Integration - Instagram Personal Feed</h3>
+<p>Now, let's use the <strong>Instagram Basic Display API</strong> to fetch and display the first 6 images from a user's Instagram account. Follow the steps below:</p>
+<ol>
+<li>Go to the <a href="https://developers.facebook.com/">Instagram Developer Site</a>, click on <strong>My Apps</strong> and then <strong>Create App</strong>.</li>
+<li>Under <strong>Use cases</strong> select <strong>Other</strong>.</li>
+<li>Under <strong>Type</strong> select <strong>Consumer</strong>.</li>
+<li>Give your app a name <strong>google-sign-in-app</strong>.</li>
+<li>In your app, enable <strong>Instagram Basic Display</strong> by clicking on <strong>Set Up</strong>, then <strong>Create New App</strong>.</li>
+<li>Under <strong>User Token Generator</strong> section, click on <strong>User Token Generator</strong> and then <strong>Add People</strong>, then add yourself.</li>
+<li>Visit <a href="https://www.instagram.com/accounts/manage_access">Manage Access</a>, click the <strong>Tester Invites</strong> tab, and <strong>Accept</strong> the invite.</li>
+<li>Go back to the Instagram Developer Dashboard and click on <strong>Generate Token</strong>.</li>
+<li>Copy the generated access token and add it to your <code>.env</code> file as follows:</li>
+</ol>
+<pre><code>REACT_APP_INSTAGRAM_ACCESS_TOKEN=your_access_token</code></pre>
+<ol start="7">
+<li>Install Axios to fetch Instagram data:</li>
+</ol>
+<pre><code>npm install axios</code></pre>
+<p>In <code>instagramFeed.js</code>, fetch Instagram data by replacing the placeholder with your access token:</p>
+<pre><code>import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+import './instagramFeed.css';
+
+function InstagramFeed() {
+  const [photos, setPhotos] = useState([]);
+
+  useEffect(() =&gt; {
+    const fetchInstagramPhotos = async () =&gt; {
+      try {
+        const response = await axios.get(
+          `https://graph.instagram.com/me/media?fields=id,media_type,media_url&amp;limit=6&amp;access_token=${process.env.REACT_APP_INSTAGRAM_ACCESS_TOKEN}`
+        );
+        setPhotos(response.data.data);
+      } catch (error) {
+        console.error('Error fetching Instagram data', error);
+      }
+    };
+    fetchInstagramPhotos();
+  }, []);
+
+  return (
+    &lt;div className="instaFeed"&gt;
+      {photos.map((photo) =&gt; (
+        &lt;img
+          className="instagrams"
+          key={photo.id}
+          src={photo.media_url}
+          alt="Instagram media"
+        /&gt;
+      ))}
+    &lt;/div&gt;
+  );
+}
+
+export default InstagramFeed;</code></pre>
+<p>Create <code>instagramFeed.css</code>, add the following styles:</p>
+<pre><code>.instaFeed {
+  padding-top: 40px;
+  display: flex;
+}
+
+.instagrams {
+  border-radius: 0;
+  width: calc(100vw / 6);
+  object-fit: cover;
+}</code></pre>
+<p>Go back to <code>app.js</code>, add include the <strong>InstagramFeed</strong> component.</p>
+<pre><code>// insert this at the top of your file
+import InstagramFeed from './instagramFeed';
+
+// add the InstagramFeed bellow the Sign Out button
+&lt;button onClick={handleSignOut}&gt;Sign Out&lt;/button&gt;
+&lt;InstagramFeed /&gt;</code></pre>
+<hr>
+<p>This integration will load the first 6 photos from the user’s Instagram account and display them in the app after they sign in with Google.</p>
+<p><strong>NOTE:</strong> If you are getting any error with regards to Token calls or firebase issues, make sure to restart your terminal.</p>
