@@ -1,0 +1,280 @@
+<!-- Canvas page: Week 4 - Software Testing Protocol -->
+<!-- Paste the contents of this file into the Canvas HTML editor. -->
+<!-- Simplified version of the full instrument at content/user-testing-rubric.html.
+     Same scales throughout so students learn them here before Week 9. -->
+
+<h2>Software Testing Protocol</h2>
+
+<p>You are going to watch someone use the interface you have been building, and you are
+going to write down what happens. Not what you hoped would happen.</p>
+
+<p>This is a short run at something you will do properly three times in the second half of
+the term. The scoring you learn here is the same scoring you will use in Weeks 9 to 12
+&mdash; you are learning the instrument on something low-stakes before your grade depends
+on it.</p>
+
+<hr />
+
+<h3>What you are testing</h3>
+
+<p>Your project interface, as it stands. Not the Number Adder.</p>
+
+<p>It does not need to be finished. It needs to be usable enough that someone can attempt a
+task without you narrating over their shoulder.</p>
+
+<hr />
+
+<h3>Where the tasks come from</h3>
+
+<p>The requirements list you wrote in Week 3. Each statement is a task:</p>
+
+<blockquote>
+    <p><em>As a user, when I <strong>enter a target number and press start</strong>, I
+    expect the interface to <strong>show a live count and a stop button</strong>, so that I
+    can <strong>monitor progress and interrupt it if something goes wrong</strong>.</em></p>
+</blockquote>
+
+<p>becomes: <em>"Set a target of 40 and start it running."</em></p>
+
+<p>Pick <strong>3&ndash;4 tasks</strong>. Prioritise your Must-haves. Write each one as an
+instruction with no method in it &mdash; "set a target of 40", not "type 40 in the target
+field and click start."</p>
+
+<hr />
+
+<h3>Participants</h3>
+
+<p><strong>3&ndash;4 classmates.</strong> One at a time, not as a group.</p>
+
+<p>This is alpha testing &mdash; in-house, with people who share your context. It is the
+easiest possible audience, which is the point: if a task fails here, it will fail
+everywhere.</p>
+
+<hr />
+
+<h3>Running a session</h3>
+
+<p>Fifteen minutes each is plenty.</p>
+
+<ol>
+    <li>Tell them what the project is in one sentence. Do not explain the interface.</li>
+    <li>Give them the first task. Then stop talking.</li>
+    <li>Watch. Write down what they do, where they pause, what they try that does not work.</li>
+    <li>If they get properly stuck, wait &mdash; count to ten &mdash; then offer the
+        smallest possible hint. Record that you did.</li>
+    <li>After each task, ask one question: "what did you expect to happen?"</li>
+</ol>
+
+<h4>Two things not to do</h4>
+
+<p><strong>Do not explain how it works first.</strong> Anything you explain is something you
+can no longer test.</p>
+
+<p><strong>Do not defend it while they struggle.</strong> The urge is powerful and the
+silence is uncomfortable. Sit in it. That silence is where the finding is.</p>
+
+<hr />
+
+<h3>Scoring, part 1: Functionality</h3>
+
+<p>One row per participant per task.</p>
+
+<table style="border-collapse: collapse; width: 100%;" border="1">
+    <thead>
+        <tr>
+            <th style="padding: 8px; text-align: left;">Score</th>
+            <th style="padding: 8px; text-align: left;">Outcome</th>
+            <th style="padding: 8px; text-align: left;">What it looks like</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td style="padding: 8px;"><strong>4</strong></td>
+            <td style="padding: 8px;">Completed unaided</td>
+            <td style="padding: 8px;">Straight through, no pause, no wrong turns</td>
+        </tr>
+        <tr>
+            <td style="padding: 8px;"><strong>3</strong></td>
+            <td style="padding: 8px;">Completed with hesitation</td>
+            <td style="padding: 8px;">Got there, but paused, backtracked, or tried something wrong first</td>
+        </tr>
+        <tr>
+            <td style="padding: 8px;"><strong>2</strong></td>
+            <td style="padding: 8px;">Completed with help</td>
+            <td style="padding: 8px;">Needed a hint from you to proceed</td>
+        </tr>
+        <tr>
+            <td style="padding: 8px;"><strong>1</strong></td>
+            <td style="padding: 8px;">Abandoned or failed</td>
+            <td style="padding: 8px;">Gave up, or believed they had succeeded when they had not</td>
+        </tr>
+    </tbody>
+</table>
+
+<p>That last case is worth watching for. Someone who thinks they finished but did not is a
+worse result than someone who gives up &mdash; your interface told them something untrue.</p>
+
+<h4>Severity</h4>
+
+<p>Rate every issue you observe:</p>
+
+<p><strong>4 Blocker</strong> &mdash; stops a Must-have task completing &middot;
+<strong>3 Major</strong> &mdash; serious difficulty or repeated errors &middot;
+<strong>2 Minor</strong> &mdash; slows them down or causes momentary confusion &middot;
+<strong>1 Cosmetic</strong> &mdash; noticed and mentioned, no effect on outcome</p>
+
+<hr />
+
+<h3>Scoring, part 2: Emotion</h3>
+
+<p>Logged <strong>per moment</strong>, against the specific element that caused it &mdash;
+not per task.</p>
+
+<p>Inside one task, the input field might please someone and the confirm button might
+irritate them twenty seconds later. Score the task as a whole and those cancel out. Log them
+separately and you know precisely what to leave alone and what to fix.</p>
+
+<table style="border-collapse: collapse; width: 100%;" border="1">
+    <thead>
+        <tr>
+            <th style="padding: 8px; text-align: left;">Score</th>
+            <th style="padding: 8px; text-align: left;">Reaction</th>
+            <th style="padding: 8px; text-align: left;">What you might observe</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td style="padding: 8px;"><strong>+2 Delight</strong></td>
+            <td style="padding: 8px;">Surprised and pleased</td>
+            <td style="padding: 8px;">Laughs, "oh nice", does it again unprompted</td>
+        </tr>
+        <tr>
+            <td style="padding: 8px;"><strong>+1 Positive</strong></td>
+            <td style="padding: 8px;">Satisfied</td>
+            <td style="padding: 8px;">Smiles, nods, unprompted approving comment</td>
+        </tr>
+        <tr>
+            <td style="padding: 8px;"><strong>0 Neutral</strong></td>
+            <td style="padding: 8px;">No reaction</td>
+            <td style="padding: 8px;">It worked and they did not think about it</td>
+        </tr>
+        <tr>
+            <td style="padding: 8px;"><strong>&minus;1 Friction</strong></td>
+            <td style="padding: 8px;">Mildly irritated</td>
+            <td style="padding: 8px;">Frowns, sighs, tries twice, goes quiet</td>
+        </tr>
+        <tr>
+            <td style="padding: 8px;"><strong>&minus;2 Frustration</strong></td>
+            <td style="padding: 8px;">Actively annoyed</td>
+            <td style="padding: 8px;">Says so out loud, criticises it, stops trying</td>
+        </tr>
+    </tbody>
+</table>
+
+<p><strong>Neutral is not a bad score.</strong> Nobody is delighted that a form field
+accepts text &mdash; they expect it. Must-haves working correctly score 0, and that is the
+right answer. Delight comes from things people did not expect.</p>
+
+<h4>You cannot record a score without recording what you saw</h4>
+
+<p>"Seemed to like it" is not data. "Clicked it three more times without being asked, said
+'that's satisfying'" is data. Every emotional entry needs an observed behaviour and
+<strong>one verbatim quote</strong> &mdash; their words, not your paraphrase.</p>
+
+<hr />
+
+<h3>Recording</h3>
+
+<h4>Table A &mdash; Functionality</h4>
+
+<table style="border-collapse: collapse; width: 100%;" border="1">
+    <thead>
+        <tr>
+            <th style="padding: 6px;">Task</th>
+            <th style="padding: 6px;">Priority</th>
+            <th style="padding: 6px;">P#</th>
+            <th style="padding: 6px;">Outcome</th>
+            <th style="padding: 6px;">Severity</th>
+            <th style="padding: 6px;">What happened</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td style="padding: 6px;">T1 Set a target of 40</td>
+            <td style="padding: 6px;">Must</td>
+            <td style="padding: 6px;">P2</td>
+            <td style="padding: 6px;">3 &mdash; hesitation</td>
+            <td style="padding: 6px;">2</td>
+            <td style="padding: 6px;">Typed 40, then looked for a submit button for several seconds before pressing Enter. Was not sure it had registered.</td>
+        </tr>
+    </tbody>
+</table>
+
+<h4>Table B &mdash; Emotion</h4>
+
+<table style="border-collapse: collapse; width: 100%;" border="1">
+    <thead>
+        <tr>
+            <th style="padding: 6px;">Element</th>
+            <th style="padding: 6px;">P#</th>
+            <th style="padding: 6px;">Score</th>
+            <th style="padding: 6px;">Observed</th>
+            <th style="padding: 6px;">Verbatim</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td style="padding: 6px;">Live counter</td>
+            <td style="padding: 6px;">P2</td>
+            <td style="padding: 6px;">+2</td>
+            <td style="padding: 6px;">Leaned in when it started counting, watched it the whole way</td>
+            <td style="padding: 6px;">"Oh that's satisfying."</td>
+        </tr>
+        <tr>
+            <td style="padding: 6px;">Target field</td>
+            <td style="padding: 6px;">P2</td>
+            <td style="padding: 6px;">&minus;1</td>
+            <td style="padding: 6px;">Hunted for a button, hesitated, eventually pressed Enter uncertainly</td>
+            <td style="padding: 6px;">"Do I press something?"</td>
+        </tr>
+    </tbody>
+</table>
+
+<p>Those two rows tell you what to do: leave the counter alone, give the target field a
+visible submit affordance. That is the whole point of the exercise.</p>
+
+<hr />
+
+<h3>What you bring to the midterm</h3>
+
+<p>For your Week 5 presentation:</p>
+
+<ol>
+    <li>Your requirements list with priorities</li>
+    <li>Tables A and B, filled in</li>
+    <li><strong>Three findings</strong> &mdash; what you saw, what it means, what you are
+        going to do about it</li>
+    <li>At least one thing you have already changed as a result</li>
+</ol>
+
+<p>The most valuable thing you can bring is a finding that surprised you &mdash; something
+you were confident about that a participant broke. Those are worth more in a critique than a
+session where everything went smoothly, because a session where everything went smoothly
+usually means the tasks were too easy or you helped too much.</p>
+
+<hr />
+
+<h3>What changes in Week 9</h3>
+
+<p>Same scales, three additions:</p>
+
+<ul>
+    <li><strong>Three rounds instead of one</strong>, compared against each other to show
+        measurable improvement</li>
+    <li><strong>Participants move outward</strong> &mdash; classmates, then other GradID
+        terms, then students outside the discipline</li>
+    <li><strong>Prototype fidelity rises</strong> across the rounds, which means separating
+        reactions to the interaction from reactions to the form</li>
+</ul>
+
+<p>None of that is new scoring. It is the same instrument, run properly.</p>

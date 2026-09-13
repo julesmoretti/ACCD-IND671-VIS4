@@ -2,28 +2,26 @@
 <!-- Paste the contents of this file into the Canvas HTML editor. -->
 <!-- DUE: Thursday 08 Oct 2026, 11:59pm (26FA) — rule: Thursday
      midnight following the Friday class. Recompute each term. -->
+<!-- Image srcs point at Canvas-hosted files (2567496, 2567494). The GIFs are
+     not versioned in this repo. -->
 
-<h3><strong>Assignment Overview: Enhanced Number Adder with Arrays, Objects, Loops, and Conditional Statements</strong></h3>
+<h3><strong>Part 1: Enhanced Number Adder with Arrays, Objects, Loops, and Conditional Statements</strong></h3>
 <p>This assignment builds on the previous number adder functionality, with a focus on incorporating more advanced JavaScript features such as <strong>arrays</strong>, <strong>objects</strong>, <strong>loops</strong>, and <strong>conditional statements</strong>. The goal is to store the history of operations, track the number of additions and subtractions, and use conditional statements to display dynamic messages.</p>
-<hr>
-<h3>
-<strong>Steps to Implement</strong>:</h3>
+<hr />
+<h3><strong>Steps to Implement</strong>:</h3>
 <ol style="list-style-type: decimal;">
-<li>
-<h4><strong>Track Operation History Using an Array</strong></h4>
-<ul style="list-style-type: disc;">
-<li>
-<strong>Description</strong>: Each time an operation (e.g., <code>+1</code>, <code>-1</code>, Reset) is performed, add that operation to the <code>history</code> array. The array will store all operations performed and will be displayed in the sidebar.</li>
-<li>
-<strong>Instructions</strong>:
-<ul style="list-style-type: disc;">
-<li>Create an array <code>history = []</code> to store the operations.</li>
-<li>Push each operation (e.g., <code>"-1"</code>, <code>"Reset"</code>, <code>"+2"</code>) into the array when a button is clicked.</li>
-<li>Use create a <code>function updateHistory()</code>&nbsp;with a <strong>for loop</strong>&nbsp;to iterate over the <code>history</code> array and display it as a list in the sidebar.</li>
-<li>Make sure to also call the function <code>updateHistory()</code>within each of your buttons!&nbsp;</li>
-<li>
-<strong>Example</strong>:<br>
-<pre><code>let history = [];
+    <li>
+        <h4><strong>Track Operation History Using an Array</strong></h4>
+        <ul style="list-style-type: disc;">
+            <li><strong>Description</strong>: Each time an operation (e.g., <code>+1</code>, <code>-1</code>, Reset) is performed, add that operation to the <code>history</code> array. The array will store all operations performed and will be displayed in the sidebar.</li>
+            <li><strong>Instructions</strong>:
+                <ul style="list-style-type: disc;">
+                    <li>Create an array <code>history = []</code> to store the operations.</li>
+                    <li>Push each operation (e.g., <code>"-1"</code>, <code>"Reset"</code>, <code>"+2"</code>) into the array when a button is clicked.</li>
+                    <li>Use create a <code>function updateHistory()</code>&nbsp;with a <strong>for loop</strong>&nbsp;to iterate over the <code>history</code> array and display it as a list in the sidebar.</li>
+                    <li>Make sure to also call the function <code>updateHistory()</code>within each of your buttons!&nbsp;</li>
+                    <li><strong>Example</strong>:<br />
+                        <pre><code>let history = [];
                         
 // your prior button code goes here but make sure that within each of those javascript button onClick functions to include a history.push("the button operation") //
 
@@ -36,49 +34,43 @@ function updateHistory() {
 
     document.querySelector("#historyList").innerHTML = historyContent;
 }</code></pre>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>
-<h4><strong>Display a Summary of Operations Using an Object</strong></h4>
-<ul>
-<li>
-<strong>Description</strong>: Track the total number of additions and subtractions in an<code>operationCount</code> object, and display this summary in the sidebar.</li>
-<li>
-<strong>Instructions</strong>:
-<ul style="list-style-type: disc;">
-<li>Create an object <code>operationCount = { additions: 0, subtractions: 0 }</code> to store the number of operations at the top of your javascript section.</li>
-<li>Increment the appropriate property (<code>additions</code> or <code>subtractions</code>) in the object based on the button clicked.</li>
-<li>Display the summary in the sidebar by updating a div with the ID <code>#summary</code>.</li>
-<li>And make sure that the updateSummary() is also called within each buttons.</li>
-<li>
-<strong>Example</strong>:
-<pre><code>let operationCount = { additions: 0, subtractions: 0 };
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </li>
+    <li>
+        <h4><strong>Display a Summary of Operations Using an Object</strong></h4>
+        <ul>
+            <li><strong>Description</strong>: Track the total number of additions and subtractions in an<code>operationCount</code> object, and display this summary in the sidebar.</li>
+            <li><strong>Instructions</strong>:
+                <ul style="list-style-type: disc;">
+                    <li>Create an object <code>operationCount = { additions: 0, subtractions: 0 }</code> to store the number of operations at the top of your javascript section.</li>
+                    <li>Increment the appropriate property (<code>additions</code> or <code>subtractions</code>) in the object based on the button clicked.</li>
+                    <li>Display the summary in the sidebar by updating a div with the ID <code>#summary</code>.</li>
+                    <li>And make sure that the updateSummary() is also called within each buttons.</li>
+                    <li><strong>Example</strong>:
+                        <pre><code>let operationCount = { additions: 0, subtractions: 0 };
 
 function updateSummary() {
     document.querySelector("#summary").innerHTML = `Total additions: ${operationCount.additions}, &lt;br&gt; Total subtractions: ${operationCount.subtractions}`;
 }</code></pre>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>
-<h4><strong>Add Conditional Messages Based on the Total</strong></h4>
-<ul style="list-style-type: disc;">
-<li>
-<strong>Description</strong>: Display a message in the sidebar that shows whether the total is <strong>positive</strong>, <strong>negative</strong>, or <strong>zero</strong> after each operation.</li>
-<li>
-<strong>Instructions</strong>:
-<ul style="list-style-type: disc;">
-<li>Use an <code>if-else</code> statement to check the value of <code>total</code>.</li>
-<li>Display a different message depending on whether the total is greater than 0, less than 0, or equal to 0.</li>
-<li>Ensure that the buttons call this functions too <code>onClick</code>.</li>
-<li>
-<strong>Example</strong>:
-<pre><code>function checkTotal() {
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </li>
+    <li>
+        <h4><strong>Add Conditional Messages Based on the Total</strong></h4>
+        <ul style="list-style-type: disc;">
+            <li><strong>Description</strong>: Display a message in the sidebar that shows whether the total is <strong>positive</strong>, <strong>negative</strong>, or <strong>zero</strong> after each operation.</li>
+            <li><strong>Instructions</strong>:
+                <ul style="list-style-type: disc;">
+                    <li>Use an <code>if-else</code> statement to check the value of <code>total</code>.</li>
+                    <li>Display a different message depending on whether the total is greater than 0, less than 0, or equal to 0.</li>
+                    <li>Ensure that the buttons call this functions too <code>onClick</code>.</li>
+                    <li><strong>Example</strong>:
+                        <pre><code>function checkTotal() {
     if (total &gt; 0) {
         document.querySelector("#totalMessage").innerHTML = "The total is positive.";
     } else if (total &lt; 0) {
@@ -87,26 +79,22 @@ function updateSummary() {
         document.querySelector("#totalMessage").innerHTML = "The total is zero.";
     }
 }</code></pre>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>
-<h4><strong>Implement a Clear History Button</strong></h4>
-<ul style="list-style-type: disc;">
-<li>
-<strong>Description</strong>: Add a <strong>Clear History &amp; Results</strong> button that resets the <code>total</code>, clears the <code>history</code>, and resets the <code>operationCount</code> object.</li>
-<li>
-<strong>Instructions</strong>:
-<ul style="list-style-type: disc;">
-<li>Implement a function <code>ClearAll()</code> that resets the <code>total</code>, clears the <code>history</code> array, and resets the <code>operationCount</code> object to zero.</li>
-<li>Add a button UI in the Command Center to activate this <code>ClearAll()</code> function.</li>
-<li>Call the necessary update functions (<code>updateHistory()</code>, <code>updateSummary()</code>, <code>checkTotal()</code>) to refresh the interface.
-</li>
-<li>
-<strong>Example</strong>:<br>
-<pre><code>function ClearAll() {
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </li>
+    <li>
+        <h4><strong>Implement a Clear History Button</strong></h4>
+        <ul style="list-style-type: disc;">
+            <li><strong>Description</strong>: Add a <strong>Clear History &amp; Results</strong> button that resets the <code>total</code>, clears the <code>history</code>, and resets the <code>operationCount</code> object.</li>
+            <li><strong>Instructions</strong>:
+                <ul style="list-style-type: disc;">
+                    <li>Implement a function <code>ClearAll()</code> that resets the <code>total</code>, clears the <code>history</code> array, and resets the <code>operationCount</code> object to zero.</li>
+                    <li>Add a button UI in the Command Center to activate this <code>ClearAll()</code> function.</li>
+                    <li>Call the necessary update functions (<code>updateHistory()</code>, <code>updateSummary()</code>, <code>checkTotal()</code>) to refresh the interface.</li>
+                    <li><strong>Example</strong>:<br />
+                        <pre><code>function ClearAll() {
     total = 0;
     history = [];
     operationCount.additions = 0;
@@ -114,43 +102,36 @@ function updateSummary() {
     updateResults();
     updateHistory();
 }</code></pre>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>
-<h4><strong>Update the UI Based on User Actions</strong></h4>
-<ul style="list-style-type: disc;">
-<li>
-<strong>Description</strong>: Ensure that each button (e.g., <code>+1</code>, <code>-1</code>, Reset) updates the total, the history, and the operation summary. Use the <code>updateResults()</code> function to call the individual update functions (<code>updateHistory()</code>, <code>updateSummary()</code>, <code>checkTotal()</code>).</li>
-</ul>
-</li>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </li>
+    <li>
+        <h4><strong>Update the UI Based on User Actions</strong></h4>
+        <ul style="list-style-type: disc;">
+            <li><strong>Description</strong>: Ensure that each button (e.g., <code>+1</code>, <code>-1</code>, Reset) updates the total, the history, and the operation summary. Use the <code>updateResults()</code> function to call the individual update functions (<code>updateHistory()</code>, <code>updateSummary()</code>, <code>checkTotal()</code>).</li>
+        </ul>
+    </li>
 </ol>
-<p><!-- RELINK REQUIRED: this image is NOT versioned in the repo — it stays hosted in
-     Canvas. The src below is a placeholder and will not resolve locally; replace
-     it with the Canvas file URL when publishing.
-     Original export ref: $IMS-CC-FILEBASE$/Uploaded%20Media/assignment%20week%203.gif -->
-<img src="images/assignment-week-3.gif" alt="assignment week 3.gif"></p>
-<hr>
+<p><img id="2567496" src="https://artcenter.instructure.com/courses/17192/files/2567496/preview" alt="assignment week 3.gif" data-api-endpoint="https://artcenter.instructure.com/api/v1/courses/17192/files/2567496" data-api-returntype="File" /></p>
+<hr />
 <h3><strong>Bonus Feature: Clickable History (Refactor Exercise)</strong></h3>
 <p>In this bonus feature, you will refactor the existing code to make each item in the history list <strong>clickable</strong>. When the user clicks on a history item, it should be <strong>removed</strong> from the list using the <code>splice()</code> method.</p>
-<hr>
+<hr />
 <h4><strong>Bonus Feature Instructions:</strong></h4>
 <ol style="list-style-type: decimal;">
-<li>
-<strong>Refactor the <code>updateHistory()</code> Function</strong>:
-<ul style="list-style-type: disc;">
-<li>Modify the <code>updateHistory()</code> function so that each list item in the history has an <code>onclick</code> event listener.</li>
-<li>This event listener should call a function <code>removeHistoryItem(index)</code> that removes the clicked item from the history array.</li>
-</ul>
-</li>
-<li>
-<strong>Example</strong>:
-<pre><code>function updateHistory() {
+    <li><strong>Refactor the <code>updateHistory()</code> Function</strong>:
+        <ul style="list-style-type: disc;">
+            <li>Modify the <code>updateHistory()</code> function so that each list item in the history has an <code>onclick</code> event listener.</li>
+            <li>This event listener should call a function <code>removeHistoryItem(index)</code> that removes the clicked item from the history array.</li>
+        </ul>
+    </li>
+    <li><strong>Example</strong>:
+        <pre><code>function updateHistory() {
     let historyContent = "";
     for (let i = 0; i &lt; history.length; i++) {
-    	historyContent += "&lt;li onclick='removeHistoryItem(" + i + ")'&gt;" + history[i] + "&lt;/li&gt;";
+        historyContent += "&lt;li onclick='removeHistoryItem(" + i + ")'&gt;" + history[i] + "&lt;/li&gt;";
     }
     
     document.querySelector("#historyList").innerHTML = historyContent;
@@ -160,24 +141,44 @@ function removeHistoryItem(index) {
     history.splice(index, 1); // Remove the selected item from the history array
     updateHistory(); // Update the displayed history after the removal
 }</code></pre>
-</li>
-<li>
-<strong>Test the Functionality</strong>:
-<ul style="list-style-type: disc;">
-<li>After implementing this feature, the user should be able to remove individual history entries by clicking on them. The displayed history list should immediately update to reflect the change.</li>
-</ul>
-</li>
+    </li>
+    <li><strong>Test the Functionality</strong>:
+        <ul style="list-style-type: disc;">
+            <li>After implementing this feature, the user should be able to remove individual history entries by clicking on them. The displayed history list should immediately update to reflect the change.</li>
+        </ul>
+    </li>
 </ol>
-<p><!-- RELINK REQUIRED: this image is NOT versioned in the repo — it stays hosted in
-     Canvas. The src below is a placeholder and will not resolve locally; replace
-     it with the Canvas file URL when publishing.
-     Original export ref: $IMS-CC-FILEBASE$/Uploaded%20Media/assignment%20week%203%20[Bonus].gif -->
-<img src="images/assignment-week-3-bonus.gif" alt="assignment week 3 [Bonus].gif"></p>
-<hr>
+<p><img id="2567494" src="https://artcenter.instructure.com/courses/17192/files/2567494/preview" alt="assignment week 3 [Bonus].gif" data-api-endpoint="https://artcenter.instructure.com/api/v1/courses/17192/files/2567494" data-api-returntype="File" /></p>
+
+<hr />
+<h3><strong>Part 2: Your Project's Software Requirements</strong></h3>
+<p>Separate from the Number Adder, you have been developing the UI for your own project since Week 2. Before you can test it, you need to know what it is supposed to do.</p>
+<p>Write out the requirements for your project's interface. Each one as a user statement:</p>
+<blockquote>
+    <p><em>As a user, when I <strong>[do something]</strong>, I expect the interface to <strong>[respond somehow]</strong>, so that I can <strong>[achieve something]</strong>.</em></p>
+</blockquote>
+<p>For example:</p>
+<blockquote>
+    <p><em>As a user, when I <strong>enter a target number and press start</strong>, I expect the interface to <strong>show a live count and a stop button</strong>, so that I can <strong>monitor progress and interrupt it if something goes wrong</strong>.</em></p>
+</blockquote>
+<p>Mark each requirement with a priority:</p>
+<ul style="list-style-type: disc;">
+    <li><strong>Must have</strong> &mdash; the interface is broken without it</li>
+    <li><strong>Nice to have</strong> &mdash; improves the experience, not essential</li>
+    <li><strong>Dropped</strong> &mdash; you considered it and decided against it. Say why.</li>
+</ul>
+<p>Aim for <strong>6&ndash;10 requirements</strong>. Include at least two you have dropped &mdash; deciding what not to build is a design decision, and writing down why stops you relitigating it in Week 11.</p>
+<p>Half a page is enough. This is not a document, it is a working list.</p>
+<h4><strong>Why this matters now</strong></h4>
+<p>Next week you will test your interface with classmates, and these requirements become the test tasks &mdash; you will hand someone the interface and ask them to do the thing your statement describes, without explaining how. Vague requirements produce untestable tasks.</p>
+<p>This is also the exact format your HMI document uses in Week 8 for the hardware side. You are learning the notation on something small before it matters.</p>
+
+<hr />
 <h3>Submission Requirements:</h3>
 <ul>
-<li>Submit your updated <code>index.html</code> and <code>style.css</code> files OR if you prefer commit your work into a Week 3 folder within your GitHub repo.</li>
-<li>Ensure that the operation history, summary, and conditional messaging work as expected.</li>
-<li>For the bonus feature, ensure the clickable history is functional and testable.</li>
-<li>By midnight Thursday please, and feel free to collaborate.</li>
+    <li>Submit your updated <code>index.html</code> and <code>style.css</code> files OR if you prefer commit your work into a Week 3 folder within your GitHub repo.</li>
+    <li>Ensure that the operation history, summary, and conditional messaging work as expected.</li>
+    <li>For the bonus feature, ensure the clickable history is functional and testable.</li>
+    <li>Your project's software requirements list with priorities (6&ndash;10 statements, at least two dropped).</li>
+    <li>By midnight Thursday please, and feel free to collaborate.</li>
 </ul>
