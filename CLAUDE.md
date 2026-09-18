@@ -114,11 +114,23 @@ pins, platform mismatches) but do not rewrite pedagogy or restructure lessons.
 ## Known issues to watch for
 
 - Course materials once referenced the old repo `ACCD_VIS4-24FA`. Current repo is
-  `ACCD-IND671-VIS4`.
+  `ACCD-IND671-VIS4`, which is the instructor's course repo — students never clone it.
+  The student-facing clone/test target in Week 1 is
+  `git@github.com:julesmoretti/ACCD-Fritzing-Parts.git` (public). Do not change it back.
 - Prefer "latest Current release" over pinned version numbers (Node, Arduino IDE) — they
   go stale every year.
 - SSH instructions should use `ed25519` consistently on both Mac and Windows.
-- Week 1's Windows section still reads "bind your mac computer" — needs fixing.
+- The GitHub key test is `ssh -T git@github.com` (expects "Hi username! You've
+  successfully authenticated"), followed by the clone. A clone alone is not a valid test:
+  an HTTPS clone works with no key, and an SSH clone failure does not say why.
+- Week 1 Mac section was walked through end to end on a real machine on 17 Sep 2026
+  (macOS 26, Apple Silicon, Homebrew 6, Node 26, Arduino IDE 2.3.10). Prompts and
+  filenames in that section reflect what was actually seen. Re-verify each term before
+  the first class; the Windows section has not yet had the same pass.
+- Homebrew's installer now sets the PATH itself via `/etc/paths.d/homebrew`; the doc
+  only needs "quit and reopen Terminal". Homebrew 6 asks `[y/n]` before installing.
+- Clipboard trap in the SSH steps: `pbcopy` / `clip` must be the last thing run before
+  pasting into GitHub, and the key title must be typed, not pasted.
 
 ## Working style
 

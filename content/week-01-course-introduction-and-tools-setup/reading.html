@@ -34,16 +34,21 @@
 
 <h3>Installation of Software for Apple Computers (Mac)</h3>
 <p>NOTE: A video recording of the steps to follow has been added to your Modules section for Mac specifically.</p>
+<p>NOTE: Several of these apps are downloaded outside the App Store. The first time you open each one, macOS will ask <em>"is an app downloaded from the Internet. Are you sure you want to open it?"</em>. Click <strong>Open</strong>. Always move an app into your <strong>Applications</strong> folder <em>before</em> opening it for the first time.</p>
+<p>NOTE: Before you start, check which chip your Mac has: click the Apple menu &gt; <strong>About This Mac</strong> and look at the <strong>Chip</strong> line (Apple M-series, or Intel). You will need this for the Arduino IDE download.</p>
 
 <h4>Homebrew</h4>
-<p>Within Terminal, copy and paste <code>/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"</code> and press enter. You may need administrative rights to do this.</p>
+<p>Within Terminal, copy and paste <code>/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"</code> and press return. You will be asked for your Mac password (nothing appears while you type it, that is normal), then to press <strong>RETURN</strong> to continue. On a Mac that has never had developer tools installed, Homebrew will first install the Xcode Command Line Tools, which can take 5 to 15 minutes.</p>
+<p>When it finishes with <code>Installation successful!</code>, <strong>close Terminal completely (Command + Q) and reopen it</strong> so that the <code>brew</code> command is available.</p>
 
 <h4>Node.js</h4>
-<p>After installing Homebrew, copy and paste <code>brew install node</code> into Terminal and press return.</p>
+<p>After installing Homebrew, copy and paste <code>brew install node</code> into Terminal and press return. Homebrew will list what it is about to install and ask <code>Do you want to proceed with the installation? [y/n]</code>. Type <code>y</code> and press return.</p>
+<p>To check it worked, run <code>node -v</code> and <code>npm -v</code>. Each should print a version number.</p>
 
 <h4>Dash</h4>
-<p>To install Dash, go to <a class="inline_disabled" title="Link" href="https://www.kapeli.com/dash" target="_blank" rel="noopener">kapeli.com/dash</a>, click <strong>download</strong>, unzip the downloaded file, and drag and drop it into your <strong>Applications</strong> folder.</p>
-<p>Open Dash and download the following libraries:</p>
+<p>To install Dash, go to <a class="inline_disabled" title="Link" href="https://www.kapeli.com/dash" target="_blank" rel="noopener">kapeli.com/dash</a> and click <strong>Download</strong>. This downloads <code>Dash.zip</code>. Double-click it to unzip it, then drag <code>Dash.app</code> into your <strong>Applications</strong> folder before opening it.</p>
+<p>Dash is free to use for this course. It shows a <em>Purchase Dash</em> banner and, after the 30-day trial, adds short delays when searching. You do not need to buy it.</p>
+<p>Open Dash and click <strong>Download Docsets</strong>. Use the search field to find and download the following libraries:</p>
 <ul>
     <li>JavaScript</li>
     <li>Arduino</li>
@@ -57,39 +62,49 @@
         </ul>
     </li>
 </ul>
+<p>The Arduino docset is large (about 135 MB). Start the downloads and carry on with the next steps while they finish.</p>
 
 <h4>Sublime Text Editor</h4>
-<p>Go to <a href="https://www.sublimetext.com/" target="_blank" rel="noopener">sublimetext.com</a>, click the <strong>download</strong> tab, and click macOS. Unzip the app and drag and drop the application into your <strong>Applications</strong> folder.</p>
-<p>In Terminal, copy and paste the following:</p>
-<p><code>sudo mkdir /usr/local/bin</code><br /><code>sudo ln -s "/Applications/Sublime Text.app/Contents/SharedSupport/bin/subl" /usr/local/bin/subl</code></p>
+<p>Go to <a href="https://www.sublimetext.com/" target="_blank" rel="noopener">sublimetext.com</a> and click <strong>Download for Mac</strong>. This downloads a file named <code>sublime_text_build_XXXX_mac.zip</code>. Double-click it to unzip it, then drag <code>Sublime Text.app</code> into your <strong>Applications</strong> folder before opening it.</p>
+<p>In Terminal, copy and paste the following (you will be asked for your Mac password):</p>
+<p><code>sudo mkdir -p /usr/local/bin</code><br /><code>sudo ln -sf "/Applications/Sublime Text.app/Contents/SharedSupport/bin/subl" /usr/local/bin/subl</code></p>
 <p>This creates a shortcut so you can open Sublime Text from Terminal, for example with <code>subl .</code></p>
+<p>To check it worked, run <code>subl --version</code>. It should print <code>Sublime Text Build XXXX</code>.</p>
 <p>In order to test JavaScript files inside Sublime Text you will need to create a new build system. With Sublime Text open, click <strong>Tools</strong> &gt; <strong>Build System</strong> &gt; <strong>New Build System</strong>. This opens a new file. Replace all of the content with:</p>
 <pre><code>// Sublime Text - Build System for JavaScript
 {
     "cmd": ["node", "$file"],
     "selector": "source.js"
 }</code></pre>
-<p>Save the file as <code>JavaScript.sublime-build</code> and close it.</p>
-<p>To test whether that worked, create a new file and save it as <code>test.js</code>. Inside the file, add <code>console.log("This is a test");</code> and save.</p>
+<p>Press <strong>Command + S</strong>, name the file <code>JavaScript.sublime-build</code>, keep the folder Sublime suggests (it is the correct one), save, and close the file.</p>
+<p>To test whether that worked, press <strong>Command + N</strong> for a new file, add <code>console.log("This is a test");</code> and save it as <code>test.js</code> somewhere easy to find, such as your Desktop.</p>
 <p>Make sure the build system is selected under <strong>Tools</strong> &gt; <strong>Build System</strong> &gt; <strong>JavaScript</strong>.</p>
 <p>Press <strong>Command + B</strong> and you should get the output <code>This is a test</code> at the bottom.</p>
 
 <h4>Arduino IDE</h4>
-<p>Go to <a href="https://www.arduino.cc/en/software" target="_blank" rel="noopener">arduino.cc/en/software</a> and download the appropriate <strong>macOS</strong> app for your machine. Click <strong>JUST DOWNLOAD</strong>. Open the downloaded file and drag and drop it into your <strong>Applications</strong> folder.</p>
+<p>Go to <a href="https://www.arduino.cc/en/software" target="_blank" rel="noopener">arduino.cc/en/software</a>. In the dropdown next to the <strong>DOWNLOAD</strong> button, choose <strong>macOS Apple Silicon</strong> or <strong>macOS Intel</strong> to match your chip (see the note at the top of this section), then click <strong>DOWNLOAD</strong>. Open the downloaded <code>.dmg</code> file and drag <code>Arduino IDE.app</code> onto the <strong>Applications</strong> shortcut next to it.</p>
+<p>Open the Arduino IDE from your Applications folder. After the usual "downloaded from the Internet" prompt, macOS will ask whether to allow Arduino IDE to find devices on local networks. Click <strong>Allow</strong>. Once it is open, eject the installer disk that appeared on your Desktop (click it and press <strong>Command + E</strong>).</p>
+<p>Optional but recommended: the board we use later in the term needs an extra package that is a large download. To get it out of the way now, in the Arduino IDE go to <strong>Tools</strong> &gt; <strong>Board</strong> &gt; <strong>Boards Manager</strong>, search for <code>UNO R4</code>, and install <strong>Arduino UNO R4 Boards</strong>.</p>
 
 <h4>GitHub Signup and Configuration (OPTIONAL)</h4>
 <p>Go to <a href="https://github.com/" target="_blank" rel="noopener">github.com</a> and create a new account with your personal or ArtCenter email (choose depending on whether you want to keep the account after ArtCenter).</p>
 <p>Once created, you will need to bind your Mac to your GitHub profile.</p>
-<p>Create an SSH key in Terminal using <code>ssh-keygen -t ed25519 -C "your@emailaddress.com"</code></p>
-<p>Then copy it to your clipboard with <code>pbcopy &lt; ~/.ssh/id_ed25519.pub</code></p>
-<p>Go to <a href="https://github.com/settings/keys" target="_blank" rel="noopener">github.com/settings/keys</a> without losing the copied content, click the green <strong>New SSH key</strong> button, and add a title describing the machine the key was created on. Paste the copied key into the key field and click <strong>Add SSH key</strong>.</p>
-<p>To test that this is working, open Terminal and run <code>git clone git@github.com:julesmoretti/ACCD-IND671-VIS4.git</code>. If successful you should see output similar to:</p>
-<pre><code>Cloning into 'ACCD-IND671-VIS4'...
-remote: Enumerating objects: 6, done.
-remote: Counting objects: 100% (6/6), done.
-remote: Compressing objects: 100% (4/4), done.
-remote: Total 6 (delta 0), reused 0 (delta 0), pack-reused 0 (from 0)
-Receiving objects: 100% (6/6), done.</code></pre>
+<p>NOTE: Make sure to replace the email address with the one you used for your GitHub account in the next step.</p>
+<p>Create an SSH key in Terminal using <code>ssh-keygen -t ed25519 -C "your@emailaddress.com"</code>. It asks three questions (where to save the key, a passphrase, and the passphrase again). Press <strong>Return</strong> for all three, without typing anything.</p>
+<p>Open <a href="https://github.com/settings/keys" target="_blank" rel="noopener">github.com/settings/keys</a> in your browser and click the green <strong>New SSH key</strong> button. In the <strong>Title</strong> field, <em>type</em> a name describing the machine the key was created on (for example <code>MacBook 2026</code>). Leave <strong>Key type</strong> as <em>Authentication Key</em>.</p>
+<p>Now go back to Terminal and copy the key to your clipboard with <code>pbcopy &lt; ~/.ssh/id_ed25519.pub</code>. Do this as the very last step before pasting: anything else you copy afterwards will replace the key in your clipboard.</p>
+<p>Return to the browser, click inside the <strong>Key</strong> field, press <strong>Command + V</strong>, and click <strong>Add SSH key</strong>. GitHub may ask you to confirm your password.</p>
+<p>To test that the key is working, in Terminal run <code>ssh -T git@github.com</code>. The first time you connect you will be asked <em>"Are you sure you want to continue connecting (yes/no/[fingerprint])?"</em>. Type <code>yes</code> and press return. You should then see:</p>
+<pre><code>Hi yourusername! You've successfully authenticated, but GitHub does not provide shell access.</code></pre>
+<p>If instead you see <code>Permission denied (publickey)</code>, the key was not added to your GitHub account correctly. Go back to <a href="https://github.com/settings/keys" target="_blank" rel="noopener">github.com/settings/keys</a> and check that your key is listed, then repeat the <code>pbcopy</code> and paste steps.</p>
+<p>Finally, test cloning a repository. Move into the folder where you want to keep your course work (for example <code>cd ~/Documents</code>), then run <code>git clone git@github.com:julesmoretti/ACCD-Fritzing-Parts.git</code>. If successful you should see output similar to:</p>
+<pre><code>Cloning into 'ACCD-Fritzing-Parts'...
+remote: Enumerating objects: 123, done.
+remote: Counting objects: 100% (123/123), done.
+remote: Compressing objects: 100% (88/88), done.
+remote: Total 123 (delta 59), reused 96 (delta 34), pack-reused 0 (from 0)
+Receiving objects: 100% (123/123), 2.65 MiB | 37.21 MiB/s, done.
+Resolving deltas: 100% (59/59), done.</code></pre>
 
 <h3>Equipment &amp; Setup for Windows Machines</h3>
 <p>NOTE: A video recording of the steps to follow has been added to your Modules section for Windows specifically.</p>
@@ -135,13 +150,14 @@ Receiving objects: 100% (6/6), done.</code></pre>
 <p>Create an SSH key in <strong>Git Bash</strong> using <code>ssh-keygen -t ed25519 -C "your_email@example.com"</code>. Keep pressing <strong>Return</strong> or <strong>Enter</strong> until it completes, without entering a filename or passphrase.</p>
 <p>To copy the SSH key, in the same Git Bash window run <code>clip &lt; ~/.ssh/id_ed25519.pub</code> and press <strong>return</strong>. This copies your SSH key to the clipboard.</p>
 <p>Go to <a href="https://github.com/settings/keys" target="_blank" rel="noopener">github.com/settings/keys</a> without losing the copied content, click the green <strong>New SSH key</strong> button, and add a title describing the machine the key was created on. Paste the copied key into the key field and click <strong>Add SSH key</strong>.</p>
-<p>To test that this is working, open Git Bash and run <code>git clone git@github.com:julesmoretti/ACCD-IND671-VIS4.git</code>. If successful you should see output similar to:</p>
-<pre><code>Cloning into 'ACCD-IND671-VIS4'...
-remote: Enumerating objects: 6, done.
-remote: Counting objects: 100% (6/6), done.
-remote: Compressing objects: 100% (4/4), done.
-remote: Total 6 (delta 0), reused 0 (delta 0), pack-reused 0 (from 0)
-Receiving objects: 100% (6/6), done.</code></pre>
+<p>To test that this is working, open Git Bash and run <code>git clone git@github.com:julesmoretti/ACCD-Fritzing-Parts.git</code>. If successful you should see output similar to:</p>
+<pre><code>Cloning into 'ACCD-Fritzing-Parts'...
+remote: Enumerating objects: 123, done.
+remote: Counting objects: 100% (123/123), done.
+remote: Compressing objects: 100% (88/88), done.
+remote: Total 123 (delta 59), reused 96 (delta 34), pack-reused 0 (from 0)
+Receiving objects: 100% (123/123), 2.65 MiB | 37.21 MiB/s, done.
+Resolving deltas: 100% (59/59), done.</code></pre>
 
 <h4>Getting the subl shortcut working from Git Bash</h4>
 <p>To get your <code>subl</code> shortcut working, follow <a class="inline_disabled" title="Link" href="https://www.freecodecamp.org/news/how-to-launch-sublime-text-from-your-terminal/" target="_blank" rel="noopener">these instructions</a>, with the exception that the line to paste into your <code>.bashrc</code> should point at your installed version:</p>
