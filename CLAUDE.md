@@ -136,6 +136,10 @@ pins, platform mismatches) but do not rewrite pedagogy or restructure lessons.
   freeCodeCamp link is gone.
 - Homebrew's installer now sets the PATH itself via `/etc/paths.d/homebrew`; the doc
   only needs "quit and reopen Terminal". Homebrew 6 asks `[y/n]` before installing.
+- Week 1 also installs GitHub Desktop (both platforms) and lists the common hardware kit
+  (UNO R4 WiFi + BOJACK component kit, Amazon links). Both were missing from the page
+  until the first 26FA class surfaced it. Keep the kit links in the Week 1 reading page,
+  not the assignment; the assignment points to the reading page.
 - Clipboard trap in the SSH steps: `pbcopy` / `clip` must be the last thing run before
   pasting into GitHub, and the key title must be typed, not pasted.
 
