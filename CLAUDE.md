@@ -123,10 +123,17 @@ pins, platform mismatches) but do not rewrite pedagogy or restructure lessons.
 - The GitHub key test is `ssh -T git@github.com` (expects "Hi username! You've
   successfully authenticated"), followed by the clone. A clone alone is not a valid test:
   an HTTPS clone works with no key, and an SSH clone failure does not say why.
-- Week 1 Mac section was walked through end to end on a real machine on 17 Sep 2026
-  (macOS 26, Apple Silicon, Homebrew 6, Node 26, Arduino IDE 2.3.10). Prompts and
-  filenames in that section reflect what was actually seen. Re-verify each term before
-  the first class; the Windows section has not yet had the same pass.
+- Week 1 Mac and Windows sections were both walked through end to end on real machines
+  on 17 Sep 2026 (macOS 26 / Apple Silicon / Homebrew 6 / Node 26; Windows 11 Pro / Node
+  24 LTS / Git 2.55 / Arduino IDE 2.3.10). Prompts, filenames and installer screens in
+  those sections reflect what was actually seen. Re-verify each term before the first
+  class.
+- Windows Node: students take the default LTS .msi and leave "Tools for Native Modules"
+  unchecked. The old "press any key several times" paragraph came from ticking it; do
+  not reintroduce it.
+- Git Bash: Ctrl+V inserts bracketed-paste garbage (`^[[200~`). The doc tells students to
+  right-click paste or type. The `subl` alias is set directly in `.bashrc`; the old
+  freeCodeCamp link is gone.
 - Homebrew's installer now sets the PATH itself via `/etc/paths.d/homebrew`; the doc
   only needs "quit and reopen Terminal". Homebrew 6 asks `[y/n]` before installing.
 - Clipboard trap in the SSH steps: `pbcopy` / `clip` must be the last thing run before

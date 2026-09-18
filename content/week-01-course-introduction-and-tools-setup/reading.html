@@ -120,37 +120,56 @@ Resolving deltas: 100% (59/59), done.</code></pre>
 </ul>
 
 <h3>Installation of Software for Windows Machines</h3>
+<p>NOTE: Each installer below opens a Windows <em>User Account Control</em> prompt ("Do you want to allow this app to make changes to your device?"). Click <strong>Yes</strong>. Some also ask you to accept a license agreement; accept it.</p>
 
 <h4>Node.js</h4>
-<p>To download Node.js, go to the <a class="inline_disabled" title="Link" href="https://nodejs.org/en/download" target="_blank" rel="noopener">Node.js download page</a> and select the latest version marked <code>(Current)</code>. Run the installer completely. At the end of the installation, a command prompt window may appear asking you to press any key several times — do that and the installation will complete.</p>
+<p>To download Node.js, go to the <a class="inline_disabled" title="Link" href="https://nodejs.org/en/download" target="_blank" rel="noopener">Node.js download page</a>. Leave the version dropdown on the default <strong>LTS</strong> release and the platform on <strong>Windows</strong> / <strong>x64</strong>, then click <strong>Windows Installer (.msi)</strong>. Run the downloaded file (named like <code>node-v24.21.0-x64.msi</code>).</p>
+<p>Click <strong>Next</strong> through the installer, accepting the license and the default folder. On the <strong>Tools for Native Modules</strong> screen, leave the checkbox <em>Automatically install the necessary tools</em> <strong>unchecked</strong> (it installs several gigabytes of build tools that this course does not use). Click <strong>Next</strong>, <strong>Install</strong>, then <strong>Finish</strong>.</p>
+<p>To check it worked, open a <strong>new</strong> PowerShell window (Start menu, type <code>PowerShell</code>) and run <code>node -v</code> and <code>npm -v</code>. Each should print a version number. If you get "not recognized", close PowerShell and open a new one.</p>
 
 <h4>Sublime Text Editor</h4>
-<p>Go to the <a class="inline_disabled" href="https://www.sublimetext.com/download" target="_blank" rel="noopener">Sublime Text download page</a> and click <strong>Windows</strong>. Run the installer.</p>
+<p>Go to the <a class="inline_disabled" href="https://www.sublimetext.com/download" target="_blank" rel="noopener">Sublime Text download page</a> and click <strong>Windows</strong>. This downloads a file named like <code>sublime_text_build_4200_x64_setup.exe</code>. Run it, keep the default folder, and on the <strong>Select Additional Tasks</strong> screen tick <strong>Add to explorer context menu</strong> (this gives you a right-click "Open with Sublime Text" option on any folder). Click <strong>Install</strong>, then <strong>Finish</strong>.</p>
 <p>In order to test JavaScript files inside Sublime Text you will need to create a new build system. With Sublime Text open, click <strong>Tools</strong> &gt; <strong>Build System</strong> &gt; <strong>New Build System</strong>. Replace all of the content with:</p>
 <pre><code>// Sublime Text - Build System for JavaScript
 {
     "cmd": ["node", "$file"],
     "selector": "source.js"
 }</code></pre>
-<p>Save the file as <code>JavaScript.sublime-build</code> and close it.</p>
-<p>To test whether that worked, create a new file and save it as <code>test.js</code>. Inside the file, add <code>console.log("This is a test");</code> and save.</p>
+<p>Press <strong>Control + S</strong>, name the file <code>JavaScript.sublime-build</code>, keep the folder Sublime suggests (it is the correct one), save, and close the file.</p>
+<p>To test whether that worked, press <strong>Control + N</strong> for a new file, add <code>console.log("This is a test");</code> and save it as <code>test.js</code> somewhere easy to find, such as your Desktop.</p>
 <p>Make sure the build system is selected under <strong>Tools</strong> &gt; <strong>Build System</strong> &gt; <strong>JavaScript</strong>.</p>
 <p>Press <strong>Control + B</strong> and you should get the output <code>This is a test</code> at the bottom.</p>
 
 <h4>Arduino IDE</h4>
-<p>Go to <a class="inline_disabled" href="https://www.arduino.cc/en/software" target="_blank" rel="noopener">arduino.cc/en/software</a> and click <strong>Windows (Win 10 and newer, 64 bits)</strong>, then <strong>Just Download</strong>. Run the installer.</p>
+<p>Go to <a class="inline_disabled" href="https://www.arduino.cc/en/software" target="_blank" rel="noopener">arduino.cc/en/software</a>. In the dropdown next to the <strong>DOWNLOAD</strong> button make sure <strong>Windows Win 10 or newer (64-bit)</strong> is selected, then click <strong>DOWNLOAD</strong>. Run the downloaded file (named like <code>arduino-ide_2.3.10_Windows_64bit.exe</code>).</p>
+<p>Click <strong>I Agree</strong>, keep <strong>Only for me</strong> selected (this avoids needing administrator rights), keep the default folder, click <strong>Install</strong>, then <strong>Finish</strong> with <em>Run Arduino IDE</em> ticked.</p>
+<p>On first launch Windows may show one or two security prompts asking whether to allow the Arduino IDE (for example a Windows Defender Firewall "Allow access" dialog). Click <strong>Allow</strong> on each.</p>
+<p>Optional but recommended: the board we use later in the term needs an extra package that is a large download. To get it out of the way now, in the Arduino IDE go to <strong>Tools</strong> &gt; <strong>Board</strong> &gt; <strong>Boards Manager</strong>, search for <code>UNO R4</code>, and install <strong>Arduino UNO R4 Boards</strong>.</p>
 
 <h4>Git Install (OPTIONAL)</h4>
-<p>Go to <a class="inline_disabled" href="https://git-scm.com/download/win" target="_blank" rel="noopener">git-scm.com/download/win</a> and click <strong>64-bit Git for Windows Setup</strong>. Run the installer. Feel free to launch Git Bash at the end and test git by typing <code>git -v</code>, which returns the git version.</p>
+<p>Go to <a class="inline_disabled" href="https://git-scm.com/install/windows" target="_blank" rel="noopener">git-scm.com/install/windows</a> and click the <strong>Click here to download</strong> link at the top of the page (the x64 version). Run the downloaded file (named like <code>Git-2.55.0.5-64-bit.exe</code>).</p>
+<p>The installer has many screens. Keep the pre-selected option on every screen and click <strong>Next</strong>, with these exceptions:</p>
+<ul>
+    <li><strong>Select Components:</strong> also tick <em>Add a Git Bash Profile to Windows Terminal</em>.</li>
+    <li><strong>Choosing the default editor used by Git:</strong> change the dropdown from Vim to <strong>Use Sublime Text as Git's default editor</strong>.</li>
+    <li><strong>Adjusting the name of the initial branch:</strong> select <strong>Override the default branch name for new repositories</strong> and leave the name as <code>main</code>.</li>
+</ul>
+<p>Everything else stays on its default (PATH: "Git from the command line and also from 3rd-party software"; bundled OpenSSH; line endings: "Checkout Windows-style, commit Unix-style"; MinTTY; Merge; Git Credential Manager). Click <strong>Install</strong>, then <strong>Finish</strong>.</p>
+<p>Open <strong>Git Bash</strong> from the Start menu and run <code>git -v</code>, which returns the git version.</p>
+<p>NOTE: In Git Bash, <strong>Control + V does not paste</strong> (it inserts garbage characters). Paste with <strong>right-click</strong> &gt; <strong>Paste</strong> or <strong>Shift + Insert</strong>, or type the commands. Control + V still works normally in your browser.</p>
 
 <h4>GitHub Signup and Configuration (OPTIONAL)</h4>
 <p>Go to <a href="https://github.com/" target="_blank" rel="noopener">github.com</a> and create a new account with your personal or ArtCenter email (choose depending on whether you want to keep the account after ArtCenter).</p>
 <p>Once created, you will need to bind your Windows machine to your GitHub profile.</p>
 <p>NOTE: Make sure to replace the email address with the one you used for your GitHub account in the next step.</p>
-<p>Create an SSH key in <strong>Git Bash</strong> using <code>ssh-keygen -t ed25519 -C "your_email@example.com"</code>. Keep pressing <strong>Return</strong> or <strong>Enter</strong> until it completes, without entering a filename or passphrase.</p>
-<p>To copy the SSH key, in the same Git Bash window run <code>clip &lt; ~/.ssh/id_ed25519.pub</code> and press <strong>return</strong>. This copies your SSH key to the clipboard.</p>
-<p>Go to <a href="https://github.com/settings/keys" target="_blank" rel="noopener">github.com/settings/keys</a> without losing the copied content, click the green <strong>New SSH key</strong> button, and add a title describing the machine the key was created on. Paste the copied key into the key field and click <strong>Add SSH key</strong>.</p>
-<p>To test that this is working, open Git Bash and run <code>git clone git@github.com:julesmoretti/ACCD-Fritzing-Parts.git</code>. If successful you should see output similar to:</p>
+<p>Create an SSH key in <strong>Git Bash</strong> using <code>ssh-keygen -t ed25519 -C "your_email@example.com"</code>. It asks three questions (where to save the key, a passphrase, and the passphrase again). Press <strong>Enter</strong> for all three, without typing anything.</p>
+<p>Open <a href="https://github.com/settings/keys" target="_blank" rel="noopener">github.com/settings/keys</a> in your browser and click the green <strong>New SSH key</strong> button. In the <strong>Title</strong> field, <em>type</em> a name describing the machine the key was created on (for example <code>Windows laptop 2026</code>). Leave <strong>Key type</strong> as <em>Authentication Key</em>.</p>
+<p>Now go back to Git Bash and copy the key to your clipboard with <code>clip &lt; ~/.ssh/id_ed25519.pub</code>. Do this as the very last step before pasting: anything else you copy afterwards will replace the key in your clipboard.</p>
+<p>Return to the browser, click inside the <strong>Key</strong> field, press <strong>Control + V</strong>, and click <strong>Add SSH key</strong>. GitHub may ask you to confirm your password.</p>
+<p>To test that the key is working, in Git Bash run <code>ssh -T git@github.com</code>. The first time you connect you will be asked <em>"Are you sure you want to continue connecting (yes/no/[fingerprint])?"</em>. Type <code>yes</code> and press Enter. You should then see:</p>
+<pre><code>Hi yourusername! You've successfully authenticated, but GitHub does not provide shell access.</code></pre>
+<p>If instead you see <code>Permission denied (publickey)</code>, the key was not added to your GitHub account correctly. Go back to <a href="https://github.com/settings/keys" target="_blank" rel="noopener">github.com/settings/keys</a> and check that your key is listed, then repeat the <code>clip</code> and paste steps. If you see <code>Host key verification failed</code>, you did not type <code>yes</code> at the prompt; run the command again.</p>
+<p>Finally, test cloning a repository. Move into the folder where you want to keep your course work (for example <code>cd ~/Documents</code>), then run <code>git clone git@github.com:julesmoretti/ACCD-Fritzing-Parts.git</code>. If successful you should see output similar to:</p>
 <pre><code>Cloning into 'ACCD-Fritzing-Parts'...
 remote: Enumerating objects: 123, done.
 remote: Counting objects: 100% (123/123), done.
@@ -160,8 +179,11 @@ Receiving objects: 100% (123/123), 2.65 MiB | 37.21 MiB/s, done.
 Resolving deltas: 100% (59/59), done.</code></pre>
 
 <h4>Getting the subl shortcut working from Git Bash</h4>
-<p>To get your <code>subl</code> shortcut working, follow <a class="inline_disabled" title="Link" href="https://www.freecodecamp.org/news/how-to-launch-sublime-text-from-your-terminal/" target="_blank" rel="noopener">these instructions</a>, with the exception that the line to paste into your <code>.bashrc</code> should point at your installed version:</p>
-<p><code>alias subl='C:/Program\ Files/Sublime\ Text/sublime_text.exe'</code></p>
+<p>To open Sublime Text from Git Bash with <code>subl .</code>, run the following three lines in Git Bash (type them or paste with right-click):</p>
+<pre><code>echo "alias subl='/c/Program\ Files/Sublime\ Text/subl.exe'" &gt;&gt; ~/.bashrc
+source ~/.bashrc
+subl --version</code></pre>
+<p>The last line should print <code>Sublime Text Build XXXX</code>.</p>
 <p>That concludes the Windows configuration for your machine.</p>
 
 <h3>GitHub (OPTIONAL)</h3>
