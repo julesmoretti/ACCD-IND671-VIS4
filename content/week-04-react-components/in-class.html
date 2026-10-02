@@ -1,9 +1,47 @@
 <!-- Canvas page: Week 4 - React Components (In-Class Hands-On Coding) -->
 <!-- Paste the contents of this file into the Canvas HTML editor. -->
 
+<h3>Part 1: How to Run a Software Test (first 25 min)</h3>
+<p>This week's homework is to test your project interface with 3&ndash;4 classmates, and the results go straight into your Week 5 midterm. You read the <strong>Week 4 Software Testing Protocol</strong> page for homework; keep it open. Today we practise it.</p>
+
+<h4>1. From requirement to task to steps (5 min)</h4>
+<ul>
+    <li>Take one of your Week 3 requirements and rewrite it as a <strong>task</strong>: an instruction with no method in it. "Set a target of 40 and start it running", not "type 40 in the field and click start".</li>
+    <li>Then list the <strong>steps</strong> a user has to go through to complete it. The steps are for you to watch. Never show them to the participant.
+        <pre><code>Task: Set a target of 40 and start it running.
+  S1  Find where the target goes
+  S2  Enter 40
+  S3  Confirm the value was accepted
+  S4  Find the start control
+  S5  Start it
+  S6  Recognise that it is running</code></pre>
+    </li>
+    <li>Each step is a place the interface can fail. Scoring per step tells you exactly where.</li>
+</ul>
+
+<h4>2. Live demo (10 min)</h4>
+<p>One volunteer, the Week 3 Number Adder, and one task: <em>"Get the result to 3, then clear everything."</em></p>
+<pre><code>  S1  Find the add controls
+  S2  Reach 3
+  S3  Check the result reads 3
+  S4  Find the clear control
+  S5  Clear
+  S6  Confirm the result and history are empty</code></pre>
+<p>Everyone else fills in Tables A and B from the protocol page while watching: functionality per step, severity per issue, emotion per element with a quote. Afterwards, compare scores. Where two people scored the same step differently, the observation was not specific enough.</p>
+
+<h4>3. Practice in pairs (10 min, one task each)</h4>
+<ul>
+    <li>Swap laptops with a partner. Give them <strong>one task</strong> on your clickable project interface from the Week 3 homework, then stop talking. About 5 minutes each.</li>
+    <li>Score each step. Do not explain, do not help, do not defend it. Then switch roles.</li>
+    <li>Fix your task wording if your partner misunderstood what you were asking. That is what the practice is for.</li>
+</ul>
+
+<hr />
+<h3>Part 2: React</h3>
 <p>In this section, we will convert last week’s homework into a React app using <strong>Vite</strong>. We will start by creating a new React project, then gradually convert the HTML sections into React components. Finally, we will refactor the logic so that the button interactions within the main content update the sidebar with the result and operation history.</p>
+<p>One idea carries over from Week 3 and changes shape: there, every button changed the data and then called <code>updateResults()</code> to redraw the page. In React you only change the data (the <strong>state</strong>); React redraws the page for you. There is no <code>updateResults()</code> to write.</p>
 <h3>Step 1: Setting up the React App</h3>
-<p>We’ll start by setting up the project in the same way as the previous section.</p>
+<p>We’ll start by setting up the project in the same way as the previous section. Run these commands from inside your <code>vis4/week 4</code> folder so the project lands in your repo.</p>
 <ol>
     <li><strong>Create the React App:</strong>
         <p>Use Vite to generate a new React project. There is nothing to install globally first:</p>
@@ -151,8 +189,13 @@ function App() {
 export default App;</code></pre>
 <p><strong>Explanation of <code>[...history]</code> (Spread Operator):</strong></p>
 <p>The <code>[...history]</code> syntax is known as the <strong>spread operator</strong>. It’s used here to create a copy of the existing <code>history</code> array and add a new entry to it (like <code>+1</code> or <code>-2</code>). Without using the spread operator, we would modify the original array directly, which can lead to bugs and unwanted side effects. The spread operator allows us to create a new array while keeping the previous elements intact, ensuring that React properly detects the state update and re-renders the component.</p>
-<h3>Step 4: Refactor Button Logic for State Updates</h3>
-<p>Finally, let’s ensure that when buttons are clicked in the <code>MainContent</code> component, the total and history get updated, and those changes are reflected in the Sidebar component. This is already done in the previous step using the <code>useState</code> hook for managing state.</p>
-<p>For each button click (e.g., <code>onAddOne</code>), the total is updated using <code>setTotal</code>, and the history is updated using <code>setHistory</code> by adding the corresponding action (e.g., <code>'+1'</code>) to the history array.</p>
+<h3>Step 4: Bring Your Week 3 Styles Across</h3>
+<p>For each button click (e.g., <code>onAddOne</code>), the total is updated using <code>setTotal</code>, and the history is updated using <code>setHistory</code>. The page now works, but it will not look like your Week 3 page yet: Vite's starter CSS centres everything in a fixed-width column, centres the text, and switches to dark mode.</p>
+<ol>
+    <li>Delete everything in <code>src/App.css</code> and <code>src/index.css</code>.</li>
+    <li>Paste the contents of your Week 3 <code>styles.css</code> into <code>src/index.css</code>.</li>
+    <li>Make the ids and classes in your components match the ones your CSS uses (for example <code>id="navbar"</code> or <code>className="sidebar"</code>). Remember: <code>class</code> becomes <code>className</code> in JSX.</li>
+</ol>
 <h3>Wrap-up</h3>
 <p>At this point, you should have a fully functioning number adder app that uses React components to structure the app and state management to handle the button interactions and history. The <code>Header</code>, <code>Sidebar</code>, and <code>MainContent</code> components are reusable, and the app’s state is managed centrally within the <code>App</code> component.</p>
+<p>What you have rebuilt is the Week 2 Number Adder. The homework adds the Week 3 features on top: the additions/subtractions summary, the positive/negative/zero message, and the Clear History &amp; Results button.</p>

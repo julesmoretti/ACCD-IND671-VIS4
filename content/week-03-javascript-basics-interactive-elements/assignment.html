@@ -8,6 +8,24 @@
 <h3><strong>Part 1: Enhanced Number Adder with Arrays, Objects, Loops, and Conditional Statements</strong></h3>
 <p>This assignment builds on the previous number adder functionality, with a focus on incorporating more advanced JavaScript features such as <strong>arrays</strong>, <strong>objects</strong>, <strong>loops</strong>, and <strong>conditional statements</strong>. The goal is to store the history of operations, track the number of additions and subtractions, and use conditional statements to display dynamic messages.</p>
 <hr />
+<h3><strong>Before You Start</strong></h3>
+<ul style="list-style-type: disc;">
+    <li>Work from the copy you made in in-class Exercise 5 (<code>week 3/Assignment</code>), where every button already calls <code>updateResults()</code>.</li>
+    <li>Add three empty elements to your sidebar, under the result paragraph. The steps below write into them:
+        <pre><code>&lt;ul id="historyList"&gt;&lt;/ul&gt;
+&lt;div id="summary"&gt;&lt;/div&gt;
+&lt;p id="totalMessage"&gt;&lt;/p&gt;</code></pre>
+    </li>
+    <li>By the end, <code>updateResults()</code> looks like this. Each step below adds one line to it:
+        <pre><code>function updateResults() {
+    document.querySelector("#resultId").innerHTML = total;
+    updateHistory();   // Step 1
+    updateSummary();   // Step 2
+    checkTotal();      // Step 3
+}</code></pre>
+    </li>
+</ul>
+<hr />
 <h3><strong>Steps to Implement</strong>:</h3>
 <ol style="list-style-type: decimal;">
     <li>
@@ -16,14 +34,14 @@
             <li><strong>Description</strong>: Each time an operation (e.g., <code>+1</code>, <code>-1</code>, Reset) is performed, add that operation to the <code>history</code> array. The array will store all operations performed and will be displayed in the sidebar.</li>
             <li><strong>Instructions</strong>:
                 <ul style="list-style-type: disc;">
-                    <li>Create an array <code>history = []</code> to store the operations.</li>
+                    <li>Create the array with <code>let history = [];</code> at the top of your script. Use <code>let</code>, not <code>var</code>: <code>history</code> is already a built-in browser name, and with <code>var</code> the browser keeps its own version, so <code>history.push</code> fails with &ldquo;history.push is not a function&rdquo;.</li>
                     <li>Push each operation (e.g., <code>"-1"</code>, <code>"Reset"</code>, <code>"+2"</code>) into the array when a button is clicked.</li>
-                    <li>Use create a <code>function updateHistory()</code>&nbsp;with a <strong>for loop</strong>&nbsp;to iterate over the <code>history</code> array and display it as a list in the sidebar.</li>
-                    <li>Make sure to also call the function <code>updateHistory()</code>within each of your buttons!&nbsp;</li>
+                    <li>Create a <code>function updateHistory()</code> with a <strong>for loop</strong> to iterate over the <code>history</code> array and display it as a list in the sidebar.</li>
+                    <li>Add <code>updateHistory();</code> to your <code>updateResults()</code> function.</li>
                     <li><strong>Example</strong>:<br />
                         <pre><code>let history = [];
                         
-// your prior button code goes here but make sure that within each of those javascript button onClick functions to include a history.push("the button operation") //
+// in each button listener, add: history.push("+1");  (or "-1", "Reset", etc.)
 
 function updateHistory() {
     let historyContent = "";
@@ -42,13 +60,13 @@ function updateHistory() {
     <li>
         <h4><strong>Display a Summary of Operations Using an Object</strong></h4>
         <ul>
-            <li><strong>Description</strong>: Track the total number of additions and subtractions in an<code>operationCount</code> object, and display this summary in the sidebar.</li>
+            <li><strong>Description</strong>: Track the total number of additions and subtractions in an <code>operationCount</code> object, and display this summary in the sidebar.</li>
             <li><strong>Instructions</strong>:
                 <ul style="list-style-type: disc;">
-                    <li>Create an object <code>operationCount = { additions: 0, subtractions: 0 }</code> to store the number of operations at the top of your javascript section.</li>
-                    <li>Increment the appropriate property (<code>additions</code> or <code>subtractions</code>) in the object based on the button clicked.</li>
+                    <li>Create an object <code>let operationCount = { additions: 0, subtractions: 0 };</code> at the top of your script.</li>
+                    <li>In each button listener, increment the matching property, for example <code>operationCount.additions = operationCount.additions + 1;</code></li>
                     <li>Display the summary in the sidebar by updating a div with the ID <code>#summary</code>.</li>
-                    <li>And make sure that the updateSummary() is also called within each buttons.</li>
+                    <li>Add <code>updateSummary();</code> to your <code>updateResults()</code> function.</li>
                     <li><strong>Example</strong>:
                         <pre><code>let operationCount = { additions: 0, subtractions: 0 };
 
@@ -68,7 +86,7 @@ function updateSummary() {
                 <ul style="list-style-type: disc;">
                     <li>Use an <code>if-else</code> statement to check the value of <code>total</code>.</li>
                     <li>Display a different message depending on whether the total is greater than 0, less than 0, or equal to 0.</li>
-                    <li>Ensure that the buttons call this functions too <code>onClick</code>.</li>
+                    <li>Add <code>checkTotal();</code> to your <code>updateResults()</code> function.</li>
                     <li><strong>Example</strong>:
                         <pre><code>function checkTotal() {
     if (total &gt; 0) {
@@ -91,8 +109,8 @@ function updateSummary() {
             <li><strong>Instructions</strong>:
                 <ul style="list-style-type: disc;">
                     <li>Implement a function <code>ClearAll()</code> that resets the <code>total</code>, clears the <code>history</code> array, and resets the <code>operationCount</code> object to zero.</li>
-                    <li>Add a button UI in the Command Center to activate this <code>ClearAll()</code> function.</li>
-                    <li>Call the necessary update functions (<code>updateHistory()</code>, <code>updateSummary()</code>, <code>checkTotal()</code>) to refresh the interface.</li>
+                    <li>Add a button in the Control Center that calls <code>ClearAll()</code> when clicked.</li>
+                    <li>Finish with <code>updateResults();</code> to refresh the whole interface.</li>
                     <li><strong>Example</strong>:<br />
                         <pre><code>function ClearAll() {
     total = 0;
@@ -100,7 +118,6 @@ function updateSummary() {
     operationCount.additions = 0;
     operationCount.subtractions = 0;
     updateResults();
-    updateHistory();
 }</code></pre>
                     </li>
                 </ul>
@@ -110,7 +127,16 @@ function updateSummary() {
     <li>
         <h4><strong>Update the UI Based on User Actions</strong></h4>
         <ul style="list-style-type: disc;">
-            <li><strong>Description</strong>: Ensure that each button (e.g., <code>+1</code>, <code>-1</code>, Reset) updates the total, the history, and the operation summary. Use the <code>updateResults()</code> function to call the individual update functions (<code>updateHistory()</code>, <code>updateSummary()</code>, <code>checkTotal()</code>).</li>
+            <li><strong>Description</strong>: Check that each button (<code>+1</code>, <code>-1</code>, Reset, etc.) changes the data, then calls <code>updateResults()</code> once. A finished button looks like this:
+                <pre><code>document
+    .getElementById("addOne")
+    .addEventListener("click", function() {
+        total = total + 1;
+        history.push("+1");
+        operationCount.additions = operationCount.additions + 1;
+        updateResults();
+    });</code></pre>
+            </li>
         </ul>
     </li>
 </ol>
@@ -167,18 +193,41 @@ function removeHistoryItem(index) {
     <li><strong>Nice to have</strong> &mdash; improves the experience, not essential</li>
     <li><strong>Dropped</strong> &mdash; you considered it and decided against it. Say why.</li>
 </ul>
-<p>Aim for <strong>6&ndash;10 requirements</strong>. Include at least two you have dropped &mdash; deciding what not to build is a design decision, and writing down why stops you relitigating it in Week 11.</p>
+<p>Aim for <strong>6&ndash;10 requirements</strong>. Include at least two you have dropped &mdash; deciding what not to build is a design decision, and writing down why stops you relitigating it later in the term.</p>
 <p>Half a page is enough. This is not a document, it is a working list.</p>
 <h4><strong>Why this matters now</strong></h4>
 <p>Next week you will test your interface with classmates, and these requirements become the test tasks &mdash; you will hand someone the interface and ask them to do the thing your statement describes, without explaining how. Vague requirements produce untestable tasks.</p>
 <p>This is also the exact format your HMI document uses in Week 8 for the hardware side. You are learning the notation on something small before it matters.</p>
 
+<!-- PASTE BLOCK START: Parts 3 and 4 (added 1 Oct 2026) -->
+<hr />
+<h3><strong>Part 3: Make Your Interface Clickable</strong></h3>
+<p>Next week someone else has to use your interface without your help. A static page cannot be tested, so add JavaScript to your Week 2 project interface:</p>
+<ul style="list-style-type: disc;">
+    <li>Wire up your <strong>Must-have</strong> requirements only. Each one should respond when clicked.</li>
+    <li>Use the same pattern as the Number Adder: buttons change variables, then one function redraws the page.</li>
+    <li>Fake what the device would do. If your device counts turns, make a number go up. There is no hardware yet, and that is fine.</li>
+    <li>Keep everything the device would do in one place, for example a function called <code>fakeDevice()</code>. In Week 7 that is the one piece you swap for real messages from your Arduino.</li>
+</ul>
+<p>Save it in <code>week 3/Project</code>.</p>
+
+<hr />
+<h3><strong>Part 4: Parts List and Order</strong></h3>
+<p>Finish the parts list you started in class: part, quantity, link, price and delivery date for everything not already in the common kit. <strong>Place your order by Thursday.</strong> If a part will not arrive before Week 6, find another supplier now.</p>
+
+<hr />
+<h3><strong>Reading for Next Week</strong></h3>
+<p>Read the <strong>Week 4 Software Testing Protocol</strong> page before class. Next week you run a test yourself, and class time goes to a live demo, not to explaining the scoring.</p>
+<!-- PASTE BLOCK END -->
+
 <hr />
 <h3>Submission Requirements:</h3>
 <ul>
-    <li>Submit your updated <code>index.html</code> and <code>style.css</code> files OR if you prefer commit your work into a Week 3 folder within your GitHub repo.</li>
+    <li>Submit your updated <code>index.html</code> and <code>styles.css</code> files OR commit your work to <code>week 3/Assignment</code> in your <code>vis4</code> repo.</li>
     <li>Ensure that the operation history, summary, and conditional messaging work as expected.</li>
     <li>For the bonus feature, ensure the clickable history is functional and testable.</li>
     <li>Your project's software requirements list with priorities (6&ndash;10 statements, at least two dropped).</li>
+    <li>Your clickable project interface in <code>week 3/Project</code>.</li>
+    <li>Your parts list, and a screenshot of your order confirmation.</li>
     <li>By midnight Thursday please, and feel free to collaborate.</li>
 </ul>

@@ -108,7 +108,7 @@
     </li>
     <li><strong>Add Flexbox CSS</strong>:
         <ul>
-            <li>Refactor the CSS to apply a Flexbox layout to <code>#main-content</code>.</li>
+            <li>Refactor the CSS to apply a Flexbox layout to <code>#main-content</code>. <strong>Replace</strong> your existing <code>#main-content</code> rule with the one below rather than adding a second one.</li>
             <li>The sidebar should have a fixed width of 400px, and the content area should take the remaining space.</li>
         </ul>
     </li>
@@ -142,6 +142,17 @@
     }
 }</code></pre>
     </li>
+    <li><strong>Flex the navbar too</strong>:
+        <ul>
+            <li>Add three <code>&lt;h4&gt;</code> items after the <code>&lt;h1&gt;</code> in <code>#navbar</code>, then add these lines to the <code>#navbar</code> rule to line them up in a row:</li>
+        </ul>
+        <pre><code>#navbar {
+    /* keep your existing lines, and add: */
+    display: flex;
+    align-items: center;
+    gap: 40px;
+}</code></pre>
+    </li>
     <li><strong>Learn more about the power of flex</strong>:
         <ul>
             <li><a class="inline_disabled" href="https://css-tricks.com/snippets/css/a-guide-to-flexbox/" target="_blank" rel="noopener">A Complete Guide to Flexbox (CSS-Tricks)</a></li>
@@ -160,7 +171,7 @@
             <li>Add a button inside the <code>#navbar</code>:
                 <pre><code>&lt;button id="changeColorBtn"&gt;Change Header Color&lt;/button&gt;</code></pre>
             </li>
-            <li>Write JavaScript that listens for the button click and changes the header's text color.</li>
+            <li>Write JavaScript that listens for the button click and changes the header's text color. Put the <code>&lt;script&gt;</code> block just before the closing <code>&lt;/body&gt;</code> tag.</li>
         </ul>
     </li>
     <li><strong>Example JavaScript</strong>:
@@ -183,7 +194,7 @@ document
     <li><strong>Objective</strong>: Use JavaScript to inject content into the <code>.content</code> div when the button is clicked.</li>
     <li><strong>Instructions</strong>:
         <ul>
-            <li>Inside the same event listener, add a line of code that injects content into the <code>.content</code> div.</li>
+            <li>Inside the same event listener, add a line of code that injects content into the <code>.content</code> div. Edit your existing script; do not paste a second listener.</li>
         </ul>
     </li>
     <li><strong>Example JavaScript</strong>:
@@ -203,3 +214,14 @@ document
 &lt;/script&gt;</code></pre>
     </li>
 </ol>
+
+<hr />
+
+<h3><strong>From In-Class to the Assignment</strong></h3>
+<p>The Number Adder uses the same layout with different names:</p>
+<ul>
+    <li><code>#navbar</code> becomes the <strong>header</strong> DIV (h1 + three h4s, flexed as above)</li>
+    <li><code>.sidebar</code> becomes the <strong>sidebar</strong> DIV, holding the RESULT paragraph (<code>id="resultId"</code>)</li>
+    <li><code>.content</code> becomes the <strong>main-content</strong> DIV, holding the Control Center buttons</li>
+    <li>The <code>innerHTML</code> line from Step 2 is how you write <code>total</code> into <code>#resultId</code></li>
+</ul>

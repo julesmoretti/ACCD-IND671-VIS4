@@ -11,7 +11,7 @@
     <li><strong>Overview</strong>: Variables are used to store data. JavaScript supports multiple data types, including <span style="text-decoration: underline;">strings</span>, <span style="text-decoration: underline;">numbers</span>, <span style="text-decoration: underline;">booleans</span>, <span style="text-decoration: underline;">objects</span>, and <span style="text-decoration: underline;">arrays</span>.</li>
     <li><strong>Variable Declaration</strong>:
         <ul>
-            <li><code>var</code>, <code>let</code>, and <code>const</code> (briefly mention hoisting and the difference between <code>var</code> and <code>let</code>/<code>const</code>).</li>
+            <li><code>var</code>, <code>let</code>, and <code>const</code>. Use <code>let</code> for values that change and <code>const</code> for values that do not. <code>var</code> is the older keyword; you will see it in examples online, but do not use it in new code.</li>
             <li><strong>Example:</strong>
                 <pre><code>let name = "Alice";   // String
 const age = 30;       // Number
@@ -49,7 +49,7 @@ console.log(person.name); // Accessing object property</code></pre>
 }</code></pre>
             </li>
             <li>Arrow function (ES6):
-                <pre><code>const greet = (name) =&gt; "Hello, " + name;</code></pre>
+                <pre><code>const greetArrow = (name) =&gt; "Hello, " + name;</code></pre>
             </li>
         </ul>
     </li>
@@ -110,6 +110,45 @@ console.log(localVar); // Error: localVar is not defined</code></pre>
     console.log("You are a minor.");
 }</code></pre>
             </li>
+            <li>Use <code>else if</code> to check more than two cases:
+                <pre><code>if (total &gt; 0) {
+    console.log("positive");
+} else if (total &lt; 0) {
+    console.log("negative");
+} else {
+    console.log("zero");
+}</code></pre>
+            </li>
         </ul>
     </li>
+</ul>
+
+<hr />
+
+<h4>5. Putting It on the Page</h4>
+<ul>
+    <li><strong>Overview</strong>: Last week each button updated the page itself. This week the buttons change your data (variables, arrays, objects), then call <strong>one function</strong> that redraws the page from that data.</li>
+    <li><strong>Template literals</strong>: backticks let you drop variables into a string with <code>${ }</code>, instead of joining pieces with <code>+</code>.
+        <pre><code>let total = 3;
+console.log(`The total is ${total}`); // The total is 3</code></pre>
+    </li>
+    <li><strong>Changing an object property</strong>:
+        <pre><code>let operationCount = { additions: 0, subtractions: 0 };
+operationCount.additions = operationCount.additions + 1;</code></pre>
+    </li>
+    <li><strong>One update function, called from every button</strong>:
+        <pre><code>let total = 0;
+
+function updateResults() {
+    document.querySelector("#resultId").innerHTML = total;
+}
+
+document
+    .getElementById("addOne")
+    .addEventListener("click", function() {
+        total = total + 1;
+        updateResults();
+    });</code></pre>
+    </li>
+    <li>You will practise this in class and build on it in the assignment.</li>
 </ul>
