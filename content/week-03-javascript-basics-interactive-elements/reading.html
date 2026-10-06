@@ -119,6 +119,42 @@ console.log(localVar); // Error: localVar is not defined</code></pre>
     console.log("zero");
 }</code></pre>
             </li>
+            <li><strong>Comparing values: <code>===</code> vs <code>==</code></strong>
+                <ul>
+                    <li><code>=</code> <em>assigns</em> a value: <code>total = 5;</code></li>
+                    <li><code>===</code> <em>compares</em> value <strong>and</strong> type. Use this one.</li>
+                    <li><code>==</code> compares value only, after quietly converting types. It gives surprising results, so avoid it.</li>
+                    <li><code>!==</code> means "is not equal to" (the strict version of <code>!=</code>).</li>
+                </ul>
+                <pre><code>5 === 5      // true
+5 === "5"    // false: a number is not a string
+5 == "5"     // true: JavaScript converted "5" to 5 first
+0 == ""      // true, which is rarely what you meant
+total !== 0  // true when total is anything but 0</code></pre>
+                <p>Text typed into an input field always arrives as a string. With <code>===</code>, <code>"5" === 5</code> is false, which tells you to convert it first with <code>Number(value)</code>.</p>
+            </li>
+            <li><strong>Combining conditions: AND, OR, NOT</strong>
+                <ul>
+                    <li><code>&amp;&amp;</code> (AND): true only if <strong>both</strong> sides are true.</li>
+                    <li><code>||</code> (OR): true if <strong>at least one</strong> side is true.</li>
+                    <li><code>!</code> (NOT): flips true and false.</li>
+                </ul>
+                <pre><code>let total = 7;
+let isRunning = true;
+
+if (total &gt; 0 &amp;&amp; total &lt; 10) {
+    console.log("between 1 and 9");
+}
+
+if (total &lt; 0 || total &gt; 100) {
+    console.log("out of range");
+}
+
+if (!isRunning) {
+    console.log("stopped");
+}</code></pre>
+                <p>Use brackets to make mixed conditions clear: <code>(a &amp;&amp; b) || c</code>.</p>
+            </li>
         </ul>
     </li>
 </ul>
