@@ -1,0 +1,54 @@
+<!-- Canvas page: Week 8 - HMI + Applied Arduino (In-Class Exercises) -->
+<!-- Paste the contents of this file into the Canvas HTML editor. -->
+<!-- DRAFT 1 Oct 2026: not yet reviewed by Jules. -->
+
+<p>Today you design how your product talks to its user, then start building it. Bring your Week 6 anatomy map, your midterm "Ready for hardware" list, and your breadboarded parts from Week 7.</p>
+
+<h3>Exercise 1: Step Through the Hero Experience (15 min)</h3>
+<p>Write your hero experience as a sequence of steps, the same way you broke tasks into steps for testing. For each step, three columns:</p>
+<table style="border-collapse: collapse; width: 100%;" border="1">
+    <thead>
+        <tr>
+            <th style="padding: 6px;">Step</th>
+            <th style="padding: 6px;">The user does</th>
+            <th style="padding: 6px;">The device does / shows</th>
+            <th style="padding: 6px;">The screen shows</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td style="padding: 6px;">S1</td>
+            <td style="padding: 6px;">Turns the dial to 40</td>
+            <td style="padding: 6px;">Ring LEDs fill to match</td>
+            <td style="padding: 6px;">Target: 40</td>
+        </tr>
+    </tbody>
+</table>
+
+<hr />
+<h3>Exercise 2: States and Feedback (30 min)</h3>
+<ol>
+    <li>List every <strong>state</strong> your device can be in. Most products have at least: off, idle/ready, working, done, and error. Add <strong>disconnected</strong>: what happens when the WebSocket drops?</li>
+    <li>For each state, decide how the user knows they are in it, on the device and on screen. Use more than one channel where it matters:
+        <ul>
+            <li><strong>Visual</strong>: LED colour, blink pattern, display, screen</li>
+            <li><strong>Auditory</strong>: tone, click, silence</li>
+            <li><strong>Haptic</strong>: vibration, detent, resistance</li>
+        </ul>
+    </li>
+    <li>Check: can two states be confused? If "working" and "error" both blink, the user cannot tell them apart.</li>
+    <li>Check your parts list: does every piece of feedback have a part that produces it? If not, add it to your parts list now.</li>
+</ol>
+
+<hr />
+<h3>Exercise 3: Run-Through in Pairs (25 min)</h3>
+<p>One person plays the device; the other is the user. The user tries the hero experience using your interface on screen. The "device" responds out loud and by hand: "the ring lights up to 40", "it beeps twice". No explaining.</p>
+<p>Swap. Write down every moment where the user did not know what had happened. Those are missing or unclear feedback.</p>
+
+<hr />
+<h3>Exercise 4: Start the HMI Document (20 min)</h3>
+<p>Set up your Google Sheet with the tabs from the reading (Step 3). Fill in one category of interactions completely, using what you found in Exercises 1&ndash;3. Finish the rest for homework.</p>
+
+<hr />
+<h3>Exercise 5: Lab Time, Two-Way Communication (rest of class)</h3>
+<p>Start the homework: combine your Week 7 sketches into one, and connect one device input and one screen control through the WebSocket server. Ask for help now rather than at midnight on Thursday.</p>

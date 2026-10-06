@@ -1,0 +1,81 @@
+<!-- Canvas page: Week 7 - Arduino + IDE + WebSocket (In-Class Exercises) -->
+<!-- Paste the contents of this file into the Canvas HTML editor. -->
+<!-- DRAFT 1 Oct 2026: not yet reviewed by Jules. Run Exercise 5 end to end
+     before class; the bridge code has not been tested on hardware. -->
+
+<p>Today the Arduino and your React apps start talking. Keep the Week 7 reading open: the exercises point to its steps rather than repeating the code.</p>
+
+<h3>Exercise 1: First Sketch (10 min)</h3>
+<ol>
+    <li>Set the board and port (reading, Step 2b).</li>
+    <li>Write a sketch that prints <code>"Hello from Arduino"</code> and a counter to the Serial Monitor once a second.</li>
+    <li>Change it so the counter is an <code>int</code> that goes up by one each time. Compare with how you wrote <code>total</code> in JavaScript.</li>
+</ol>
+
+<hr />
+<h3>Exercise 2: LED and Button on the Breadboard (25 min)</h3>
+<ol>
+    <li>Build reading Step 3c: an external LED on pin 7 with a 1 k&Omega; resistor. Make it blink.</li>
+    <li>Build reading Step 4: a button that turns the LED on while pressed.</li>
+    <li>Print the button state to the Serial Monitor. Watch how many times one press is printed: <code>loop()</code> runs thousands of times a second.</li>
+</ol>
+
+<hr />
+<h3>Exercise 3: Potentiometer (10 min)</h3>
+<p>Build reading Step 5. Turn the knob and watch the value go from 0 to 1023 in the Serial Monitor.</p>
+
+<hr />
+<h3>Exercise 4: Run the WebSocket Example (40 min)</h3>
+<ol>
+    <li>Start the server (reading Step 6b). Write down the IP address it prints.</li>
+    <li>Create and run the React app (Step 6c). The connection status should read <em>Open</em>.</li>
+    <li>Put that IP address and your WiFi details into the Arduino sketch (Step 6d) and upload it.</li>
+    <li>Turn the potentiometer: the value should update in the React app. Click <em>Add 1 LED</em>: an LED should light on the board's matrix.</li>
+</ol>
+<p>If it does not connect: laptop and Arduino must be on the <strong>same WiFi network</strong>, the server must be running first, and the IP in the sketch must match the one the server printed.</p>
+
+<hr />
+<h3>Exercise 5: Connect Your Number Adder (40 min)</h3>
+<p>Now use the same server with your Week 4 React Number Adder. A physical button adds 1, and the board's LED matrix shows the total.</p>
+<h4>Arduino side</h4>
+<p>Wire a button between <strong>pin 2</strong> and <strong>GND</strong> (no resistor needed: we use the board's internal pull-up). Add to the Step 6d sketch:</p>
+<pre><code>const int buttonPin = 2;
+int lastButtonState = HIGH;
+
+// in setup():
+pinMode(buttonPin, INPUT_PULLUP);
+
+// in loop(), after the message-reading block:
+int buttonState = digitalRead(buttonPin);
+if (buttonState == LOW &amp;&amp; lastButtonState == HIGH) {   // just pressed
+  client.beginMessage(TYPE_TEXT);
+  client.print("{\"button\": \"+1\"}");
+  client.endMessage();
+  delay(50);                                           // ignore switch bounce
+}
+lastButtonState = buttonState;</code></pre>
+<h4>React side</h4>
+<p>In your Week 4 Number Adder, run <code>npm install react-use-websocket</code>, then in <code>App.jsx</code>:</p>
+<pre><code>import { useState, useEffect } from 'react';
+import useWebSocket from 'react-use-websocket';
+
+// inside App(), after your useState lines:
+const { sendMessage, lastMessage } = useWebSocket('ws://localhost:8080');
+
+useEffect(() =&gt; {
+  if (lastMessage === null) return;
+  try {
+    const data = JSON.parse(lastMessage.data);
+    if (data.button === '+1') {
+      handleAddOne();
+    }
+  } catch (error) {
+    // not JSON, ignore it
+  }
+}, [lastMessage]);</code></pre>
+<p>Then, inside <code>handleAddOne()</code>, add <code>sendMessage('ADD_1_LED');</code>, and inside <code>handleRemoveOne()</code>, add <code>sendMessage('REMOVE_1_LED');</code>.</p>
+<p>Test both directions: the physical button changes the total on screen, and the on-screen buttons change the LED matrix.</p>
+
+<hr />
+<h3>Discussion: Your Project (10 min)</h3>
+<p>Look at your Week 6 anatomy map. For each part, what message would it send, or what message would it need to receive? Write the list down. It is the start of next week's HMI work.</p>

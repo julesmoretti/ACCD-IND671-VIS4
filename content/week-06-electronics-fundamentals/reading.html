@@ -1,0 +1,194 @@
+<!-- Canvas page: Week 6 - Electronics Fundamentals (Reading) -->
+<!-- Paste the contents of this file into the Canvas HTML editor. -->
+<!-- DRAFT 1 Oct 2026: not yet reviewed by Jules. Technical values checked
+     against common practice; confirm against the irons used in class. -->
+
+<h3>Introduction</h3>
+<p>This week you start working with physical circuits. Read this before class: we will not have time to cover it from scratch, and class time is for doing it with your hands. Bring your safety glasses.</p>
+
+<hr />
+<h3>1. Safety</h3>
+<ul>
+    <li><strong>Safety glasses on</strong> whenever anyone near you is soldering or cutting leads. Clipped leads fly, and solder can spit.</li>
+    <li><strong>The iron tip is 300&ndash;400&deg;C (570&ndash;750&deg;F).</strong> Always return it to its stand. Never leave it lying on the table.</li>
+    <li><strong>Never catch a falling iron.</strong> Step back and let it drop.</li>
+    <li><strong>Fumes</strong> come from the flux, not the metal. Work with a fume extractor or good ventilation, and keep your face out of the smoke.</li>
+    <li><strong>Lead</strong>: if you use leaded solder, do not eat or drink at the bench, and wash your hands afterwards.</li>
+    <li><strong>Unplug before you change anything.</strong> Disconnect USB or battery before moving wires.</li>
+</ul>
+
+<hr />
+<h3>2. Voltage, Current and Resistance</h3>
+<ul>
+    <li><strong>Voltage (V, volts)</strong>: the push. Your UNO R4 works at <strong>5V</strong>.</li>
+    <li><strong>Current (I, amps)</strong>: how much flows. Small parts use milliamps (mA).</li>
+    <li><strong>Resistance (R, ohms, &Omega;)</strong>: what limits the flow.</li>
+    <li><strong>Ohm's law</strong>: <code>V = I &times; R</code>. If you know two, you can work out the third.</li>
+</ul>
+<h4>Worked example: an LED on an Arduino pin</h4>
+<p>An LED always needs a resistor in series, or it draws too much current and dies (and can damage the pin). Each UNO R4 pin should supply <strong>no more than 8 mA</strong>.</p>
+<pre><code>Supply:            5V
+LED drop (red):    ~2V
+Left for resistor: 5V - 2V = 3V
+Target current:    3 mA (0.003 A), bright enough for an indicator
+R = V / I = 3 / 0.003 = 1000 ohms  -&gt;  use a 1 k&Omega; resistor</code></pre>
+<p>A <strong>short circuit</strong> is a path from power to ground with almost no resistance. It can burn wires and damage the board. If anything gets hot or the board resets, unplug immediately.</p>
+
+<hr />
+<h3>3. Breadboards: Test Before You Solder</h3>
+<p>A breadboard lets you build a circuit without soldering, so you can test and change it. Always get a circuit working on the breadboard before you solder anything.</p>
+<ul>
+    <li><strong>Terminal strips</strong>: in the middle, each short row of 5 holes is connected. Rows on either side of the centre gap are <em>not</em> connected to each other.</li>
+    <li><strong>Power rails</strong>: the long lines along the edges, marked + (red) and &minus; (blue). Each rail runs the length of the board. On some boards the rail is split halfway; check with a multimeter.</li>
+    <li><strong>The centre gap</strong> is where chips and some modules straddle, so each pin gets its own row.</li>
+    <li>Wire the Arduino's <strong>5V</strong> to the + rail and <strong>GND</strong> to the &minus; rail, then take power from the rails.</li>
+</ul>
+
+<hr />
+<h3>4. Wire</h3>
+<table style="border-collapse: collapse; width: 100%;" border="1">
+    <thead>
+        <tr>
+            <th style="padding: 6px; text-align: left;">Type</th>
+            <th style="padding: 6px; text-align: left;">What it is</th>
+            <th style="padding: 6px; text-align: left;">Use it for</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td style="padding: 6px;"><strong>Solid core</strong></td>
+            <td style="padding: 6px;">One thick copper conductor. Holds its shape.</td>
+            <td style="padding: 6px;">Breadboard jumpers, wires that never move. Breaks if flexed repeatedly.</td>
+        </tr>
+        <tr>
+            <td style="padding: 6px;"><strong>Stranded</strong></td>
+            <td style="padding: 6px;">Many thin copper strands twisted together. Flexible.</td>
+            <td style="padding: 6px;">Anything that moves, bends or vibrates: lids, hinges, wearables, cables to a handheld part. Tin the end before pushing it into a breadboard.</td>
+        </tr>
+    </tbody>
+</table>
+<p><strong>Gauge (AWG)</strong>: the smaller the number, the thicker the wire. <strong>22 AWG</strong> is the standard for breadboards and signals. Use <strong>18&ndash;20 AWG</strong> for motors and anything drawing more current.</p>
+<p><strong>Stripping</strong>: set the stripper to the wire's gauge, strip about <strong>5&ndash;7 mm</strong>, and check no strands are cut. For stranded wire, twist the strands tight before tinning.</p>
+
+<hr />
+<h3>5. The Multimeter</h3>
+<ul>
+    <li>Black lead in <strong>COM</strong>, red lead in <strong>V&Omega;</strong>.</li>
+    <li><strong>DC voltage (V&#9107;)</strong>: measure across a part, with the circuit powered. Expect ~5V between the rails.</li>
+    <li><strong>Continuity</strong> (the beep): checks that two points are connected. Use it on every solder joint and to check breadboard rails. Circuit unpowered.</li>
+    <li><strong>Resistance (&Omega;)</strong>: check a resistor's value. Circuit unpowered, always.</li>
+</ul>
+
+<hr />
+<h3>6. Soldering</h3>
+<p>Solder is a metal alloy that melts at a lower temperature than the parts it joins. A good joint is mechanical and electrical at the same time.</p>
+
+<h4>The iron and its tips</h4>
+<table style="border-collapse: collapse; width: 100%;" border="1">
+    <thead>
+        <tr>
+            <th style="padding: 6px; text-align: left;">Tip</th>
+            <th style="padding: 6px; text-align: left;">Shape</th>
+            <th style="padding: 6px; text-align: left;">When to use it</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td style="padding: 6px;"><strong>Chisel, 1.6&ndash;2.4 mm</strong></td>
+            <td style="padding: 6px;">Flat, like a small screwdriver</td>
+            <td style="padding: 6px;">The default. Header pins, through-hole parts, most joints. The flat face transfers heat well.</td>
+        </tr>
+        <tr>
+            <td style="padding: 6px;"><strong>Large chisel, 3 mm+</strong></td>
+            <td style="padding: 6px;">Wide and flat</td>
+            <td style="padding: 6px;">Thick wires, big pads, battery tabs, anything that soaks up heat.</td>
+        </tr>
+        <tr>
+            <td style="padding: 6px;"><strong>Conical, fine</strong></td>
+            <td style="padding: 6px;">Pointed</td>
+            <td style="padding: 6px;">Very small, tightly spaced pins. Transfers heat poorly, so joints take longer. Not for beginners' general use.</td>
+        </tr>
+    </tbody>
+</table>
+<p>Rule of thumb: use the <strong>biggest tip that fits the joint</strong>. More contact means faster heating, which means less heat soaking into the part.</p>
+
+<h4>Temperature</h4>
+<table style="border-collapse: collapse; width: 100%;" border="1">
+    <thead>
+        <tr>
+            <th style="padding: 6px; text-align: left;">Solder</th>
+            <th style="padding: 6px; text-align: left;">Melts at</th>
+            <th style="padding: 6px; text-align: left;">Iron set to</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td style="padding: 6px;">Leaded 63/37</td>
+            <td style="padding: 6px;">183&deg;C / 361&deg;F</td>
+            <td style="padding: 6px;">315&ndash;345&deg;C / 600&ndash;650&deg;F</td>
+        </tr>
+        <tr>
+            <td style="padding: 6px;">Lead-free (SAC305)</td>
+            <td style="padding: 6px;">~217&deg;C / 423&deg;F</td>
+            <td style="padding: 6px;">345&ndash;370&deg;C / 650&ndash;700&deg;F</td>
+        </tr>
+    </tbody>
+</table>
+<ul>
+    <li><strong>Go cooler</strong> for small, heat-sensitive parts (LEDs, sensors, thin wires) and fine pins. Too hot burns the flux before it works, oxidises the tip, and can lift pads off a board or melt insulation.</li>
+    <li><strong>Go hotter</strong> for thick wires, big pads and ground planes, which pull heat away. Too cool and you hold the iron on longer, which heats the part <em>more</em>, and the joint comes out dull and lumpy (a <em>cold joint</em>).</li>
+    <li>Aim for the temperature that finishes a joint in <strong>2&ndash;3 seconds</strong>.</li>
+</ul>
+
+<h4>Solder types, for this class</h4>
+<ul>
+    <li><strong>Leaded 63/37 (tin/lead)</strong>: melts at one exact point, flows easily, forgiving. Best for learning. Needs the lead hygiene above.</li>
+    <li><strong>Lead-free (SAC305: tin/silver/copper)</strong>: needs a hotter iron, flows less easily, joints look duller even when good. Required for products sold in many markets.</li>
+    <li><strong>Diameter</strong>: 0.6&ndash;0.8 mm (0.025&ndash;0.031") for electronics. Thicker solder floods small joints.</li>
+    <li>Always <strong>rosin-core</strong> (flux inside). Never use acid-core plumbing solder on electronics: it corrodes the circuit.</li>
+</ul>
+<!-- KNOWN GAP: state which solder the classroom supplies. -->
+
+<h4>Flux</h4>
+<p>Metal surfaces oxidise, and solder will not stick to oxide. <strong>Flux</strong> cleans the oxide off as it heats and helps the solder flow into the joint. Rosin-core solder already contains flux. A <strong>flux pen</strong> adds extra when reworking a joint or soldering wires that will not take solder. <em>No-clean</em> flux can be left on; rosin flux residue can be cleaned with isopropyl alcohol.</p>
+
+<h4>Tools</h4>
+<table style="border-collapse: collapse; width: 100%;" border="1">
+    <thead>
+        <tr>
+            <th style="padding: 6px; text-align: left;">Tool</th>
+            <th style="padding: 6px; text-align: left;">Why it is there</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr><td style="padding: 6px;"><strong>Stand</strong></td><td style="padding: 6px;">Holds the hot iron safely between joints.</td></tr>
+        <tr><td style="padding: 6px;"><strong>Brass wool tip cleaner</strong></td><td style="padding: 6px;">Cleans old solder off the tip without cooling it. Preferred.</td></tr>
+        <tr><td style="padding: 6px;"><strong>Damp sponge</strong></td><td style="padding: 6px;">Also cleans the tip. Damp, not wet: water cools and stresses the tip.</td></tr>
+        <tr><td style="padding: 6px;"><strong>Helping hands / PCB holder</strong></td><td style="padding: 6px;">Holds the work so both your hands are free for iron and solder.</td></tr>
+        <tr><td style="padding: 6px;"><strong>Wire strippers</strong></td><td style="padding: 6px;">Remove insulation without nicking the copper.</td></tr>
+        <tr><td style="padding: 6px;"><strong>Flush cutters</strong></td><td style="padding: 6px;">Trim component leads close to the joint.</td></tr>
+        <tr><td style="padding: 6px;"><strong>Desoldering wick (braid)</strong></td><td style="padding: 6px;">Copper braid that soaks up solder when heated. For removing excess.</td></tr>
+        <tr><td style="padding: 6px;"><strong>Solder sucker (pump)</strong></td><td style="padding: 6px;">Vacuums molten solder out of a hole when removing a part.</td></tr>
+        <tr><td style="padding: 6px;"><strong>Heat-shrink tubing + heat gun</strong></td><td style="padding: 6px;">Insulates and strengthens a wire splice.</td></tr>
+        <tr><td style="padding: 6px;"><strong>Fume extractor</strong></td><td style="padding: 6px;">Pulls flux smoke away from your face.</td></tr>
+        <tr><td style="padding: 6px;"><strong>Multimeter</strong></td><td style="padding: 6px;">Checks every joint for continuity.</td></tr>
+    </tbody>
+</table>
+
+<h4>Technique</h4>
+<ol>
+    <li><strong>Tin the tip</strong>: melt a little solder on the clean tip so it shines. A shiny tip transfers heat; a dull one does not.</li>
+    <li><strong>Heat the joint, not the solder</strong>: touch the tip to both the pad and the lead at once.</li>
+    <li>After 1&ndash;2 seconds, feed solder into the <strong>joint</strong> (opposite side from the iron), not onto the tip.</li>
+    <li>Remove the solder, then the iron. Do not move the parts for a few seconds while it cools.</li>
+    <li>A good joint is <strong>shiny and shaped like a small volcano</strong>, wetting both surfaces. A ball sitting on top, or a dull grainy surface, is a cold joint: reheat it with a little flux.</li>
+    <li>Wire to wire: tin both ends first, slide heat-shrink on <em>before</em> joining, then join and shrink.</li>
+</ol>
+
+<hr />
+<h3>7. When to Solder</h3>
+<ul>
+    <li><strong>Breadboard</strong> while you are still testing and changing the circuit.</li>
+    <li><strong>Solder</strong> when a connection has to survive: parts that move or vibrate, wires going inside an enclosure, modules that come without pins, and your final prototype.</li>
+    <li>Many modules (sensors, drivers) come as a small <strong>PCB with loose header pins</strong>. Soldering the headers on is often the first soldering job of a project, and then the module can plug into a breadboard.</li>
+</ul>

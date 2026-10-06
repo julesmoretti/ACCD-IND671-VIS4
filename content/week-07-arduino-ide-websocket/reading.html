@@ -21,6 +21,71 @@ void loop() {
   delay(1000); // Wait for 1 second
 }</code></pre>
 <hr>
+<h3>Step 2b: Arduino Code Compared to JavaScript</h3>
+<!-- DRAFT 1 Oct 2026: section added, not yet reviewed by Jules. -->
+<p>Arduino sketches are written in C++. Most of what you learned in Weeks 2&ndash;4 carries over: semicolons, <code>if</code>/<code>else</code>, <code>for</code> loops, functions, comments. The differences:</p>
+<table style="border-collapse: collapse; width: 100%;" border="1">
+    <thead>
+        <tr>
+            <th style="padding: 6px; text-align: left;"></th>
+            <th style="padding: 6px; text-align: left;">JavaScript (browser)</th>
+            <th style="padding: 6px; text-align: left;">Arduino (C++)</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td style="padding: 6px;"><strong>How it runs</strong></td>
+            <td style="padding: 6px;">Waits for events (clicks) and reacts</td>
+            <td style="padding: 6px;"><code>setup()</code> runs once, then <code>loop()</code> runs over and over, thousands of times a second</td>
+        </tr>
+        <tr>
+            <td style="padding: 6px;"><strong>Variables</strong></td>
+            <td style="padding: 6px;"><code>let total = 0;</code></td>
+            <td style="padding: 6px;">You state the type: <code>int total = 0;</code> <code>float temp = 21.5;</code> <code>bool isOn = false;</code> <code>String name = "Lumi";</code></td>
+        </tr>
+        <tr>
+            <td style="padding: 6px;"><strong>Constants</strong></td>
+            <td style="padding: 6px;"><code>const max = 10;</code></td>
+            <td style="padding: 6px;"><code>const int ledPin = 7;</code></td>
+        </tr>
+        <tr>
+            <td style="padding: 6px;"><strong>Functions</strong></td>
+            <td style="padding: 6px;"><code>function add(a, b) { return a + b; }</code></td>
+            <td style="padding: 6px;">The return type comes first: <code>int add(int a, int b) { return a + b; }</code>. A function that returns nothing is <code>void</code>.</td>
+        </tr>
+        <tr>
+            <td style="padding: 6px;"><strong>Printing</strong></td>
+            <td style="padding: 6px;"><code>console.log(total);</code></td>
+            <td style="padding: 6px;"><code>Serial.println(total);</code>, viewed in <em>Tools &gt; Serial Monitor</em>. Needs <code>Serial.begin(9600);</code> in <code>setup()</code>.</td>
+        </tr>
+        <tr>
+            <td style="padding: 6px;"><strong>Using other code</strong></td>
+            <td style="padding: 6px;"><code>import ... from '...'</code></td>
+            <td style="padding: 6px;"><code>#include &lt;WiFiS3.h&gt;</code> at the very top of the sketch</td>
+        </tr>
+        <tr>
+            <td style="padding: 6px;"><strong>Waiting</strong></td>
+            <td style="padding: 6px;"><code>setTimeout(...)</code> does not block</td>
+            <td style="padding: 6px;"><code>delay(1000);</code> freezes everything for one second, including reading buttons. Use <code>millis()</code> when you need to do two things at once.</td>
+        </tr>
+    </tbody>
+</table>
+
+<h4>Libraries and #include</h4>
+<p>A library is code someone else wrote for a specific job or part: WiFi, a display, a sensor. You install it once, then load it at the top of each sketch that uses it.</p>
+<ul>
+    <li><strong>Install</strong>: <em>Tools &gt; Manage Libraries</em>, search by name, click Install. Libraries that come with the board (like <code>WiFiS3</code> and <code>Arduino_LED_Matrix</code> for the UNO R4) are already there.</li>
+    <li><strong>Load</strong>: <code>#include &lt;LibraryName.h&gt;</code> for installed libraries, <code>#include "file.h"</code> for a file in your own sketch folder (like <code>arduino_secrets.h</code> for your WiFi password).</li>
+    <li>If you get <em>"No such file or directory"</em> on an <code>#include</code> line, the library is not installed.</li>
+</ul>
+
+<h4>Board and port</h4>
+<ul>
+    <li><em>Tools &gt; Board &gt; Arduino UNO R4 Boards &gt; Arduino UNO R4 WiFi</em>. If it is not listed, install <em>Arduino UNO R4 Boards</em> from <em>Tools &gt; Board &gt; Boards Manager</em>.</li>
+    <li><em>Tools &gt; Port</em>: pick the one labelled UNO R4 WiFi. If none appears, try another USB-C cable.</li>
+    <li><strong>Verify</strong> (the tick) compiles your code and finds errors. <strong>Upload</strong> (the arrow) compiles and sends it to the board.</li>
+</ul>
+<hr>
 <h3>Step 3: Flashing an LED</h3>
 <p>One of the simplest projects you can create with an Arduino is flashing an LED on and off. This section is split into three parts to explore different ways of controlling LEDs.</p>
 <h4>Step 3a: Flashing All Built-in LEDs</h4>
@@ -66,7 +131,7 @@ void loop() {
   delay(1000);
 }</code></pre>
 <h4>Step 3c: Flashing an LED Attached to a Breadboard</h4>
-<p>Now, we will connect an external LED to a breadboard and flash it. Connect one end of the LED to a digital pin (e.g., pin 7) and the other end to the ground through a resistor (to limit current and protect the LED).</p>
+<p>Now, we will connect an external LED to a breadboard and flash it. Connect one end of the LED to a digital pin (e.g., pin 7) and the other end to the ground through a resistor (to limit current and protect the LED). Use <strong>1 k&Omega;</strong>: each UNO R4 pin should supply no more than 8 mA (see the Week 6 reading).</p>
 <pre><code>const int ledPin = 13; // External LED connected to pin 13
 
 void setup() {
@@ -183,7 +248,7 @@ wss.on('connection', function connection(ws, req) {
 console.log(ip.address() + ' listening on port ', port);</code></pre>
 <p>Then in terminal type <code>npm init</code>, go through all the steps until you are out of it.</p>
 <p>Then run: <code>npm install ws ip</code></p>
-<p>And finally run <code>npm start</code> which should start your server.</p>
+<p>And finally run <code>node server.js</code>, which starts your server. Note the IP address it prints: the Arduino needs it.</p>
 <h4>Step 6c: React App WebSocket Integration</h4>
 <p>Now, we will add WebSocket integration to the React app. We can create a new project for the react app with Vite:</p>
 <pre><code>npm create vite@latest react_app_ws -- --template react<br>cd react_app_ws<br>npm install</code></pre>
@@ -298,9 +363,9 @@ void setup() {
 void loop() {
   if (client.connected()) {
     int messageSize = client.parseMessage();
-    String socketString = client.readString();
 
     if (messageSize &gt; 0) {
+      String socketString = client.readString(); // only read when a message has arrived
       Serial.println("Received a message:");
       Serial.println(socketString);
 
@@ -361,8 +426,7 @@ void sendPotentiometerData(int value) {
   Serial.print("Sent potentiometer data: ");
   Serial.println(message);
 }</code></pre>
-<p>This implementation allows the React app to act as a server and communicate with the Arduino through WebSockets, enabling you to handle incoming messages and execute specific actions in your application.</p>
-<p>In the React app, you can use the <code>ws</code> library to establish a WebSocket server that listens to incoming data from the Arduino. If there is a need for a Node.js server to facilitate communication, let me know, and I'll provide guidance on setting it up.</p>
+<p>The Arduino and the React app never talk to each other directly. Both connect to the Node.js server from Step 6b, and the server passes each message on to everyone else who is connected. That is why the server has to be running before you open the React app or power the Arduino.</p>
 <hr>
 <h3>Step 7: Summary</h3>
 <p>In this lesson, we introduced the Arduino UNO WiFi Rev 4 and explored basic programming concepts, including using the Arduino IDE, flashing an LED, controlling an LED with a button, reading analog values from a potentiometer, and setting up a WebSocket connection for real-time communication. By the end of this lesson, you should have a good understanding of how to work with both digital and analog components in Arduino and integrate your projects with a web application.</p>

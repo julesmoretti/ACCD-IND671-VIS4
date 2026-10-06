@@ -1,0 +1,56 @@
+<!-- Canvas page: Week 6 - Electronics Fundamentals (In-Class Exercises) -->
+<!-- Paste the contents of this file into the Canvas HTML editor. -->
+<!-- DRAFT 1 Oct 2026: not yet reviewed by Jules. -->
+<!-- KNOWN GAP: depends on what the room provides (irons, stands, fume
+     extraction, multimeters, solder, heat-shrink, spare wire). Confirm before class. -->
+
+<p>Safety glasses on before any iron is switched on. Irons go back in the stand every time.</p>
+
+<h3>Exercise 1: Breadboard and Multimeter (30 min)</h3>
+<ol>
+    <li>Wire the UNO R4's <strong>5V</strong> to the breadboard's + rail and <strong>GND</strong> to the &minus; rail. Power the board over USB.</li>
+    <li>Build: + rail &rarr; <strong>1 k&Omega; resistor</strong> &rarr; LED long leg; LED short leg &rarr; &minus; rail. The LED should light.</li>
+    <li>With the multimeter on DC volts, measure:
+        <ul>
+            <li>between the two rails (expect ~5V),</li>
+            <li>across the resistor,</li>
+            <li>across the LED.</li>
+        </ul>
+        The last two should add up to the first. Write the numbers down.</li>
+    <li>Unplug USB. Switch to continuity. Check that one rail is connected along its full length. If it does not beep halfway, your board has a split rail.</li>
+    <li>Use Ohm's law and your resistor measurement to work out the current through the LED. It should be under 8 mA.</li>
+</ol>
+
+<hr />
+<h3>Exercise 2: Demo, Then Strip and Tin (25 min)</h3>
+<p>Watch the demo first: stripping solid and stranded wire, tinning the iron, tinning a wire, a good joint versus a cold joint.</p>
+<ol>
+    <li>Strip 5&ndash;7 mm from one piece of solid and one piece of stranded wire. Check no strands are cut.</li>
+    <li>Twist the stranded end tight.</li>
+    <li>Tin the iron, then tin both wire ends. A tinned end is shiny and evenly coated, not blobbed.</li>
+    <li>Push both into the breadboard. Notice the difference: the tinned stranded wire now behaves like solid.</li>
+</ol>
+
+<hr />
+<h3>Exercise 3: Splice Two Wires (25 min)</h3>
+<ol>
+    <li>Strip and tin the ends of two stranded wires.</li>
+    <li>Slide a piece of heat-shrink onto one wire <strong>first</strong>, well away from the joint.</li>
+    <li>Hold the ends side by side (or twisted together), heat, and add a little solder until it flows through.</li>
+    <li>Let it cool, slide the heat-shrink over, and shrink it.</li>
+    <li>Test with continuity. Tug it gently: it should not move.</li>
+</ol>
+
+<hr />
+<h3>Exercise 4: Make Exercise 1 Permanent (30 min)</h3>
+<ol>
+    <li>Take the LED and resistor from Exercise 1 off the breadboard.</li>
+    <li>Solder the resistor to the LED's long leg, and a stranded wire to each free end. Heat-shrink both joints.</li>
+    <li>Connect the wires back to 5V and GND. It should light exactly as it did on the breadboard.</li>
+    <li>Trade with a neighbour and inspect each other's joints: shiny volcano, or cold and lumpy?</li>
+</ol>
+<p>This is the order you will always work in: <strong>breadboard it, test it, then solder it.</strong></p>
+
+<hr />
+<h3>Exercise 5: Look at Your Project Parts (10 min)</h3>
+<p>Open the parts you brought. For each one, note how it connects: pins that fit a breadboard, loose header pins that need soldering, bare wires, or a connector. You will need this for the homework.</p>

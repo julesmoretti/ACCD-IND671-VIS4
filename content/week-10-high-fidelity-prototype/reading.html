@@ -1,0 +1,38 @@
+<!-- Canvas page: Week 10 - High-Fidelity Prototype (Reading) -->
+<!-- Paste the contents of this file into the Canvas HTML editor. -->
+<!-- DRAFT 1 Oct 2026: not yet reviewed by Jules. -->
+
+<h3>Introduction</h3>
+<p>This week your prototype moves off the cardboard and into its intended form. Round 2 tests whether the interactions still work on the real geometry: reach, grip, position, sequence. It is still visibly a print: no paint or finish yet, some tape is fine.</p>
+
+<hr />
+<h3>1. Designing an Enclosure Around Electronics</h3>
+<ul>
+    <li><strong>Clearance</strong>: FDM prints are not exact. Allow about <strong>0.2&ndash;0.5 mm</strong> per side where a part must slide into a printed pocket. Print a small fit test before the full shell.</li>
+    <li><strong>Mounting the Arduino</strong>: the UNO has 3.2 mm mounting holes for M3 screws. Print standoffs into the base rather than gluing the board flat, so nothing on its underside shorts against anything.</li>
+    <li><strong>Access</strong>: keep the USB-C port reachable. You will reprogram the board many times before Week 14.</li>
+    <li><strong>Buttons</strong>: a small tactile switch behind a printed cap gives you the shape and feel you designed. Leave the cap a little loose so it does not jam.</li>
+    <li><strong>Light</strong>: an LED behind a thin wall (1 mm or less) of white or clear print diffuses into a soft glow. A hole gives a sharp point.</li>
+    <li><strong>Split lines</strong>: design the shell in two or more parts that close with screws, so you can open it to fix wiring.</li>
+</ul>
+
+<hr />
+<h3>2. Moving Off the Breadboard</h3>
+<ul>
+    <li>A full-size breadboard rarely fits inside a product. Options, from quickest to most robust: a <strong>mini breadboard</strong>, a <strong>solderable breadboard</strong> (same layout, solder instead of push-in), or <strong>perfboard</strong>.</li>
+    <li>Move one part at a time and test after each move. If it breaks, you know which change broke it.</li>
+    <li>Use <strong>stranded wire</strong> for anything going to a part in a lid, a handle or anything that moves. Add <strong>strain relief</strong> (a cable tie or a printed clip) so a tug pulls on the housing, not on the solder joint.</li>
+    <li>Heat-shrink every exposed joint. Inside a closed shell, an exposed joint touching another one is a short circuit.</li>
+</ul>
+
+<hr />
+<h3>3. Printing Without Losing a Week</h3>
+<ul>
+    <li><strong>Print the parts that carry interactions first</strong> (the panel with the controls), then the rest of the shell.</li>
+    <li><strong>Orientation</strong> matters: a surface that a user touches looks best printed facing up or vertical, not on supports.</li>
+    <li>Check print times before you commit. If the full shell takes longer than you have, split it or reduce it to the surfaces that matter for round 2.</li>
+</ul>
+
+<hr />
+<h3>4. Round 2 Testing</h3>
+<p>Read <em>Round 2 &mdash; narrowing</em> on the <strong>User Testing Rubric &amp; Protocol</strong> page. Participants move outward: GradID students from other terms. Re-test tasks that scored well, quickly. Spend the time on the steps that scored lowest in round 1, broken into finer steps.</p>

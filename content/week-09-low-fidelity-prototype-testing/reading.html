@@ -1,0 +1,44 @@
+<!-- Canvas page: Week 9 - Low-Fidelity Prototype & Testing (Reading) -->
+<!-- Paste the contents of this file into the Canvas HTML editor. -->
+<!-- DRAFT 1 Oct 2026: not yet reviewed by Jules. -->
+
+<h3>Introduction</h3>
+<p>This week your project becomes something a stranger can pick up and use. It will be rough: breadboard, cardboard, tape, glue gun. That is the point. A rough prototype is cheap to change, and the first round of testing will tell you what to change before you spend hours on a 3D print.</p>
+
+<hr />
+<h3>1. What a Low-Fidelity Prototype Has to Do</h3>
+<ul>
+    <li><strong>Every Must-have task works end to end</strong>: device input &rarr; WebSocket &rarr; screen, and screen &rarr; device. Faking is fine for anything that is not a Must-have.</li>
+    <li><strong>A stranger can hold it.</strong> The breadboard and Arduino are fixed inside or onto a rough body (foam core, cardboard, a box) so nothing comes loose when someone handles it.</li>
+    <li><strong>Inputs and outputs are roughly where they will end up.</strong> A button on the side of a box tests reach and grip; a button on a loose breadboard tests nothing.</li>
+    <li><strong>Icons and labels are drawn on</strong> with a marker. Testing whether they are understood is part of round 1.</li>
+</ul>
+
+<hr />
+<h3>2. Making It Survive a Test</h3>
+<ul>
+    <li><strong>Tape or hot-glue the breadboard and Arduino down.</strong> Most round 1 failures are wires pulled out, not design problems.</li>
+    <li><strong>Use stranded wire</strong> (tinned ends) for anything that reaches a part the user touches, so it can flex.</li>
+    <li><strong>Label every wire</strong> at both ends with tape. When something stops working mid-test, you need to find it in seconds.</li>
+    <li><strong>Power</strong>: a USB cable to your laptop is fine for round 1. Leave enough slack that the user can hold the device naturally.</li>
+    <li><strong>Start the server, the React app and the Arduino in that order</strong>, and check the connection before each participant. Keep a note of the start-up steps so you do not forget one under pressure.</li>
+</ul>
+
+<hr />
+<h3>3. Round 1 Testing</h3>
+<p>The full instrument is on the <strong>User Testing Rubric &amp; Protocol</strong> page. Read the sections <em>Round 1 &mdash; broad</em> and <em>Before your first session</em>. The scoring is the same as Week 4; what changes:</p>
+<ul>
+    <li><strong>4&ndash;5 participants</strong>, classmates, and <strong>one naive participant</strong> who has no idea what your device is.</li>
+    <li><strong>Tasks come from your HMI document</strong>, each broken into steps, with priority marked and an expected time.</li>
+    <li><strong>Broad, not deep</strong>: every Must-have task once, quickly. You are mapping where the problems are, not solving them.</li>
+    <li>Separate reactions to the <strong>interaction</strong> from reactions to the <strong>form</strong>. In round 1, people will react to the cardboard. Log it, but do not let it hide interaction problems.</li>
+</ul>
+
+<hr />
+<h3>4. Start Thinking in 3D Now</h3>
+<p>Next week the prototype moves into a 3D-printed form. Prints take time and the first one rarely fits, so start now:</p>
+<ul>
+    <li><strong>Measure every part</strong> with calipers: Arduino, modules, buttons, displays, battery if any. Record length, width, height, and hole positions.</li>
+    <li><strong>Block out the enclosure</strong> in CAD as simple shapes: where each part sits, where each input and output breaks the surface.</li>
+    <li>Leave it rough. Round 1 will tell you where things need to move.</li>
+</ul>

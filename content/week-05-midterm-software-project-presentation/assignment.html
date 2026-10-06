@@ -1,0 +1,47 @@
+<!-- Canvas assignment: Week 5 Assignment - Ready for Hardware -->
+<!-- Paste the contents of this file into the Canvas HTML editor. -->
+<!-- DUE: Thursday 22 Oct 2026, 11:59pm (26FA) — rule: Thursday
+     midnight following the Friday class. Recompute each term. -->
+<!-- DRAFT 1 Oct 2026: not yet reviewed by Jules. -->
+
+<h3><strong>Part 1: Act on Your Midterm Feedback</strong></h3>
+<p>Pick the one piece of feedback from the room that matters most to your hero experience and change your interface to address it. Commit the change with a message that says which piece of feedback drove it.</p>
+
+<hr />
+<h3><strong>Part 2: Hardware Check</strong></h3>
+<p>Next week is the first hardware class. Everything below has to be on your desk before you walk in.</p>
+<ol style="list-style-type: decimal;">
+    <li><strong>Common kit</strong>: Arduino UNO R4 WiFi, the BOJACK component kit, and a USB-C cable that carries data.</li>
+    <li><strong>Project parts</strong>: open the parts list you ordered in Week 3. Tick off what has arrived. For anything still missing, check the delivery date and reorder from another supplier if it lands after Week 7.</li>
+    <li><strong>Safety glasses</strong>: clear, impact-rated (marked <strong>ANSI Z87.1</strong>). You will not be allowed to solder without them.</li>
+    <li><strong>Board test</strong>: plug the UNO R4 into your laptop, open the Arduino IDE, choose <em>File &gt; Examples &gt; 01.Basics &gt; Blink</em> and upload it. If the IDE asks to install the <em>Arduino UNO R4 Boards</em> package, say yes. The on-board LED should blink once a second.
+        <ul style="list-style-type: disc;">
+            <li>If the board does not show up, try another USB-C cable first. Charge-only cables are the most common cause.</li>
+        </ul>
+    </li>
+</ol>
+<!-- KNOWN GAP: confirm with the shop whether soldering irons, stands, fume
+     extraction and multimeters are provided in the classroom for Week 6, or
+     whether students need their own. Add to the list above if so. -->
+
+<hr />
+<h3><strong>Part 3: Start Moving Your Interface to React (step 1 of 3)</strong></h3>
+<p>Your project interface needs to be a React app by Week 7, when it starts talking to your Arduino. You already did this conversion once with the Number Adder, so we split it into three small steps over three weeks.</p>
+<p>This week, <strong>layout only</strong>:</p>
+<ol style="list-style-type: decimal;">
+    <li>In <code>week 5/Project</code>, create a new Vite React app, the same way as in Week 4.</li>
+    <li>Clear Vite's starter CSS and paste in your project's CSS.</li>
+    <li>Split your page into components (for example a header, a control panel, a status panel). Each one in its own <code>.jsx</code> file.</li>
+    <li>It should <strong>look</strong> like your current interface. It does not need to work yet: no state, no clicks.</li>
+</ol>
+<p>Step 2 (Week 6) adds state so it works again. Step 3 (Week 7) connects it to your Arduino.</p>
+
+<hr />
+<h3>Submission Requirements:</h3>
+<ul>
+    <li>Your midterm change committed, with the feedback named in the commit message.</li>
+    <li>A photo of your kit, your project parts and your safety glasses together on your desk.</li>
+    <li>A short video (10 seconds is enough) of Blink running on your UNO R4.</li>
+    <li>Your React project layout in <code>week 5/Project</code>.</li>
+    <li>By midnight Thursday please.</li>
+</ul>

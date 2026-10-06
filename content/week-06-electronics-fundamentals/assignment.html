@@ -1,0 +1,58 @@
+<!-- Canvas assignment: Week 6 Assignment - Component Anatomy & Library Part -->
+<!-- Paste the contents of this file into the Canvas HTML editor. -->
+<!-- DUE: Thursday 29 Oct 2026, 11:59pm (26FA) — rule: Thursday
+     midnight following the Friday class. Recompute each term. -->
+<!-- DRAFT 1 Oct 2026: not yet reviewed by Jules. -->
+
+<h3><strong>Part 1: Component Anatomy Map</strong></h3>
+<p>Before you wire anything for your project, map what you have. For every part your hero experience needs, fill in one row:</p>
+<table style="border-collapse: collapse; width: 100%;" border="1">
+    <thead>
+        <tr>
+            <th style="padding: 6px;">Part</th>
+            <th style="padding: 6px;">Type</th>
+            <th style="padding: 6px;">Input or output?</th>
+            <th style="padding: 6px;">Voltage</th>
+            <th style="padding: 6px;">Arduino pins needed</th>
+            <th style="padding: 6px;">How it connects</th>
+            <th style="padding: 6px;">Solder? Where and why</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td style="padding: 6px;">Rotary encoder</td>
+            <td style="padding: 6px;">Module (PCB)</td>
+            <td style="padding: 6px;">Input</td>
+            <td style="padding: 6px;">5V</td>
+            <td style="padding: 6px;">2 digital + 1 for the push</td>
+            <td style="padding: 6px;">Loose header pins</td>
+            <td style="padding: 6px;">Yes: headers onto the PCB now. Later, stranded wires to it, because it sits in the lid.</td>
+        </tr>
+    </tbody>
+</table>
+<p><strong>Type</strong> is one of: <em>board</em> (the Arduino), <em>module</em> (a small PCB with a part on it), <em>sensor</em>, <em>actuator / output</em> (motor, LED, buzzer, display), <em>power</em>, or <em>cable / connector</em>.</p>
+<p>Then draw a simple block diagram, by hand or digitally: the Arduino in the middle, each part around it, a line for each connection. Mark each line <strong>B</strong> (breadboard for now) or <strong>S</strong> (will be soldered).</p>
+<p>Check your pin count against the UNO R4: 14 digital pins and 6 analog inputs. If you need more than that, flag it now.</p>
+
+<hr />
+<h3><strong>Part 2: Claim a Part for the Class Library</strong></h3>
+<p>The class library at <a href="https://github.com/julesmoretti/ACCD-Fritzing-Parts" target="_blank" rel="noopener">ACCD-Fritzing-Parts</a> has working examples for: LED, built-in LED, LED matrix, 8x8 LED matrix, 12-LED ring, push button, potentiometer. Over the next three weeks you add one more.</p>
+<ol>
+    <li>Pick a component that is <strong>not</strong> in the library yet. Choose one from your BOJACK kit or your project parts, so there is no shipping wait. One you need for your project is the best choice.</li>
+    <li>Claim it in the Slack thread for this assignment. First come, first served; no duplicates.</li>
+    <li>Find its datasheet or product page, and note its voltage and pins.</li>
+</ol>
+<p>Week 7: you get it working on your Arduino. Week 8: you document it and add it to the library. The full steps are in the library's <code>CONTRIBUTE.md</code>.</p>
+
+<hr />
+<h3><strong>Part 3: React Step 2 of 3, Make It Work Again</strong></h3>
+<p>Add state to the React layout you built last week, so your interface works the way it did as plain HTML/JavaScript. Use <code>useState</code> for anything that changes, and keep your faked device behaviour (your <code>fakeDevice()</code> from Week 3) in one place. Next week that is the piece you replace with real messages from the Arduino.</p>
+
+<hr />
+<h3>Submission Requirements:</h3>
+<ul>
+    <li>Your anatomy map table and block diagram, in <code>week 6/Hardware</code>.</li>
+    <li>The part you claimed, with a link to its datasheet.</li>
+    <li>Your working React interface in <code>week 6/Project</code>.</li>
+    <li>By midnight Thursday please.</li>
+</ul>
