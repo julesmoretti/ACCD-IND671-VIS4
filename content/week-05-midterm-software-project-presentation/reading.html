@@ -1,0 +1,102 @@
+<!-- Canvas page: Week 5 - The Second Half: From Interface to Device (Reading) -->
+<!-- Paste the contents of this file into the Canvas HTML editor. -->
+<!-- DRAFT 12 Oct 2026: not yet reviewed by Jules. -->
+
+<h3>Introduction</h3>
+<p>Up to now you have built the screen side of your project: an interface that fakes what the device would do. From Week 6 the course turns to the device itself. By Week 13 the two halves talk to each other in both directions, sit inside a body someone can hold, and have been tested three times. This page shows how the weeks get you there, so you can plan your time and your parts.</p>
+
+<hr />
+<h3>1. The Plan, Week by Week</h3>
+<table style="border-collapse: collapse; width: 100%;" border="1">
+    <thead>
+        <tr>
+            <th style="padding: 6px;">Week</th>
+            <th style="padding: 6px;">In class</th>
+            <th style="padding: 6px;">Homework</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td style="padding: 6px;"><strong>6</strong> Oct 23</td>
+            <td style="padding: 6px;">Electronics fundamentals in the shop: breadboard, multimeter, soldering demo from breadboard to perfboard</td>
+            <td style="padding: 6px;">Solder a working circuit on perfboard and document it in Fritzing; claim a part for the class library; React step 2</td>
+        </tr>
+        <tr>
+            <td style="padding: 6px;"><strong>7</strong> Oct 30</td>
+            <td style="padding: 6px;">Arduino and WebSocket: your Number Adder talks to the board</td>
+            <td style="padding: 6px;">Hardware overview of your project; each part working on its own; library part working; React step 3</td>
+        </tr>
+        <tr>
+            <td style="padding: 6px;"><strong>8</strong> Nov 6</td>
+            <td style="padding: 6px;">HMI concepts; your HMI spreadsheet</td>
+            <td style="padding: 6px;">HMI document v1; hero experience end to end on the breadboard; library part soldered and added to the library</td>
+        </tr>
+        <tr>
+            <td style="padding: 6px;"><strong>9</strong> Nov 13</td>
+            <td style="padding: 6px;">Low-fidelity prototype: give it a body, write test round 1</td>
+            <td style="padding: 6px;">Test round 1; start the enclosure in CAD</td>
+        </tr>
+        <tr>
+            <td style="padding: 6px;"><strong>10</strong> Nov 20</td>
+            <td style="padding: 6px;">Round 1 review; enclosure and circuitry</td>
+            <td style="padding: 6px;">3D-printed form prototype; test round 2 over the break</td>
+        </tr>
+        <tr>
+            <td style="padding: 6px;"><strong>11</strong> Nov 27</td>
+            <td style="padding: 6px;">Thanksgiving, no class</td>
+            <td style="padding: 6px;">(Round 2 continues)</td>
+        </tr>
+        <tr>
+            <td style="padding: 6px;"><strong>12</strong> Dec 4</td>
+            <td style="padding: 6px;">Round 2 review; final build; demo dry run</td>
+            <td style="padding: 6px;">Test round 3; three-round comparison; presentation deck</td>
+        </tr>
+        <tr>
+            <td style="padding: 6px;"><strong>13</strong> Dec 11</td>
+            <td style="padding: 6px;"><strong>Final presentations</strong>, live demo</td>
+            <td style="padding: 6px;">Final HMI document; portfolio case study</td>
+        </tr>
+        <tr>
+            <td style="padding: 6px;"><strong>14</strong> Dec 18</td>
+            <td style="padding: 6px;">Portfolio and documentation session, online</td>
+            <td style="padding: 6px;">&mdash;</td>
+        </tr>
+    </tbody>
+</table>
+
+<hr />
+<h3>2. What Has to Be on Your Desk for Week 6</h3>
+<ul>
+    <li><strong>Common kit</strong>: Arduino UNO R4 WiFi, the BOJACK component kit, and a USB-C cable that carries data (not a charge-only cable).</li>
+    <li><strong>Safety glasses</strong> marked <strong>ANSI Z87.1</strong>. No glasses, no soldering.</li>
+    <li><strong>Your project parts</strong>, or a delivery date for each one that is still on its way.</li>
+    <li>The <strong>Arduino IDE</strong> installed, with Blink already uploaded to your board once (this week's homework).</li>
+</ul>
+<p>Perfboards for soldering are provided in class.</p>
+
+<hr />
+<h3>3. How Your Interface Becomes a Device</h3>
+<p>Your midterm "Ready for hardware" slide sorted each element of your interface into two groups:</p>
+<ul>
+    <li><strong>Sends</strong>: the screen tells the device to do something (start, stop, a target value).</li>
+    <li><strong>Shows</strong>: the screen displays something the device reports (a count, a status, an error).</li>
+</ul>
+<p>Each line on that list becomes one <strong>message</strong> between your React app and your Arduino in Weeks 7 and 8. Right now your <code>fakeDevice()</code> code pretends to be the device. Over the next three weeks you replace it, one message at a time, with the real thing. Keep that list up to date as your project changes.</p>
+
+<hr />
+<h3>4. Three Threads That Run Through the Second Half</h3>
+<h4>Your interface moves to React, in three small steps</h4>
+<p>The Week 7 WebSocket example is a React app, so your project interface needs to be one by then. You already did this conversion once with the Number Adder.</p>
+<ul>
+    <li><strong>Week 5, step 1</strong>: layout only. Components that look right, no state.</li>
+    <li><strong>Week 6, step 2</strong>: state. It works again, still with faked device behaviour.</li>
+    <li><strong>Week 7, step 3</strong>: connect. It opens a WebSocket and logs what arrives.</li>
+</ul>
+<h4>One part for the class library, end to end</h4>
+<p>The class library at <a href="https://github.com/julesmoretti/ACCD-Fritzing-Parts" target="_blank" rel="noopener">ACCD-Fritzing-Parts</a> collects working examples for parts used in this course. Each of you adds one part that is not there yet, going through the same path you will use for your project: claim it (Week 6), get it working on a breadboard (Week 7), then solder it onto perfboard, document it in Fritzing and add it to the library (Week 8).</p>
+<h4>Three rounds of testing</h4>
+<p>You tested your interface once for the midterm. The same scoring comes back three times on your hardware prototype, in Weeks 9, 10 and 12, at rising fidelity and with participants who know less and less about your project. The comparison across those rounds is 20 of the 100 points of your final project.</p>
+
+<hr />
+<h3>5. The Order You Always Work In</h3>
+<p><strong>Breadboard it, test it, then solder it.</strong> A breadboard lets you change a circuit in seconds. A soldered circuit survives being handled, carried and tested by strangers. You will practise this on a simple circuit in Week 6, on your library part in Week 8, and on your whole project from Week 10.</p>

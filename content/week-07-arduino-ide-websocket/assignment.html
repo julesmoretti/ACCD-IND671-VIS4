@@ -1,34 +1,77 @@
-<!-- Canvas assignment: Week 7 Assignment - Breadboard Your Project -->
+<!-- Canvas assignment: Week 7 Assignment - Hardware Overview & Breadboard Your Parts -->
 <!-- Paste the contents of this file into the Canvas HTML editor. -->
 <!-- DUE: Thursday 05 Nov 2026, 11:59pm (26FA) — rule: Thursday
      midnight following the Friday class. Recompute each term. -->
-<!-- DRAFT 1 Oct 2026: not yet reviewed by Jules. -->
+<!-- DRAFT 12 Oct 2026: not yet reviewed by Jules. Part 2 (hardware overview)
+     replaces the Week 6 anatomy map and feeds the Week 8 HMI spreadsheet. -->
 
 <h3><strong>Part 1: Finish the Number Adder Connection</strong></h3>
 <p>If you did not finish in-class Exercise 5, finish it now: a physical button adds 1 to your React Number Adder, and the on-screen buttons change the LED matrix. Record a short video of both directions working.</p>
 
 <hr />
-<h3><strong>Part 2: Breadboard Your Project's Parts</strong></h3>
-<p>Take your Week 6 anatomy map. Get <strong>each input and output working on its own</strong> on the breadboard, one at a time:</p>
+<h3><strong>Part 2: Hardware Overview</strong></h3>
+<p>Next week you write the HMI document for your product. It has to account for every piece of hardware the user touches, sees or hears. This overview is where you list that hardware and what each part means for the user, so nothing is missing when you start.</p>
+<p>Start from your midterm "Ready for hardware" list and the notes you took on your parts in Week 6. Fill in one row per part your hero experience needs:</p>
+<table style="border-collapse: collapse; width: 100%;" border="1">
+    <thead>
+        <tr>
+            <th style="padding: 6px;">Part</th>
+            <th style="padding: 6px;">Input or output?</th>
+            <th style="padding: 6px;">What it does for the user</th>
+            <th style="padding: 6px;">States or values it has</th>
+            <th style="padding: 6px;">Message to or from the screen</th>
+            <th style="padding: 6px;">Arduino pins</th>
+            <th style="padding: 6px;">What the HMI document must cover</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td style="padding: 6px;">Rotary encoder</td>
+            <td style="padding: 6px;">Input</td>
+            <td style="padding: 6px;">Sets the target number of turns</td>
+            <td style="padding: 6px;">Value 0&ndash;100; pressed / not pressed</td>
+            <td style="padding: 6px;">Sends <code>{"target": 40}</code></td>
+            <td style="padding: 6px;">2 digital + 1 for the push</td>
+            <td style="padding: 6px;">How the user knows the target changed, on the device and on screen; what pressing does</td>
+        </tr>
+        <tr>
+            <td style="padding: 6px;">12-LED ring</td>
+            <td style="padding: 6px;">Output</td>
+            <td style="padding: 6px;">Shows progress toward the target</td>
+            <td style="padding: 6px;">Off, filling, full, blinking for error</td>
+            <td style="padding: 6px;">Receives <code>PROGRESS:25</code></td>
+            <td style="padding: 6px;">1 digital</td>
+            <td style="padding: 6px;">What each light pattern means; how "done" differs from "error"</td>
+        </tr>
+    </tbody>
+</table>
+<p>Then draw a simple block diagram, by hand or digitally: the Arduino in the middle, each part around it, a line for each connection. Mark each line <strong>B</strong> (breadboard for now) or <strong>S</strong> (will be soldered).</p>
+<p>Check your pin count against the UNO R4: 14 digital pins and 6 analog inputs. If you need more than that, flag it now.</p>
+<p>Finally, look down the last column. Any part with nothing in it is either missing from your design or not needed. Decide which.</p>
+
+<hr />
+<h3><strong>Part 3: Breadboard Your Project's Parts</strong></h3>
+<p>Get <strong>each input and output in your overview working on its own</strong> on the breadboard, one at a time:</p>
 <ul>
     <li>One small sketch per part, printing what it reads (inputs) or proving it responds (outputs) in the Serial Monitor.</li>
-    <li>Start with the parts your hero experience cannot work without.</li>
+    <li>Start with the parts your hero experience cannot work without. If you run out of time, the rest can follow next week.</li>
     <li>Note anything that surprised you: a sensor that is noisier than expected, a motor that needs more power than the board gives. These change your design, and it is better to find them now than in Week 10.</li>
 </ul>
 <p>You do not need to combine them yet. That is Week 8.</p>
 
 <hr />
-<h3><strong>Part 3: Your Library Part, Working</strong></h3>
-<p>Get the part you claimed in Week 6 working with your UNO R4 on the breadboard. Write the sketch with clear comments: what it does, which pins, and anything a classmate would need to know. Next week you document it and add it to the library.</p>
+<h3><strong>Part 4: Your Library Part, Working</strong></h3>
+<p>Get the part you claimed in Week 6 working with your UNO R4 on the breadboard. Write the sketch with clear comments: what it does, which pins, and anything a classmate would need to know. Next week you solder it onto perfboard, document it and add it to the library.</p>
 
 <hr />
-<h3><strong>Part 4: React Step 3 of 3, Connect</strong></h3>
+<h3><strong>Part 5: React Step 3 of 3, Connect</strong></h3>
 <p>Add <code>react-use-websocket</code> to your project interface, the same way as in Exercise 5. For this week, show the connection status on screen and log every incoming message to the console. Next week you replace your faked device behaviour with real messages.</p>
 
 <hr />
 <h3>Submission Requirements:</h3>
 <ul>
     <li>Video of the Number Adder working in both directions.</li>
+    <li>Your hardware overview table and block diagram, in <code>week 7/Hardware</code>.</li>
     <li>One sketch per project part in <code>week 7/Hardware</code>, plus a photo of each on the breadboard.</li>
     <li>Your library part's working sketch and a photo of the circuit.</li>
     <li>Your project interface showing an open connection, in <code>week 7/Project</code>.</li>

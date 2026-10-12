@@ -1,8 +1,8 @@
 <!-- Canvas page: Week 8 - HMI + Applied Arduino (In-Class Exercises) -->
 <!-- Paste the contents of this file into the Canvas HTML editor. -->
-<!-- DRAFT 1 Oct 2026: not yet reviewed by Jules. -->
+<!-- DRAFT 12 Oct 2026: not yet reviewed by Jules. -->
 
-<p>Today you design how your product talks to its user, then start building it. Bring your Week 6 anatomy map, your midterm "Ready for hardware" list, and your breadboarded parts from Week 7.</p>
+<p>Today you design how your product talks to its user, and write it down in your HMI spreadsheet. Bring your Week 3 requirements list, your Week 4 test findings, your Week 7 hardware overview, and your breadboarded parts.</p>
 
 <h3>Exercise 1: Step Through the Hero Experience (15 min)</h3>
 <p>Write your hero experience as a sequence of steps, the same way you broke tasks into steps for testing. For each step, three columns:</p>
@@ -37,7 +37,7 @@
         </ul>
     </li>
     <li>Check: can two states be confused? If "working" and "error" both blink, the user cannot tell them apart.</li>
-    <li>Check your parts list: does every piece of feedback have a part that produces it? If not, add it to your parts list now.</li>
+    <li>Check your hardware overview: does every piece of feedback have a part that produces it? If not, add the part to your overview and your order list now.</li>
 </ol>
 
 <hr />
@@ -46,9 +46,18 @@
 <p>Swap. Write down every moment where the user did not know what had happened. Those are missing or unclear feedback.</p>
 
 <hr />
-<h3>Exercise 4: Start the HMI Document (20 min)</h3>
-<p>Set up your Google Sheet with the tabs from the reading (Step 3). Fill in one category of interactions completely, using what you found in Exercises 1&ndash;3. Finish the rest for homework.</p>
+<h3>Exercise 4: Build Your HMI Spreadsheet (60 min)</h3>
+<p>You already have most of what goes in it. This exercise puts it in one place, in the format of the reading (Step 3).</p>
+<ol>
+    <li>Set up your Google Sheet with the two tabs: <strong>Product Information</strong> and <strong>UX</strong>.</li>
+    <li>In the UX tab, add one row for each requirement on your <strong>Week 3 requirements list</strong>. Keep its priority (Must-have, Should-have, Nice-to-have).</li>
+    <li>Add one row for each interaction in your <strong>Week 7 hardware overview</strong> that is not on the list yet. The last column of the overview tells you what each row must say.</li>
+    <li>Add the states and feedback from Exercise 2, and fix every gap Exercise 3 found.</li>
+    <li>Group the rows into categories (for example Power, Setup, Main task, Errors).</li>
+    <li>Finish at least the category that holds your hero experience. The rest is homework.</li>
+</ol>
+<p>Your Week 4 test findings belong in the <strong>Notes</strong> column of the rows they affect.</p>
 
 <hr />
-<h3>Exercise 5: Lab Time, Two-Way Communication (rest of class)</h3>
-<p>Start the homework: combine your Week 7 sketches into one, and connect one device input and one screen control through the WebSocket server. Ask for help now rather than at midnight on Thursday.</p>
+<h3>Exercise 5: Plan the End-to-End Breadboard (10 min)</h3>
+<p>Look at your hero experience steps from Exercise 1. List the parts and messages you need to make every step happen on the breadboard, device to screen and screen to device. That list is your homework.</p>

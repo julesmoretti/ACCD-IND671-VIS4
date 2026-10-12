@@ -26,26 +26,32 @@ syllabus/             → exported syllabus PDF per term
 feedback/             → end-of-term feedback and the decisions it drove
 ```
 
-The 26FA week structure, set by `feedback/IND-671_Vis4_26FA_Redesign.md` §3:
+The 26FA week structure, set by `feedback/IND-671_Vis4_26FA_Redesign.md` §3 and revised on
+12 Oct 2026 (finals moved from Week 14 to Week 13; Week 14 is a portfolio and documentation
+session, held online):
 
 | Week | Folder | State |
 |---|---|---|
 | 1 | `week-01-course-introduction-and-tools-setup` | reading, assignment |
 | 2 | `week-02-html-css-javascript-introduction` | reading, in-class, assignment |
 | 3 | `week-03-javascript-basics-interactive-elements` | reading, in-class, assignment |
-| 4 | `week-04-react-components` | reading, in-class, assignment |
-| 5 | `week-05-midterm-software-project-presentation` | empty |
-| 6 | `week-06-electronics-fundamentals` | empty |
-| 7 | `week-07-arduino-ide-websocket` | reading + images |
-| 8 | `week-08-hmi-applied-arduino` | reading, assignment |
-| 9 | `week-09-low-fidelity-prototype-testing` | empty |
-| 10 | `week-10-high-fidelity-prototype` | empty |
+| 4 | `week-04-react-components` | reading, in-class, assignment, midterm brief, testing protocol |
+| 5 | `week-05-midterm-software-project-presentation` | reading, in-class, assignment |
+| 6 | `week-06-electronics-fundamentals` | reading, in-class, assignment |
+| 7 | `week-07-arduino-ide-websocket` | reading + images, in-class, assignment |
+| 8 | `week-08-hmi-applied-arduino` | reading, in-class, assignment, final project brief |
+| 9 | `week-09-low-fidelity-prototype-testing` | reading, in-class, assignment |
+| 10 | `week-10-high-fidelity-prototype` | reading, in-class, assignment |
 | 11 | `week-11-thanksgiving-no-class` | empty, stays empty |
-| 12 | `week-12-user-testing-refine` | empty |
-| 13 | `week-13-final-build-integration` | empty |
-| 14 | `week-14-final-presentations` | empty |
+| 12 | `week-12-final-build-integration` | in-class, assignment |
+| 13 | `week-13-final-presentations` | in-class, assignment (portfolio) |
+| 14 | `week-14-portfolio-documentation` | in-class (online session) |
 
-Weeks 5, 6, 9, 10, 12, 13 and 14 are scaffolded with `.gitkeep` and need content. Week 2's
+Briefs that are assigned in one week and presented in a later one live in the folder of the
+week they are assigned: the midterm brief in Week 4 (`midterm-presentation.html`), the final
+project brief in Week 8 (`final-project.html`, when the final project starts).
+
+Week 2's
 folder name still says "javascript-introduction" because its files genuinely cover a
 JavaScript intro, even though the 26FA plan titles the week "HTML & CSS for interface
 design".

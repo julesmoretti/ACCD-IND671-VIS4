@@ -1,7 +1,9 @@
 <!-- Canvas page: Week 7 - Arduino + IDE + WebSocket (In-Class Exercises) -->
 <!-- Paste the contents of this file into the Canvas HTML editor. -->
-<!-- DRAFT 1 Oct 2026: not yet reviewed by Jules. Run Exercise 5 end to end
-     before class; the bridge code has not been tested on hardware. -->
+<!-- DRAFT 12 Oct 2026: not yet reviewed by Jules. -->
+<!-- KNOWN GAP: the Exercise 5 code (button on pin 2 -> server -> React Number
+     Adder, and back to the LED matrix) was written but never run on a real
+     UNO R4. Run it end to end once before 30 Oct. -->
 
 <p>Today the Arduino and your React apps start talking. Keep the Week 7 reading open: the exercises point to its steps rather than repeating the code.</p>
 
@@ -36,7 +38,7 @@
 
 <hr />
 <h3>Exercise 5: Connect Your Number Adder (40 min)</h3>
-<p>Now use the same server with your Week 4 React Number Adder. A physical button adds 1, and the board's LED matrix shows the total.</p>
+<p>Now use the same server with your React Number Adder (the one you finished in Week 5). A physical button adds 1, and the board's LED matrix shows the total.</p>
 <h4>Arduino side</h4>
 <p>Wire a button between <strong>pin 2</strong> and <strong>GND</strong> (no resistor needed: we use the board's internal pull-up). Add to the Step 6d sketch:</p>
 <pre><code>const int buttonPin = 2;
@@ -78,4 +80,4 @@ useEffect(() =&gt; {
 
 <hr />
 <h3>Discussion: Your Project (10 min)</h3>
-<p>Look at your Week 6 anatomy map. For each part, what message would it send, or what message would it need to receive? Write the list down. It is the start of next week's HMI work.</p>
+<p>Take the notes you made on your project parts in Week 6. For each part, what message would it send, or what message would it need to receive? Write the list down. It is the start of this week's hardware overview, which feeds next week's HMI document.</p>

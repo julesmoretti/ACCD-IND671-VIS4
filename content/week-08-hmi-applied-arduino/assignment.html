@@ -6,14 +6,14 @@
      (50 points, due 2024-11-22). Week numbering has shifted twice since:
      HMI is Week 8 in the 26FA structure. -->
 
-<!-- DRAFT 1 Oct 2026: Parts 2 and 3 added, not yet reviewed by Jules. -->
-<!-- KNOWN GAP: "50 points" predates the single grading scheme in the 26FA
-     redesign (section 4). Reconcile before publishing. -->
+<!-- DRAFT 12 Oct 2026: Parts 2 and 3 rewritten, not yet reviewed by Jules.
+     "50 points" replaced: per the syllabus, Week 8 work counts toward the
+     final project (HMI design and documentation, 30 of 100 points). -->
 <!-- KNOWN GAP: the share-back address below says jules.moretti@artcenter.edu;
      check it is the right ArtCenter address. -->
 <p>Hello class,</p>
 <h3><strong>Part 1: HMI Document (version 1)</strong></h3>
-<p>As discussed during class, this week's assignment is to create an HMI document for your class final presentation. <br><br><strong>IMPORTANT NOTE:</strong> This assignment is worth <span style="text-decoration: underline;">50 points</span>, so please make sure that you carefully go through all the points below and that this documentation is very thorough and clear. This will act as a solid foundation for your presentation.<br><br>The HMI document should have the following requirements.</p>
+<p>As discussed during class, this week's assignment is to create an HMI document for your class final presentation. <br><br><strong>IMPORTANT NOTE:</strong> This document is the start of the <span style="text-decoration: underline;">HMI design and documentation</span> score of your final project (30 of 100 points), so please make sure that you carefully go through all the points below and that this documentation is very thorough and clear. This will act as a solid foundation for your presentation.<br><br>The HMI document should have the following requirements.</p>
 <ol style="list-style-type: decimal;">
 <li>A Product Information tab with the following information within it:
 <ol style="list-style-type: decimal;">
@@ -39,31 +39,40 @@
 </ol>
 <p>Please share back with me the google sheet documentation to jules.moretti@artcenter.edu</p>
 
-<hr />
-<h3><strong>Part 2: Two-Way Communication, End to End</strong></h3>
-<p>Combine the parts you breadboarded in Week 7 into one sketch, and connect it to your React project interface through the WebSocket server:</p>
-<ul>
-    <li>At least <strong>one input on the device</strong> (button, sensor, knob) changes something on screen.</li>
-    <li>At least <strong>one control on screen</strong> changes something on the device (LED, motor, sound).</li>
-    <li>Replace your <code>fakeDevice()</code> behaviour with the real messages for those two interactions. Leave the rest faked for now.</li>
-    <li>Pick both from the hero experience, using the send/show list from your midterm "Ready for hardware" slide.</li>
-</ul>
+<p>Start from the spreadsheet you began in class. Every requirement from your Week 3 list and every part in your Week 7 hardware overview should have a row.</p>
 
 <hr />
-<h3><strong>Part 3: Add Your Part to the Class Library</strong></h3>
-<p>Document the part you got working in Week 7 and add it to <a href="https://github.com/julesmoretti/ACCD-Fritzing-Parts" target="_blank" rel="noopener">ACCD-Fritzing-Parts</a>, following its <code>CONTRIBUTE.md</code>:</p>
+<h3><strong>Part 2: Your Hero Experience, End to End on the Breadboard</strong></h3>
+<p>Combine the parts you breadboarded in Week 7 into one sketch, and connect it to your React project interface through the WebSocket server. The goal: your hero experience runs from start to finish, with the hardware behaving the way the real product will.</p>
 <ul>
+    <li>Work through the steps you wrote in class (Exercise 1). Each step that involves the device should now happen on the device: a real button press, a real light, a real motor.</li>
+    <li>Both directions: inputs on the device change the screen, and controls on the screen change the device.</li>
+    <li>Replace your <code>fakeDevice()</code> behaviour with real messages for every step of the hero experience. Anything outside the hero experience can stay faked.</li>
+    <li>It can be messy. Wires everywhere, parts taped to the desk, all fine. What matters is that it <strong>behaves</strong> like the product. This is the core of next week's low-fidelity prototype.</li>
+</ul>
+<p>If a part has not arrived, fake that one part on the Arduino side (for example, an LED standing in for a motor) and note it.</p>
+
+<hr />
+<h3><strong>Part 3: Your Library Part, Soldered and Added to the Library</strong></h3>
+<p>Take the part you got working in Week 7 through the same path as your Week 6 circuit, then add it to <a href="https://github.com/julesmoretti/ACCD-Fritzing-Parts" target="_blank" rel="noopener">ACCD-Fritzing-Parts</a>, following its <code>CONTRIBUTE.md</code>:</p>
+<ul>
+    <li><strong>Solder it</strong> onto perfboard (or solder its header pins and wires, if it is a module), and test it again with your Week 7 sketch.</li>
     <li>A folder in <code>1_Arduino</code> named after the part.</li>
     <li>The <code>.ino</code> sketch, commented.</li>
     <li>A Fritzing <code>.fzz</code> file using the repo's <code>arduino-UNO-R4-wifi.fzpz</code> board, and a <code>.jpg</code> export of the diagram. If Fritzing has no part for your component, use the closest generic part and say so in the README.</li>
+    <li>A photo of the soldered version.</li>
     <li>A <code>README.md</code>: what it does, hardware needed with links, wiring, and how to use it.</li>
     <li>Open a pull request.</li>
 </ul>
 
+<hr />
+<h3><strong>Read the Final Project Brief</strong></h3>
+<p>Your final project starts now. Read the <strong>Final Project &amp; Presentation</strong> brief and its rubric this week, before you start building. It describes what the top band requires, and those requirements are not reachable by polishing at the end.</p>
+
 <h3>Submission Requirements:</h3>
 <ul>
     <li>Your HMI Google Sheet (Part 1).</li>
-    <li>A video of both directions working with your project interface (Part 2), with the code in <code>week 8/Project</code> and <code>week 8/Hardware</code>.</li>
+    <li>A video of your hero experience running end to end on the breadboard (Part 2), with the code in <code>week 8/Project</code> and <code>week 8/Hardware</code>.</li>
     <li>The link to your library pull request (Part 3).</li>
     <li>By midnight Thursday please.</li>
 </ul>
