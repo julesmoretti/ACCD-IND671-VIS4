@@ -2,21 +2,24 @@
 <!-- Paste the contents of this file into the Canvas HTML editor. -->
 <!-- DUE: Thursday 29 Oct 2026, 11:59pm (26FA) — rule: Thursday
      midnight following the Friday class. Recompute each term. -->
-<!-- DRAFT 12 Oct 2026: not yet reviewed by Jules. Part 1 now matches the
+<!-- KNOWN GAP: add the shop's open hours and how students book a soldering
+     station during the week. -->
+<!-- DRAFT 19 Oct 2026: not yet reviewed by Jules. Part 1 now matches the
      syllabus ("Solder a working circuit and document it in Fritzing"). The
      component anatomy map moved to the Week 7 hardware overview. -->
 
 <h3><strong>Part 1: Solder a Working Circuit and Document It in Fritzing</strong></h3>
 <p>Take one circuit through the whole path you practised in class: breadboard, test, perfboard, test again, document.</p>
-<p>The circuit: <strong>a button that lights an LED</strong>. It needs no code; the Arduino only supplies power.</p>
+<p>The circuit: <strong>a button that lights an LED</strong>, the one you breadboarded in class. It needs no code; the Arduino only supplies power.</p>
+<p><strong>Soldering happens in the shop</strong>, not at home: book a station during the week. You do not need your own iron.</p>
 <pre><code>5V &rarr; push button &rarr; 1 k&Omega; resistor &rarr; LED long leg
 LED short leg &rarr; GND</code></pre>
 <ol>
     <li><strong>Breadboard it</strong> and check that the LED lights only while the button is pressed.</li>
     <li><strong>Plan the perfboard layout</strong> on paper (see the reading, section 8). Take a photo of the plan.</li>
-    <li><strong>Solder it</strong> onto the perfboard you took from class, with a red stranded wire for 5V and a black one for GND. Check with continuity before you connect power.</li>
+    <li><strong>Solder it in the shop</strong> onto the perfboard you took from class, with a red stranded wire for 5V and a black one for GND. Safety glasses on, fume extractor on. Check with continuity before you connect power.</li>
     <li><strong>Test it</strong> on the UNO R4's 5V and GND. It should behave exactly as the breadboard version did.</li>
-    <li><strong>Document it in Fritzing</strong> (reading, section 9): the Breadboard view with the UNO R4 WiFi part from the class library, a tidy Schematic view, the <code>.fzz</code> file and a <code>.jpg</code> export.</li>
+    <li><strong>Document it in Fritzing</strong> (reading, section 9; Fritzing is a paid download, about $12): the Breadboard view with the UNO R4 WiFi part from the class library, a tidy Schematic view, the <code>.fzz</code> file and a <code>.jpg</code> export.</li>
 </ol>
 <p>If your project already needs a simple circuit that works without code (a power switch, an indicator LED), you can solder that instead. Check it with me on Slack first.</p>
 

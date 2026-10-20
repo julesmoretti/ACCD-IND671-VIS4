@@ -1,7 +1,7 @@
 <!-- Canvas page: Week 6 - Electronics Fundamentals (Reading) -->
 <!-- Paste the contents of this file into the Canvas HTML editor. -->
-<!-- DRAFT 12 Oct 2026: not yet reviewed by Jules. Technical values checked
-     against common practice; confirm against the irons used in class. -->
+<!-- DRAFT 19 Oct 2026: not yet reviewed by Jules. Technical values checked
+     against common practice; TS80 specs from the maker (9V QC 3.0, 100-400 C). -->
 
 <h3>Introduction</h3>
 <p>This week you start working with physical circuits. Read this before class: we will not have time to cover it from scratch, and class time is for doing it with your hands. Class meets in the shop. Bring your safety glasses, your UNO R4, your BOJACK kit and your project parts.</p>
@@ -9,10 +9,16 @@
 <hr />
 <h3>1. Safety</h3>
 <ul>
-    <li><strong>Safety glasses on</strong> whenever anyone near you is soldering or cutting leads. Clipped leads fly, and solder can spit.</li>
+    <li><strong>Safety glasses on</strong> whenever anyone near you is soldering or cutting leads. Three reasons:
+        <ul>
+            <li><strong>Overheated parts can burst.</strong> Hold the iron on a component too long, or wire an electrolytic capacitor the wrong way round, and it can pop and spray hot debris.</li>
+            <li><strong>Clipped leads fly</strong> across the room when you trim them. Hold the end as you cut.</li>
+            <li><strong>Solder and flux spit</strong>, especially when a joint is reheated.</li>
+        </ul>
+    </li>
     <li><strong>The iron tip is 300&ndash;400&deg;C (570&ndash;750&deg;F).</strong> Always return it to its stand. Never leave it lying on the table.</li>
     <li><strong>Never catch a falling iron.</strong> Step back and let it drop.</li>
-    <li><strong>Fumes</strong> come from the flux, not the metal. Work with a fume extractor or good ventilation, and keep your face out of the smoke.</li>
+    <li><strong>Fumes</strong> come from the flux, not the metal. Place the fume extractor close to the joint, a hand-width away, so it pulls the smoke away before it reaches your face. Keep your head to one side of the smoke, not above it.</li>
     <li><strong>Lead</strong>: if you use leaded solder, do not eat or drink at the bench, and wash your hands afterwards.</li>
     <li><strong>Unplug before you change anything.</strong> Disconnect USB or battery before moving wires.</li>
 </ul>
@@ -37,6 +43,7 @@ R = V / I = 3 / 0.003 = 1000 ohms  -&gt;  use a 1 k&Omega; resistor</code></pre>
 <hr />
 <h3>3. Breadboards: Test Before You Solder</h3>
 <p>A breadboard lets you build a circuit without soldering, so you can test and change it. Always get a circuit working on the breadboard before you solder anything.</p>
+<p><strong>How it is built</strong>: under the plastic, each short row of holes sits on one metal spring clip, and each power rail sits on one long metal strip. A wire pushed into a hole is gripped by the clip, and everything on the same clip is connected. Peel the backing off an old breadboard and you can see them.</p>
 <ul>
     <li><strong>Terminal strips</strong>: in the middle, each short row of 5 holes is connected. Rows on either side of the centre gap are <em>not</em> connected to each other.</li>
     <li><strong>Power rails</strong>: the long lines along the edges, marked + (red) and &minus; (blue). Each rail runs the length of the board. On some boards the rail is split halfway; check with a multimeter.</li>
@@ -82,6 +89,7 @@ R = V / I = 3 / 0.003 = 1000 ohms  -&gt;  use a 1 k&Omega; resistor</code></pre>
 <hr />
 <h3>6. Soldering</h3>
 <p>Solder is a metal alloy that melts at a lower temperature than the parts it joins. A good joint is mechanical and electrical at the same time.</p>
+<p><strong>Bench station or portable iron.</strong> The shop's stations sit on the bench with a stand and a temperature dial. Portable irons such as the <strong>TS80</strong> run from a USB-C power bank (it needs a Quick Charge 3.0 bank that gives 9V), set their temperature digitally between 100 and 400&deg;C (212&ndash;752&deg;F), and take swappable tips. Useful for working away from the shop.</p>
 
 <h4>The iron and its tips</h4>
 <table style="border-collapse: collapse; width: 100%;" border="1">
@@ -150,7 +158,17 @@ R = V / I = 3 / 0.003 = 1000 ohms  -&gt;  use a 1 k&Omega; resistor</code></pre>
 <!-- KNOWN GAP: state which solder the classroom supplies. -->
 
 <h4>Flux</h4>
-<p>Metal surfaces oxidise, and solder will not stick to oxide. <strong>Flux</strong> cleans the oxide off as it heats and helps the solder flow into the joint. Rosin-core solder already contains flux. A <strong>flux pen</strong> adds extra when reworking a joint or soldering wires that will not take solder. <em>No-clean</em> flux can be left on; rosin flux residue can be cleaned with isopropyl alcohol.</p>
+<p>Metal surfaces oxidise, and solder will not stick to oxide. <strong>Flux</strong> cleans the oxide off as it heats and helps the solder flow into the joint. Rosin-core solder already contains flux. A <strong>flux pen</strong> adds extra when reworking a joint or soldering wires that will not take solder. <em>No-clean</em> flux can be left on.</p>
+<p><strong>Cleaning flux</strong>: rosin flux leaves a sticky brown residue. Clean it off with <strong>isopropyl alcohol (90% or stronger)</strong> and an old toothbrush or cotton bud, then let it dry before you power the circuit. Clean boards are easier to inspect, and some flux residues attract moisture and slowly corrode joints.</p>
+
+<h4>Heat-shrink</h4>
+<p>Heat-shrink tubing insulates and strengthens a wire splice or an exposed joint.</p>
+<ul>
+    <li>Pick a diameter that slides easily over the joint. Most tubing shrinks to half its size (2:1).</li>
+    <li>Cut 10&ndash;15 mm, enough to cover the joint plus a few millimetres of insulation on each side.</li>
+    <li><strong>Slide it on before you solder.</strong> Once both ends are joined, you cannot get it on.</li>
+    <li>Shrink it with a heat gun, not the iron. The iron melts it.</li>
+</ul>
 
 <h4>Tools</h4>
 <table style="border-collapse: collapse; width: 100%;" border="1">
@@ -208,6 +226,7 @@ R = V / I = 3 / 0.003 = 1000 ohms  -&gt;  use a 1 k&Omega; resistor</code></pre>
 <hr />
 <h3>9. Documenting a Circuit in Fritzing</h3>
 <p><a href="https://fritzing.org/" target="_blank" rel="noopener">Fritzing</a> draws a circuit the way it looks on a breadboard, so a classmate can rebuild it from your drawing. It is how parts are documented in the class library.</p>
+<p><strong>Fritzing is a paid download</strong> (about $12 for individuals, from <a href="https://fritzing.org/download/" target="_blank" rel="noopener">fritzing.org/download</a>). Buy and install it before class.</p>
 <ol>
     <li>Download <code>arduino-UNO-R4-wifi.fzpz</code> from the <a href="https://github.com/julesmoretti/ACCD-Fritzing-Parts" target="_blank" rel="noopener">ACCD-Fritzing-Parts</a> repo and open it in Fritzing. It adds the UNO R4 WiFi to your parts bin.</li>
     <li>In the <strong>Breadboard</strong> view, place the board, a breadboard and your parts, and draw each wire. Use the same wire colours as your real circuit.</li>

@@ -1,65 +1,70 @@
 <!-- Canvas page: Week 6 - Electronics Fundamentals (In-Class Exercises) -->
 <!-- Paste the contents of this file into the Canvas HTML editor. -->
-<!-- DRAFT 12 Oct 2026: not yet reviewed by Jules. Class runs in the shop. -->
-<!-- KNOWN GAP: depends on what the shop provides (irons, stands, fume
-     extraction, multimeters, solder, heat-shrink, spare wire). Confirm before
-     class, and confirm the shop booking for 9:00-12:00 on 23 Oct. -->
-<!-- KNOWN GAP: perfboards are ordered by Jules; confirm they arrive before 23 Oct. -->
+<!-- DRAFT 19 Oct 2026: not yet reviewed by Jules. Class runs in the shop,
+     9:00-12:00 on 23 Oct. 3 soldering stations, 5 students: Group A (3) and
+     Group B (2) swap between soldering and breadboarding. -->
+<!-- KNOWN GAP: confirm the shop booking and that the perfboards have arrived. -->
 
-<p>Today we meet in the shop. Safety glasses on before any iron is switched on. Irons go back in the stand every time.</p>
+<p>Today we meet in the shop. Safety glasses on before any iron is switched on, and they stay on until the irons are off.</p>
 <p>By the end of class you will have taken one circuit through the whole path you will use for your project: <strong>breadboard it, test it, solder it onto perfboard, test it again.</strong></p>
 
-<h3>Exercise 1: Breadboard and Multimeter (30 min)</h3>
+<h3>Part 1: Together (about 1 hour)</h3>
+
+<h4>1. Safety (10 min)</h4>
+<ul>
+    <li>Why the glasses: overheated parts can burst (a capacitor held too long under the iron, or wired backwards), clipped leads fly, solder spits.</li>
+    <li>The iron is 300&ndash;400&deg;C. It lives in its stand. Never catch a falling iron.</li>
+    <li>The fume extractor: how it works, and where to put it (a hand-width from the joint, smoke pulled away from your face).</li>
+    <li>Wash your hands after soldering; no food or drink at the bench.</li>
+</ul>
+
+<h4>2. How a Breadboard Works (10 min)</h4>
+<ul>
+    <li>Inside a breadboard: the metal clips under each row of five holes, the long strips under the power rails, the centre gap.</li>
+    <li>Preview: an Arduino UNO R4 wired to a breadboard, giving it 5V and GND. Today the Arduino is only a power supply; next week you program it.</li>
+</ul>
+
+<h4>3. Materials (15 min)</h4>
+<ul>
+    <li><strong>Wire</strong>: solid core (breadboards, wires that never move) versus stranded (anything that moves, bends or vibrates). Gauge: 22 AWG for signals, 18&ndash;20 AWG for motors and power.</li>
+    <li><strong>Solder</strong>: what the shop supplies, rosin core, diameter.</li>
+    <li><strong>Flux</strong>: what it does, flux pen for rework, cleaning residue with isopropyl alcohol and a brush.</li>
+    <li><strong>Heat-shrink</strong>: sizing, slide it on before you solder, shrink with the heat gun.</li>
+</ul>
+
+<h4>4. The Iron: Tips and Temperature (10 min)</h4>
+<ul>
+    <li>The shop station: tip, stand, brass wool, temperature dial.</li>
+    <li>A portable iron (TS80): runs from a USB-C power bank, digital temperature setting, swappable tips.</li>
+    <li>Fine conical tip versus chisel tip: use the biggest tip that fits the joint.</li>
+    <li>Temperature: cooler for small, heat-sensitive parts; hotter for thick wire and big pads. Aim for a joint in 2&ndash;3 seconds.</li>
+</ul>
+
+<h4>5. Demo: Breadboard to Perfboard (15 min)</h4>
+<p>One circuit, the whole path: the working breadboard version, the layout planned on paper, parts placed through the perfboard, legs bent and soldered, connections made with legs or bare wire, extra legs trimmed, power wires added, a continuity check, then the finished board tested on the same 5V and GND.</p>
+
+<hr />
+<h3>Part 2: Two Rotations (2 &times; 45 min, with a short break between)</h3>
+<p>There are three soldering stations. <strong>Group A</strong> (three of you) starts at the irons while <strong>Group B</strong> (two of you) works on breadboards. Then you swap.</p>
+
+<h4>At the soldering station</h4>
 <ol>
-    <li>Wire the UNO R4's <strong>5V</strong> to the breadboard's + rail and <strong>GND</strong> to the &minus; rail. Power the board over USB.</li>
-    <li>Build: + rail &rarr; <strong>1 k&Omega; resistor</strong> &rarr; LED long leg; LED short leg &rarr; &minus; rail. The LED should light.</li>
-    <li>With the multimeter on DC volts, measure:
-        <ul>
-            <li>between the two rails (expect ~5V),</li>
-            <li>across the resistor,</li>
-            <li>across the LED.</li>
-        </ul>
-        The last two should add up to the first. Write the numbers down.</li>
-    <li>Unplug USB. Switch to continuity. Check that one rail is connected along its full length. If it does not beep halfway, your board has a split rail.</li>
-    <li>Use Ohm's law and your resistor measurement to work out the current through the LED. It should be under 8 mA.</li>
+    <li><strong>Strip and tin</strong> (10 min): strip 5&ndash;7 mm from one solid and one stranded wire, twist the stranded end, tin the iron, tin both ends. A tinned end is shiny and evenly coated, not blobbed.</li>
+    <li><strong>Splice two wires</strong> (15 min): heat-shrink on first, join the tinned ends, let it cool, shrink it, check continuity, tug gently.</li>
+    <li><strong>LED and resistor on perfboard</strong> (20 min): draw the layout first, place a 1 k&Omega; resistor and an LED, solder, add a red stranded wire for 5V and a black one for GND, trim the legs, check continuity, then connect to the Arduino. It should light.</li>
+</ol>
+
+<h4>At the breadboard bench</h4>
+<ol>
+    <li><strong>Breadboard and multimeter</strong> (25 min): wire 5V and GND to the rails. Build + rail &rarr; 1 k&Omega; resistor &rarr; LED long leg; LED short leg &rarr; &minus; rail. Measure the voltage between the rails, across the resistor and across the LED; the last two should add up to the first. Unplug, switch to continuity, and check one rail along its full length.</li>
+    <li><strong>Add a button</strong> (10 min): put a push button between the + rail and the resistor. The LED should light only while it is pressed. This is your homework circuit; draw its perfboard layout now.</li>
+    <li><strong>Fritzing</strong> (10 min): open Fritzing, load the UNO R4 WiFi part from the class library, and start drawing the button circuit in the Breadboard view.</li>
 </ol>
 
 <hr />
-<h3>Exercise 2: Demo, Then Strip and Tin (25 min)</h3>
-<p>Watch the demo first: stripping solid and stranded wire, tinning the iron, tinning a wire, a good joint versus a cold joint.</p>
-<ol>
-    <li>Strip 5&ndash;7 mm from one piece of solid and one piece of stranded wire. Check no strands are cut.</li>
-    <li>Twist the stranded end tight.</li>
-    <li>Tin the iron, then tin both wire ends. A tinned end is shiny and evenly coated, not blobbed.</li>
-    <li>Push both into the breadboard. Notice the difference: the tinned stranded wire now behaves like solid.</li>
-</ol>
-
-<hr />
-<h3>Exercise 3: Splice Two Wires (20 min)</h3>
-<ol>
-    <li>Strip and tin the ends of two stranded wires.</li>
-    <li>Slide a piece of heat-shrink onto one wire <strong>first</strong>, well away from the joint.</li>
-    <li>Hold the ends side by side (or twisted together), heat, and add a little solder until it flows through.</li>
-    <li>Let it cool, slide the heat-shrink over, and shrink it.</li>
-    <li>Test with continuity. Tug it gently: it should not move.</li>
-</ol>
-
-<hr />
-<h3>Exercise 4: Demo, Breadboard to Perfboard (15 min)</h3>
-<p>Watch the whole path once on a single circuit: the working breadboard version, the layout planned on paper, parts placed through the perfboard, legs bent and soldered, tracks made with solder bridges or bare wire, extra legs trimmed, power wires added, and the finished board tested on the same 5V and GND.</p>
-
-<hr />
-<h3>Exercise 5: Your Circuit on Perfboard (45 min)</h3>
-<ol>
-    <li>Take the LED and resistor circuit from Exercise 1. Before you remove it from the breadboard, <strong>draw the layout</strong>: which perfboard holes each leg goes into, and how the joints connect. Keep parts close together.</li>
-    <li>Place the resistor and the LED through the perfboard. Bend the legs slightly outward on the back so the parts do not fall out.</li>
-    <li>Solder each leg. Make the connections between them with the legs themselves or a short piece of bare wire.</li>
-    <li>Solder a red stranded wire for 5V and a black one for GND. Trim the extra legs, then check with continuity that nothing is bridged that should not be.</li>
-    <li>Connect the wires back to 5V and GND. It should light exactly as it did on the breadboard.</li>
-    <li>Trade with a neighbour and inspect each other's joints: shiny volcano, or cold and lumpy?</li>
-</ol>
-<p>This is your homework in miniature. At home you do it again with a button added, then document it in Fritzing.</p>
-
-<hr />
-<h3>Exercise 6: Look at Your Project Parts (10 min)</h3>
-<p>Open the parts you brought. For each one, note how it connects: pins that fit a breadboard, loose header pins that need soldering, bare wires, or a connector. Keep the notes. Next week's hardware overview starts from them.</p>
+<h3>Part 3: Wrap-Up (15 min)</h3>
+<ul>
+    <li><strong>Inspect each other's joints</strong>: shiny volcano, or cold and lumpy? Fix one cold joint together.</li>
+    <li><strong>Your project parts</strong>: for each one, note how it connects (pins that fit a breadboard, loose header pins that need soldering, bare wires, or a connector). Keep the notes. Next week's hardware overview starts from them.</li>
+    <li><strong>Homework</strong>: take a perfboard and lengths of red and black stranded wire before you leave. You will solder the button circuit in the shop during the week.</li>
+</ul>
