@@ -4,7 +4,7 @@
      against common practice; TS80 specs from the maker (9V QC 3.0, 100-400 C). -->
 
 <h3>Introduction</h3>
-<p>This week you start working with physical circuits. Read this before class: we will not have time to cover it from scratch, and class time is for doing it with your hands. Class meets in the shop. Bring your safety glasses, your UNO R4, your BOJACK kit and your project parts.</p>
+<p>This week you start working with physical circuits. Read this before class: we will not have time to cover it from scratch, and class time is for doing it with your hands. Class meets in the shop. Bring your safety glasses, your BOJACK kit and your project parts.</p>
 
 <hr />
 <h3>1. Safety</h3>
@@ -26,13 +26,13 @@
 <hr />
 <h3>2. Voltage, Current and Resistance</h3>
 <ul>
-    <li><strong>Voltage (V, volts)</strong>: the push. Your UNO R4 works at <strong>5V</strong>.</li>
+    <li><strong>Voltage (V, volts)</strong>: the push. This week your circuits run at <strong>5V</strong> from the kit's power supply module; so does the Arduino from Week 7.</li>
     <li><strong>Current (I, amps)</strong>: how much flows. Small parts use milliamps (mA).</li>
     <li><strong>Resistance (R, ohms, &Omega;)</strong>: what limits the flow.</li>
     <li><strong>Ohm's law</strong>: <code>V = I &times; R</code>. If you know two, you can work out the third.</li>
 </ul>
-<h4>Worked example: an LED on an Arduino pin</h4>
-<p>An LED always needs a resistor in series, or it draws too much current and dies (and can damage the pin). Each UNO R4 pin should supply <strong>no more than 8 mA</strong>.</p>
+<h4>Worked example: an LED and its resistor</h4>
+<p>An LED always needs a resistor in series, or it draws too much current and dies. Keep it to a few milliamps: from Week 7, each Arduino UNO R4 pin should supply <strong>no more than 8 mA</strong>, so the same resistor works there too.</p>
 <pre><code>Supply:            5V
 LED drop (red):    ~2V
 Left for resistor: 5V - 2V = 3V
@@ -48,7 +48,8 @@ R = V / I = 3 / 0.003 = 1000 ohms  -&gt;  use a 1 k&Omega; resistor</code></pre>
     <li><strong>Terminal strips</strong>: in the middle, each short row of 5 holes is connected. Rows on either side of the centre gap are <em>not</em> connected to each other.</li>
     <li><strong>Power rails</strong>: the long lines along the edges, marked + (red) and &minus; (blue). Each rail runs the length of the board. On some boards the rail is split halfway; check with a multimeter.</li>
     <li><strong>The centre gap</strong> is where chips and some modules straddle, so each pin gets its own row.</li>
-    <li>Wire the Arduino's <strong>5V</strong> to the + rail and <strong>GND</strong> to the &minus; rail, then take power from the rails.</li>
+    <li><strong>Powering the breadboard</strong>: the BOJACK kit's power supply module plugs into one end of the board, its pins dropping into both pairs of rails. Each side has a jumper for 3.3V or 5V: set both to <strong>5V</strong>. Power it through its barrel jack (6.5&ndash;12V, from a battery or adapter), and use its on/off switch to power the circuit up and down. Check its polarity: the module's + must sit in the red rail.</li>
+    <li>From Week 7 the Arduino can power the breadboard instead, from its 5V and GND pins.</li>
 </ul>
 
 <hr />
@@ -228,8 +229,8 @@ R = V / I = 3 / 0.003 = 1000 ohms  -&gt;  use a 1 k&Omega; resistor</code></pre>
 <p><a href="https://fritzing.org/" target="_blank" rel="noopener">Fritzing</a> draws a circuit the way it looks on a breadboard, so a classmate can rebuild it from your drawing. It is how parts are documented in the class library.</p>
 <p><strong>Fritzing is a paid download</strong> (about $12 for individuals, from <a href="https://fritzing.org/download/" target="_blank" rel="noopener">fritzing.org/download</a>). Buy and install it before class.</p>
 <ol>
-    <li>Download <code>arduino-UNO-R4-wifi.fzpz</code> from the <a href="https://github.com/julesmoretti/ACCD-Fritzing-Parts" target="_blank" rel="noopener">ACCD-Fritzing-Parts</a> repo and open it in Fritzing. It adds the UNO R4 WiFi to your parts bin.</li>
-    <li>In the <strong>Breadboard</strong> view, place the board, a breadboard and your parts, and draw each wire. Use the same wire colours as your real circuit.</li>
+    <li>In the <strong>Breadboard</strong> view, place a breadboard, a power source and your parts, and draw each wire. Use the same wire colours as your real circuit.</li>
+    <li>From Week 7, when the Arduino joins your circuits: download <code>arduino-UNO-R4-wifi.fzpz</code> from the <a href="https://github.com/julesmoretti/ACCD-Fritzing-Parts" target="_blank" rel="noopener">ACCD-Fritzing-Parts</a> repo and open it in Fritzing. It adds the UNO R4 WiFi to your parts bin.</li>
     <li>Check the <strong>Schematic</strong> view. Fritzing builds it from your breadboard drawing; tidy it so the lines do not cross where they do not need to.</li>
     <li>If Fritzing has no part for your component, use the closest generic part and label it with a note.</li>
     <li>Save the <code>.fzz</code> file, and export the Breadboard view as a <code>.jpg</code> (<em>File &gt; Export &gt; as Image</em>).</li>

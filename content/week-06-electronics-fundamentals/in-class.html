@@ -21,7 +21,7 @@
 <h4>2. How a Breadboard Works (10 min)</h4>
 <ul>
     <li>Inside a breadboard: the metal clips under each row of five holes, the long strips under the power rails, the centre gap.</li>
-    <li>Preview: an Arduino UNO R4 wired to a breadboard, giving it 5V and GND. Today the Arduino is only a power supply; next week you program it.</li>
+    <li>Powering it: the <strong>power supply module</strong> from the BOJACK kit clips onto one end of the breadboard and feeds both rails. Set its jumpers to <strong>5V</strong>, power it through its barrel jack, and press its switch. No Arduino today; that is Week 7.</li>
 </ul>
 
 <h4>3. Materials (15 min)</h4>
@@ -51,14 +51,14 @@
 <ol>
     <li><strong>Strip and tin</strong> (10 min): strip 5&ndash;7 mm from one solid and one stranded wire, twist the stranded end, tin the iron, tin both ends. A tinned end is shiny and evenly coated, not blobbed.</li>
     <li><strong>Splice two wires</strong> (15 min): heat-shrink on first, join the tinned ends, let it cool, shrink it, check continuity, tug gently.</li>
-    <li><strong>LED and resistor on perfboard</strong> (20 min): draw the layout first, place a 1 k&Omega; resistor and an LED, solder, add a red stranded wire for 5V and a black one for GND, trim the legs, check continuity, then connect to the Arduino. It should light.</li>
+    <li><strong>LED and resistor on perfboard</strong> (20 min): draw the layout first, place a 1 k&Omega; resistor and an LED, solder, add a red stranded wire for 5V and a black one for GND, trim the legs, check continuity, then connect it to the power module's rails. It should light.</li>
 </ol>
 
 <h4>At the breadboard bench</h4>
 <ol>
-    <li><strong>Breadboard and multimeter</strong> (25 min): wire 5V and GND to the rails. Build + rail &rarr; 1 k&Omega; resistor &rarr; LED long leg; LED short leg &rarr; &minus; rail. Measure the voltage between the rails, across the resistor and across the LED; the last two should add up to the first. Unplug, switch to continuity, and check one rail along its full length.</li>
+    <li><strong>Breadboard and multimeter</strong> (25 min): clip the power supply module onto the breadboard, set both jumpers to 5V, and switch it on. Build + rail &rarr; 1 k&Omega; resistor &rarr; LED long leg; LED short leg &rarr; &minus; rail. Measure the voltage between the rails, across the resistor and across the LED; the last two should add up to the first. Switch the module off, set the meter to continuity, and check one rail along its full length.</li>
     <li><strong>Add a button</strong> (10 min): put a push button between the + rail and the resistor. The LED should light only while it is pressed. This is your homework circuit; draw its perfboard layout now.</li>
-    <li><strong>Fritzing</strong> (10 min): open Fritzing, load the UNO R4 WiFi part from the class library, and start drawing the button circuit in the Breadboard view.</li>
+    <li><strong>Fritzing</strong> (10 min): open Fritzing and start drawing the button circuit in the Breadboard view: breadboard, power source, button, resistor, LED.</li>
 </ol>
 
 <hr />
