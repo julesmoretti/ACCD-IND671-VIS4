@@ -4,27 +4,10 @@
      against common practice; TS80 specs from the maker (9V QC 3.0, 100-400 C). -->
 
 <h3>Introduction</h3>
-<p>This week you start working with physical circuits. Read this before class: we will not have time to cover it from scratch, and class time is for doing it with your hands. Class meets in the shop. Bring your safety glasses, your BOJACK kit and your project parts.</p>
+<p>This week you start working with physical circuits. Read this before class: we will not have time to cover it from scratch, and class time is for doing it with your hands. We start in the classroom, then move to the shop for soldering. Bring your safety glasses, your BOJACK kit and your project parts.</p>
 
 <hr />
-<h3>1. Safety</h3>
-<ul>
-    <li><strong>Safety glasses on</strong> whenever anyone near you is soldering or cutting leads. Three reasons:
-        <ul>
-            <li><strong>Overheated parts can burst.</strong> Hold the iron on a component too long, or wire an electrolytic capacitor the wrong way round, and it can pop and spray hot debris.</li>
-            <li><strong>Clipped leads fly</strong> across the room when you trim them. Hold the end as you cut.</li>
-            <li><strong>Solder and flux spit</strong>, especially when a joint is reheated.</li>
-        </ul>
-    </li>
-    <li><strong>The iron tip is 300&ndash;400&deg;C (570&ndash;750&deg;F).</strong> Always return it to its stand. Never leave it lying on the table.</li>
-    <li><strong>Never catch a falling iron.</strong> Step back and let it drop.</li>
-    <li><strong>Fumes</strong> come from the flux, not the metal. Place the fume extractor close to the joint, a hand-width away, so it pulls the smoke away before it reaches your face. Keep your head to one side of the smoke, not above it.</li>
-    <li><strong>Lead</strong>: if you use leaded solder, do not eat or drink at the bench, and wash your hands afterwards.</li>
-    <li><strong>Unplug before you change anything.</strong> Disconnect USB or battery before moving wires.</li>
-</ul>
-
-<hr />
-<h3>2. Voltage, Current and Resistance</h3>
+<h3>1. Voltage, Current and Resistance</h3>
 <ul>
     <li><strong>Voltage (V, volts)</strong>: the push. This week your circuits run at <strong>5V</strong> from the kit's power supply module; so does the Arduino from Week 7.</li>
     <li><strong>Current (I, amps)</strong>: how much flows. Small parts use milliamps (mA).</li>
@@ -38,10 +21,10 @@ LED drop (red):    ~2V
 Left for resistor: 5V - 2V = 3V
 Target current:    3 mA (0.003 A), bright enough for an indicator
 R = V / I = 3 / 0.003 = 1000 ohms  -&gt;  use a 1 k&Omega; resistor</code></pre>
-<p>A <strong>short circuit</strong> is a path from power to ground with almost no resistance. It can burn wires and damage the board. If anything gets hot or the board resets, unplug immediately.</p>
+<p>This is the circuit you build in class: a 1 k&Omega; resistor in series with each LED.</p>
 
 <hr />
-<h3>3. Breadboards: Test Before You Solder</h3>
+<h3>2. Breadboards: Test Before You Solder</h3>
 <p>A breadboard lets you build a circuit without soldering, so you can test and change it. Always get a circuit working on the breadboard before you solder anything.</p>
 <p><strong>How it is built</strong>: under the plastic, each short row of holes sits on one metal spring clip, and each power rail sits on one long metal strip. A wire pushed into a hole is gripped by the clip, and everything on the same clip is connected. Peel the backing off an old breadboard and you can see them.</p>
 <ul>
@@ -51,9 +34,18 @@ R = V / I = 3 / 0.003 = 1000 ohms  -&gt;  use a 1 k&Omega; resistor</code></pre>
     <li><strong>Powering the breadboard</strong>: the BOJACK kit's power supply module plugs into one end of the board, its pins dropping into both pairs of rails. Each side has a jumper for 3.3V or 5V: set both to <strong>5V</strong>. Power it through its barrel jack (6.5&ndash;12V, from a battery or adapter), and use its on/off switch to power the circuit up and down. Check its polarity: the module's + must sit in the red rail.</li>
     <li>From Week 7 the Arduino can power the breadboard instead, from its 5V and GND pins.</li>
 </ul>
+<h4>Safe on the breadboard</h4>
+<ul>
+    <li>5V from the power module cannot shock you, but it can still heat parts and damage them.</li>
+    <li><strong>Switch the module off before you move anything.</strong> Rewire, then switch back on.</li>
+    <li><strong>Never connect the + rail straight to the &minus; rail.</strong> That is a <em>short circuit</em>: almost no resistance, so the current is limited only by the supply. Wires, the module and a battery can get hot fast.</li>
+    <li><strong>Every LED gets a resistor.</strong> An LED wired straight across 5V burns out.</li>
+    <li><strong>LEDs have a direction.</strong> Long leg (+) toward the positive side, short leg (&minus;) toward the negative side; the rim is flat on the short-leg side. A backwards LED does no harm at 5V, it just stays dark.</li>
+    <li>If anything gets warm, smells or the module's light flickers, switch off and look for a short.</li>
+</ul>
 
 <hr />
-<h3>4. Wire</h3>
+<h3>3. Wire</h3>
 <table style="border-collapse: collapse; width: 100%;" border="1">
     <thead>
         <tr>
@@ -79,17 +71,45 @@ R = V / I = 3 / 0.003 = 1000 ohms  -&gt;  use a 1 k&Omega; resistor</code></pre>
 <p><strong>Stripping</strong>: set the stripper to the wire's gauge, strip about <strong>5&ndash;7 mm</strong>, and check no strands are cut. For stranded wire, twist the strands tight before tinning.</p>
 
 <hr />
-<h3>5. The Multimeter</h3>
+<h3>4. The Multimeter</h3>
 <ul>
-    <li>Black lead in <strong>COM</strong>, red lead in <strong>V&Omega;</strong>.</li>
+    <li><strong>Black lead in COM</strong>, always.</li>
+    <li><strong>Red lead in V&Omega;mA</strong> (on some meters marked V&Omega;) for volts, resistance and continuity: everything in this class.</li>
+    <li>The <strong>10A</strong> socket is only for measuring large currents. We do not use it.</li>
+    <li><strong>Manual-ranging meters</strong> (like the AstroAI AM33D) make you pick the range: choose the one just above what you expect, so <strong>20V</strong> for a 5V circuit. If the display shows <strong>1</strong> on the left, the range is too low: turn the dial up.</li>
     <li><strong>DC voltage (V&#9107;)</strong>: measure across a part, with the circuit powered. Expect ~5V between the rails.</li>
     <li><strong>Continuity</strong> (the beep): checks that two points are connected. Use it on every solder joint and to check breadboard rails. Circuit unpowered.</li>
     <li><strong>Resistance (&Omega;)</strong>: check a resistor's value. Circuit unpowered, always.</li>
 </ul>
+<h4>Safe with the multimeter</h4>
+<ul>
+    <li>In this class you only measure <strong>low-voltage DC</strong> circuits (12V or less). Never probe a wall outlet or anything plugged into mains.</li>
+    <li><strong>Choose the mode before the probes touch the circuit.</strong> Switching modes while connected can damage the meter.</li>
+    <li>Resistance and continuity only with the circuit <strong>switched off</strong>.</li>
+    <li>Hold the probes by their insulated grips, behind the finger guards.</li>
+    <li>Leave the red lead in V&Omega;mA. The <strong>10A</strong> socket turns the meter into a short circuit if you then measure across a supply.</li>
+</ul>
 
 <hr />
-<h3>6. Soldering</h3>
+<h3>5. Soldering</h3>
 <p>Solder is a metal alloy that melts at a lower temperature than the parts it joins. A good joint is mechanical and electrical at the same time.</p>
+
+<h4>Safe at the iron</h4>
+<ul>
+    <li><strong>Safety glasses on</strong> whenever anyone near you is soldering or cutting leads. Three reasons:
+        <ul>
+            <li><strong>Overheated parts can burst.</strong> Hold the iron on a component too long, or wire an electrolytic capacitor the wrong way round, and it can pop and spray hot debris.</li>
+            <li><strong>Clipped leads fly</strong> across the room when you trim them. Hold the end as you cut.</li>
+            <li><strong>Solder and flux spit</strong>, especially when a joint is reheated.</li>
+        </ul>
+    </li>
+    <li><strong>The iron tip is 300&ndash;400&deg;C (570&ndash;750&deg;F).</strong> Always return it to its stand. Never leave it lying on the table.</li>
+    <li><strong>Never catch a falling iron.</strong> Step back and let it drop.</li>
+    <li><strong>Fumes</strong> come from the flux, not the metal. Place the fume extractor close to the joint, a hand-width away, so it pulls the smoke away before it reaches your face. Keep your head to one side of the smoke, not above it.</li>
+    <li><strong>Lead</strong>: if you use leaded solder, do not eat or drink at the bench, and wash your hands afterwards.</li>
+    <li><strong>No power while soldering.</strong> Disconnect the circuit from its supply before the iron touches it.</li>
+</ul>
+<p>The tools at a soldering station are listed in the <strong>Appendix</strong> at the end of this page.</p>
 <p><strong>Bench station or portable iron.</strong> The shop's stations sit on the bench with a stand and a temperature dial. Portable irons such as the <strong>TS80</strong> run from a USB-C power bank (it needs a Quick Charge 3.0 bank that gives 9V), set their temperature digitally between 100 and 400&deg;C (212&ndash;752&deg;F), and take swappable tips. Useful for working away from the shop.</p>
 
 <h4>The iron and its tips</h4>
@@ -171,7 +191,51 @@ R = V / I = 3 / 0.003 = 1000 ohms  -&gt;  use a 1 k&Omega; resistor</code></pre>
     <li>Shrink it with a heat gun, not the iron. The iron melts it.</li>
 </ul>
 
-<h4>Tools</h4>
+<h4>Technique</h4>
+<ol>
+    <li><strong>Tin the tip</strong>: melt a little solder on the clean tip so it shines. A shiny tip transfers heat; a dull one does not.</li>
+    <li><strong>Heat the joint, not the solder</strong>: touch the tip to both the pad and the lead at once.</li>
+    <li>After 1&ndash;2 seconds, feed solder into the <strong>joint</strong> (opposite side from the iron), not onto the tip.</li>
+    <li>Remove the solder, then the iron. Do not move the parts for a few seconds while it cools.</li>
+    <li>A good joint is <strong>shiny and shaped like a small volcano</strong>, wetting both surfaces. A ball sitting on top, or a dull grainy surface, is a cold joint: reheat it with a little flux.</li>
+    <li>Wire to wire: tin both ends first, slide heat-shrink on <em>before</em> joining, then join and shrink.</li>
+</ol>
+
+<hr />
+<h3>6. When to Solder</h3>
+<ul>
+    <li><strong>Breadboard</strong> while you are still testing and changing the circuit.</li>
+    <li><strong>Solder</strong> when a connection has to survive: parts that move or vibrate, wires going inside an enclosure, modules that come without pins, and your final prototype.</li>
+    <li>Many modules (sensors, drivers) come as a small <strong>PCB with loose header pins</strong>. Soldering the headers on is often the first soldering job of a project, and then the module can plug into a breadboard.</li>
+</ul>
+
+<hr />
+<h3>7. Solderable Breadboard: From Breadboard to Soldered</h3>
+<p>A <strong>solderable breadboard</strong> is a circuit board with exactly the same layout as your breadboard: rows of five connected holes, a centre gap, and power rails along the edges. The difference is that parts are soldered in, so the circuit survives being handled. Because the layout matches, you can move a breadboard circuit across <strong>hole for hole</strong>: a part in row 10, holes a&ndash;c on the breadboard goes into row 10, holes a&ndash;c on the board.</p>
+<ul>
+    <li><strong>Get it working on the breadboard first.</strong> Never design a circuit directly on the board.</li>
+    <li><strong>Note every part's position</strong> on the breadboard before you remove it (a photo works), then place it in the same holes on the board.</li>
+    <li><strong>Parts go on the printed side, solder on the back.</strong> Push the legs through, bend them slightly outward so the part stays put, then solder.</li>
+    <li><strong>Jumper wires become short pieces of solid wire</strong>, cut to length and soldered in the same holes.</li>
+    <li><strong>Wires off the board</strong> (to power, to the Arduino, to a button in a lid) are stranded, colour-coded (red for 5V, black for GND), and long enough to reach without strain.</li>
+    <li><strong>Check before power</strong>: trim extra legs, look for solder bridges between holes that should not touch, and test with continuity. Then connect power and test that it behaves exactly as it did on the breadboard.</li>
+</ul>
+<p>Later in the term you may also meet <strong>perfboard</strong>: the same 2.54 mm grid of holes, but none of them connected. It is more flexible and more compact, and every connection is made with solder or wire.</p>
+
+<hr />
+<h3>8. Documenting a Circuit in Fritzing</h3>
+<p><a href="https://fritzing.org/" target="_blank" rel="noopener">Fritzing</a> draws a circuit the way it looks on a breadboard, so a classmate can rebuild it from your drawing. It is how parts are documented in the class library.</p>
+<p><strong>Fritzing is a paid download</strong> (about $12 for individuals, from <a href="https://fritzing.org/download/" target="_blank" rel="noopener">fritzing.org/download</a>). Buy and install it before class.</p>
+<ol>
+    <li>In the <strong>Breadboard</strong> view, place a breadboard, a power source and your parts, and draw each wire. Use the same wire colours as your real circuit.</li>
+    <li>From Week 7, when the Arduino joins your circuits: download <code>arduino-UNO-R4-wifi.fzpz</code> from the <a href="https://github.com/julesmoretti/ACCD-Fritzing-Parts" target="_blank" rel="noopener">ACCD-Fritzing-Parts</a> repo and open it in Fritzing. It adds the UNO R4 WiFi to your parts bin.</li>
+    <li>Check the <strong>Schematic</strong> view. Fritzing builds it from your breadboard drawing; tidy it so the lines do not cross where they do not need to.</li>
+    <li>If Fritzing has no part for your component, use the closest generic part and label it with a note.</li>
+    <li>Save the <code>.fzz</code> file, and export the Breadboard view as a <code>.jpg</code> (<em>File &gt; Export &gt; as Image</em>).</li>
+</ol>
+
+<hr />
+<h3>Appendix: Tools at a Soldering Station</h3>
 <table style="border-collapse: collapse; width: 100%;" border="1">
     <thead>
         <tr>
@@ -193,45 +257,3 @@ R = V / I = 3 / 0.003 = 1000 ohms  -&gt;  use a 1 k&Omega; resistor</code></pre>
         <tr><td style="padding: 6px;"><strong>Multimeter</strong></td><td style="padding: 6px;">Checks every joint for continuity.</td></tr>
     </tbody>
 </table>
-
-<h4>Technique</h4>
-<ol>
-    <li><strong>Tin the tip</strong>: melt a little solder on the clean tip so it shines. A shiny tip transfers heat; a dull one does not.</li>
-    <li><strong>Heat the joint, not the solder</strong>: touch the tip to both the pad and the lead at once.</li>
-    <li>After 1&ndash;2 seconds, feed solder into the <strong>joint</strong> (opposite side from the iron), not onto the tip.</li>
-    <li>Remove the solder, then the iron. Do not move the parts for a few seconds while it cools.</li>
-    <li>A good joint is <strong>shiny and shaped like a small volcano</strong>, wetting both surfaces. A ball sitting on top, or a dull grainy surface, is a cold joint: reheat it with a little flux.</li>
-    <li>Wire to wire: tin both ends first, slide heat-shrink on <em>before</em> joining, then join and shrink.</li>
-</ol>
-
-<hr />
-<h3>7. When to Solder</h3>
-<ul>
-    <li><strong>Breadboard</strong> while you are still testing and changing the circuit.</li>
-    <li><strong>Solder</strong> when a connection has to survive: parts that move or vibrate, wires going inside an enclosure, modules that come without pins, and your final prototype.</li>
-    <li>Many modules (sensors, drivers) come as a small <strong>PCB with loose header pins</strong>. Soldering the headers on is often the first soldering job of a project, and then the module can plug into a breadboard.</li>
-</ul>
-
-<hr />
-<h3>8. Perfboard: From Breadboard to Soldered</h3>
-<p>A <strong>perfboard</strong> is a board of holes on a 2.54 mm grid, the same spacing as a breadboard and as most component pins. Unlike a breadboard, the holes are not connected to each other: you make every connection with solder. It is the simplest way to turn a breadboard circuit into one that survives being handled.</p>
-<ul>
-    <li><strong>Get it working on the breadboard first.</strong> Never design a circuit on perfboard.</li>
-    <li><strong>Plan the layout on paper</strong> before you remove anything from the breadboard: one square per hole, each part drawn where it will sit. Keep connected parts next to each other so the joints are short.</li>
-    <li><strong>Parts go on the top, solder on the bottom.</strong> Push the legs through, bend them slightly outward so the part stays put, then solder.</li>
-    <li><strong>Connections</strong>: bend a part's own leg across to the next joint, or use a short piece of bare (tinned) wire. Use insulated wire where a connection has to cross another.</li>
-    <li><strong>Wires off the board</strong> (to power, to the Arduino, to a button in a lid) are stranded, colour-coded (red for 5V, black for GND), and long enough to reach without strain.</li>
-    <li><strong>Check before power</strong>: trim extra legs, look for solder bridges between holes that should not touch, and test with continuity. Then connect power and test that it behaves exactly as it did on the breadboard.</li>
-</ul>
-
-<hr />
-<h3>9. Documenting a Circuit in Fritzing</h3>
-<p><a href="https://fritzing.org/" target="_blank" rel="noopener">Fritzing</a> draws a circuit the way it looks on a breadboard, so a classmate can rebuild it from your drawing. It is how parts are documented in the class library.</p>
-<p><strong>Fritzing is a paid download</strong> (about $12 for individuals, from <a href="https://fritzing.org/download/" target="_blank" rel="noopener">fritzing.org/download</a>). Buy and install it before class.</p>
-<ol>
-    <li>In the <strong>Breadboard</strong> view, place a breadboard, a power source and your parts, and draw each wire. Use the same wire colours as your real circuit.</li>
-    <li>From Week 7, when the Arduino joins your circuits: download <code>arduino-UNO-R4-wifi.fzpz</code> from the <a href="https://github.com/julesmoretti/ACCD-Fritzing-Parts" target="_blank" rel="noopener">ACCD-Fritzing-Parts</a> repo and open it in Fritzing. It adds the UNO R4 WiFi to your parts bin.</li>
-    <li>Check the <strong>Schematic</strong> view. Fritzing builds it from your breadboard drawing; tidy it so the lines do not cross where they do not need to.</li>
-    <li>If Fritzing has no part for your component, use the closest generic part and label it with a note.</li>
-    <li>Save the <code>.fzz</code> file, and export the Breadboard view as a <code>.jpg</code> (<em>File &gt; Export &gt; as Image</em>).</li>
-</ol>

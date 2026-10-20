@@ -1,70 +1,120 @@
 <!-- Canvas page: Week 6 - Electronics Fundamentals (In-Class Exercises) -->
 <!-- Paste the contents of this file into the Canvas HTML editor. -->
-<!-- DRAFT 19 Oct 2026: not yet reviewed by Jules. Class runs in the shop,
-     9:00-12:00 on 23 Oct. 3 soldering stations, 5 students: Group A (3) and
-     Group B (2) swap between soldering and breadboarding. -->
-<!-- KNOWN GAP: confirm the shop booking and that the perfboards have arrived. -->
+<!-- DRAFT 19 Oct 2026: not yet reviewed by Jules. 9:00-12:00 on 23 Oct.
+     Starts in the classroom, moves to the shop for soldering. 3 soldering
+     stations, 5 students: Group A (3) and Group B (2) take turns at the irons. -->
+<!-- KNOWN GAP: confirm the shop booking, and that each kit has a 9V battery
+     clip or adapter for the power module's barrel jack. -->
 
-<p>Today we meet in the shop. Safety glasses on before any iron is switched on, and they stay on until the irons are off.</p>
-<p>By the end of class you will have taken one circuit through the whole path you will use for your project: <strong>breadboard it, test it, solder it onto perfboard, test it again.</strong></p>
+<p>We start in the classroom, then move to the shop for soldering. Bring your safety glasses and your BOJACK kit.</p>
+<p>Today you take one small circuit through the whole path you will use for your project: <strong>breadboard it, test it, solder it, test it again.</strong></p>
 
-<h3>Part 1: Together (about 1 hour)</h3>
-
-<h4>1. Safety (10 min)</h4>
+<h3>The Class Circuit</h3>
+<p>Two LEDs, one button and the power module's switch, all from your BOJACK kit:</p>
 <ul>
-    <li>Why the glasses: overheated parts can burst (a capacitor held too long under the iron, or wired backwards), clipped leads fly, solder spits.</li>
-    <li>The iron is 300&ndash;400&deg;C. It lives in its stand. Never catch a falling iron.</li>
-    <li>The fume extractor: how it works, and where to put it (a hand-width from the joint, smoke pulled away from your face).</li>
-    <li>Wash your hands after soldering; no food or drink at the bench.</li>
+    <li><strong>Switch the module on</strong>: the red LED lights. The circuit has power.</li>
+    <li><strong>Press the button</strong>: the green LED lights while you hold it.</li>
+    <li><strong>Switch the module off</strong>: everything goes dark.</li>
+</ul>
+<p>Parts: the power supply module (both jumpers on 5V), 2 &times; 1 k&Omega; resistors, 1 red LED, 1 green LED, 1 push button, jumper wires.</p>
+<p><strong>LEDs only work one way round.</strong> The <strong>long leg (+)</strong> goes toward the positive side of the circuit, the <strong>short leg (&minus;)</strong> toward the negative side. The rim of the LED is also flat on the short-leg side. A backwards LED simply stays dark: turn it round.</p>
+<!-- RELINK REQUIRED: Fritzing Breadboard view of the class circuit. Export as
+     images/class-circuit-breadboard.png, upload to Canvas, replace the src below. -->
+<p><img src="images/class-circuit-breadboard.png" alt="Class circuit on a breadboard: power module, red LED with 1k resistor, push button feeding a green LED with 1k resistor" /></p>
+<table style="border-collapse: collapse; width: 100%;" border="1">
+    <thead>
+        <tr>
+            <th style="padding: 6px; text-align: left;">Part</th>
+            <th style="padding: 6px; text-align: left;">From</th>
+            <th style="padding: 6px; text-align: left;">To</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr><td style="padding: 6px;">R1 1 k&Omega;</td><td style="padding: 6px;">top + rail, row 5</td><td style="padding: 6px;">a5</td></tr>
+        <tr><td style="padding: 6px;">LED1 red</td><td style="padding: 6px;">long leg (+) c5</td><td style="padding: 6px;">short leg (&minus;) c6</td></tr>
+        <tr><td style="padding: 6px;">Black wire</td><td style="padding: 6px;">a6</td><td style="padding: 6px;">top &minus; rail</td></tr>
+        <tr><td style="padding: 6px;">Red wire</td><td style="padding: 6px;">top + rail, row 12</td><td style="padding: 6px;">a12</td></tr>
+        <tr><td style="padding: 6px;">S1 button</td><td style="padding: 6px;">across the centre gap: e12, e14, f12, f14</td><td style="padding: 6px;">the diagonal legs (e12 and f14) do the switching, whichever way round it sits</td></tr>
+        <tr><td style="padding: 6px;">R2 1 k&Omega;</td><td style="padding: 6px;">g14</td><td style="padding: 6px;">g18</td></tr>
+        <tr><td style="padding: 6px;">LED2 green</td><td style="padding: 6px;">long leg (+) h18</td><td style="padding: 6px;">short leg (&minus;) h19</td></tr>
+        <tr><td style="padding: 6px;">Black wire</td><td style="padding: 6px;">j19</td><td style="padding: 6px;">bottom &minus; rail</td></tr>
+        <tr><td style="padding: 6px;">Black wire (rail bridge)</td><td style="padding: 6px;">top &minus; rail, row 29</td><td style="padding: 6px;">bottom &minus; rail, row 29</td></tr>
+    </tbody>
+</table>
+<p>Rows 1&ndash;30 run along the board; holes a&ndash;e sit above the centre gap, f&ndash;j below it. The rail bridge is not needed on the breadboard (the module powers both sides), but it is on the soldered board, so build it in now.</p>
+
+<hr />
+<h3>Part 1: Watch Me (classroom, about 45 min)</h3>
+
+<h4>1. How a Breadboard Works (10 min)</h4>
+<ul>
+    <li>What is under the plastic: the metal clips under each row of five holes, the long strips under the power rails, the centre gap.</li>
+    <li>The power supply module: where it plugs in, the 5V jumpers, the switch, which rail is + and which is &minus;.</li>
+    <li>Safe on the breadboard: switch off before you rewire; never + straight to &minus;; every LED gets a resistor.</li>
 </ul>
 
-<h4>2. How a Breadboard Works (10 min)</h4>
+<h4>2. Demo: Build the Class Circuit (15 min)</h4>
+<p>I build it in front of you, one part at a time, switching on after each step: red LED first, then the button branch. Watch where each leg goes.</p>
+
+<h4>3. Demo: The Multimeter (10 min)</h4>
 <ul>
-    <li>Inside a breadboard: the metal clips under each row of five holes, the long strips under the power rails, the centre gap.</li>
-    <li>Powering it: the <strong>power supply module</strong> from the BOJACK kit clips onto one end of the breadboard and feeds both rails. Set its jumpers to <strong>5V</strong>, power it through its barrel jack, and press its switch. No Arduino today; that is Week 7.</li>
+    <li><strong>The leads</strong>: black always goes in <strong>COM</strong>. Red goes in <strong>V&Omega;mA</strong> for everything we do today: volts, resistance, continuity. The <strong>10A</strong> socket is only for measuring large currents, which we do not do in this class; a red lead left there turns the meter into a short circuit the moment you touch it across a supply.</li>
+    <li><strong>Choose the mode and range before the probes touch anything.</strong> Our meters (AstroAI AM33D) are manual-ranging: pick the range just above what you expect. For 5V, turn the dial to <strong>20</strong> in the DC volts (V&#9107;) section.</li>
+    <li>DC volts: between the rails (~5V), across R1, across LED1. The last two add up to the first.</li>
+    <li>Continuity, with the module off: along a rail, across the button (beeps only while pressed).</li>
+    <li>What not to do: mains, measuring with the red lead in 10A, and changing the dial while the probes are on the circuit.</li>
 </ul>
 
-<h4>3. Materials (15 min)</h4>
+<h4>4. Materials (10 min)</h4>
 <ul>
-    <li><strong>Wire</strong>: solid core (breadboards, wires that never move) versus stranded (anything that moves, bends or vibrates). Gauge: 22 AWG for signals, 18&ndash;20 AWG for motors and power.</li>
+    <li><strong>Wire</strong>: solid core versus stranded, and when to use each. Gauge: 22 AWG for signals, 18&ndash;20 AWG for motors and power.</li>
     <li><strong>Solder</strong>: what the shop supplies, rosin core, diameter.</li>
-    <li><strong>Flux</strong>: what it does, flux pen for rework, cleaning residue with isopropyl alcohol and a brush.</li>
+    <li><strong>Flux</strong>: what it does, the flux pen, cleaning residue with isopropyl alcohol and a brush.</li>
     <li><strong>Heat-shrink</strong>: sizing, slide it on before you solder, shrink with the heat gun.</li>
+    <li><strong>The solderable breadboard</strong>: the same layout as the breadboard, so the circuit moves across hole for hole.</li>
 </ul>
 
-<h4>4. The Iron: Tips and Temperature (10 min)</h4>
+<hr />
+<h3>Part 2: Build It Yourself (classroom, 30 min)</h3>
+<ol>
+    <li>Build the class circuit on your breadboard from the table above, long LED leg toward +. Switch on after each branch.</li>
+    <li>Measure: the voltage between the rails, across R1 and across LED1. Write the three numbers down.</li>
+    <li>Switch off. With continuity, check the button: it should beep only while pressed.</li>
+    <li>Take a photo from straight above. You copy it onto the solderable board in the shop.</li>
+</ol>
+
+<hr />
+<h3>Part 3: Watch Me Solder (shop, 20 min)</h3>
+<p>Everyone at one bench, safety glasses on.</p>
 <ul>
-    <li>The shop station: tip, stand, brass wool, temperature dial.</li>
-    <li>A portable iron (TS80): runs from a USB-C power bank, digital temperature setting, swappable tips.</li>
-    <li>Fine conical tip versus chisel tip: use the biggest tip that fits the joint.</li>
-    <li>Temperature: cooler for small, heat-sensitive parts; hotter for thick wire and big pads. Aim for a joint in 2&ndash;3 seconds.</li>
+    <li><strong>Safe at the iron</strong>: why the glasses (overheated parts can burst, clipped leads fly, solder spits); the stand; never catch a falling iron; no power to the circuit while soldering.</li>
+    <li><strong>The fume extractor</strong>: switch it on, a hand-width from the joint, head to one side of the smoke.</li>
+    <li><strong>Two irons</strong>: the shop station (stand, brass wool, temperature dial) and a portable TS80 (USB-C power bank, digital temperature, swappable tips). Fine tip versus chisel tip; cooler for small parts, hotter for thick wire; a joint in 2&ndash;3 seconds.</li>
+    <li><strong>Demo</strong>: tin the tip, then move the class circuit onto a solderable breadboard: parts in the same holes, legs bent, soldered, trimmed; jumpers replaced by short solid wires; red and black stranded leads with heat-shrink; a continuity check; then power it from the module. It should behave exactly as the breadboard did.</li>
 </ul>
-
-<h4>5. Demo: Breadboard to Perfboard (15 min)</h4>
-<p>One circuit, the whole path: the working breadboard version, the layout planned on paper, parts placed through the perfboard, legs bent and soldered, connections made with legs or bare wire, extra legs trimmed, power wires added, a continuity check, then the finished board tested on the same 5V and GND.</p>
+<!-- RELINK REQUIRED: photo or Fritzing view of the finished solderable board.
+     Save as images/class-circuit-solderable.png, upload to Canvas, replace the src below. -->
+<p><img src="images/class-circuit-solderable.png" alt="The class circuit soldered onto a solderable breadboard, with red and black power leads" /></p>
 
 <hr />
-<h3>Part 2: Two Rotations (2 &times; 45 min, with a short break between)</h3>
-<p>There are three soldering stations. <strong>Group A</strong> (three of you) starts at the irons while <strong>Group B</strong> (two of you) works on breadboards. Then you swap.</p>
-
-<h4>At the soldering station</h4>
+<h3>Part 4: Solder It Yourself (shop, 2 &times; 35 min)</h3>
+<p>Three soldering stations: <strong>Group A</strong> (three of you) solders first while <strong>Group B</strong> (two of you) works on Fritzing; then swap.</p>
+<h4>At the iron</h4>
 <ol>
-    <li><strong>Strip and tin</strong> (10 min): strip 5&ndash;7 mm from one solid and one stranded wire, twist the stranded end, tin the iron, tin both ends. A tinned end is shiny and evenly coated, not blobbed.</li>
-    <li><strong>Splice two wires</strong> (15 min): heat-shrink on first, join the tinned ends, let it cool, shrink it, check continuity, tug gently.</li>
-    <li><strong>LED and resistor on perfboard</strong> (20 min): draw the layout first, place a 1 k&Omega; resistor and an LED, solder, add a red stranded wire for 5V and a black one for GND, trim the legs, check continuity, then connect it to the power module's rails. It should light.</li>
+    <li><strong>Power leads</strong> (10 min): strip 5&ndash;7 mm from a red and a black stranded wire, twist, tin the ends. Slide heat-shrink on before you solder them to the board.</li>
+    <li><strong>The class circuit</strong> (25 min): place each part in the same holes as your breadboard photo, solder, trim. Short solid wires for the jumpers, including the rail bridge. Solder the red lead to the top + rail and the black lead to the top &minus; rail at row 1, then shrink the heat-shrink.</li>
+    <li>Check continuity (nothing bridged that should not be), then plug the leads into your powered breadboard's rails. Red LED on; press, green LED on.</li>
 </ol>
-
-<h4>At the breadboard bench</h4>
+<h4>At the Fritzing bench</h4>
 <ol>
-    <li><strong>Breadboard and multimeter</strong> (25 min): clip the power supply module onto the breadboard, set both jumpers to 5V, and switch it on. Build + rail &rarr; 1 k&Omega; resistor &rarr; LED long leg; LED short leg &rarr; &minus; rail. Measure the voltage between the rails, across the resistor and across the LED; the last two should add up to the first. Switch the module off, set the meter to continuity, and check one rail along its full length.</li>
-    <li><strong>Add a button</strong> (10 min): put a push button between the + rail and the resistor. The LED should light only while it is pressed. This is your homework circuit; draw its perfboard layout now.</li>
-    <li><strong>Fritzing</strong> (10 min): open Fritzing and start drawing the button circuit in the Breadboard view: breadboard, power source, button, resistor, LED.</li>
+    <li>Open Fritzing and draw the class circuit in the Breadboard view: breadboard, power source, resistors, LEDs, button, wires. Same colours as your real circuit.</li>
+    <li>Check the Schematic view and tidy it. You finish this for homework.</li>
 </ol>
 
 <hr />
-<h3>Part 3: Wrap-Up (15 min)</h3>
+<h3>Wrap-Up (10 min)</h3>
 <ul>
     <li><strong>Inspect each other's joints</strong>: shiny volcano, or cold and lumpy? Fix one cold joint together.</li>
-    <li><strong>Your project parts</strong>: for each one, note how it connects (pins that fit a breadboard, loose header pins that need soldering, bare wires, or a connector). Keep the notes. Next week's hardware overview starts from them.</li>
-    <li><strong>Homework</strong>: take a perfboard and lengths of red and black stranded wire before you leave. You will solder the button circuit in the shop during the week.</li>
+    <li><strong>Your project parts</strong>: for each one, note how it connects (pins that fit a breadboard, loose header pins that need soldering, bare wires, or a connector). Next week's hardware overview starts from these notes.</li>
+    <li>If your soldered board is not finished, book shop time this week to finish it.</li>
 </ul>
