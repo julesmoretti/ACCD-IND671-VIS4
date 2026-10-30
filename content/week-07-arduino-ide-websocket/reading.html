@@ -132,7 +132,7 @@ void loop() {
 }</code></pre>
 <h4>Step 3c: Flashing an LED Attached to a Breadboard</h4>
 <p>Now, we will connect an external LED to a breadboard and flash it. Connect one end of the LED to a digital pin (e.g., pin 7) and the other end to the ground through a resistor (to limit current and protect the LED). Use <strong>1 k&Omega;</strong>: each UNO R4 pin should supply no more than 8 mA (see the Week 6 reading).</p>
-<pre><code>const int ledPin = 13; // External LED connected to pin 13
+<pre><code>const int ledPin = 7; // External LED connected to pin 7
 
 void setup() {
   pinMode(ledPin, OUTPUT); // Set external LED as an output
@@ -164,12 +164,13 @@ void loop() {
     digitalWrite(ledPin, LOW);
   }
 }</code></pre>
-<p>In order for the button to read properly you will need to use a resistor like so:</p>
-<p><!-- RELINK REQUIRED: after uploading this image to Canvas, replace the src below with the Canvas file URL. Original export ref: $IMS-CC-FILEBASE$/Uploaded%20Media/Button%20Circuit.png -->
-<img src="images/button-circuit.png" alt="Button Circuit.png"></p>
+<p>In order for the button to read properly you will need to use a resistor like so (a 10 k&Omega; <em>pull-down</em> resistor, which keeps the pin LOW until the button is pressed):</p>
+<p><!-- Points at the Canvas file already used on the live page (course 17192). If it does not display in this term's course, upload the copy in images/ and repoint. -->
+<img src="/courses/17192/files/2567495/preview" alt="Button Circuit.png"></p>
 <p>Which from a schematic stand point should look like this:</p>
-<p><!-- RELINK REQUIRED: after uploading this image to Canvas, replace the src below with the Canvas file URL. Original export ref: $IMS-CC-FILEBASE$/Uploaded%20Media/Button%20schematic.png -->
-<img src="images/button-schematic.png" alt="Button schematic.png"></p>
+<p><!-- Points at the Canvas file already used on the live page (course 17192). If it does not display in this term's course, upload the copy in images/ and repoint. -->
+<img src="/courses/17192/files/2567493/preview" alt="Button schematic.png"></p>
+<p><strong>The shortcut we use in class</strong>: the UNO R4 has a resistor built into every pin. Turn it on with <code>pinMode(buttonPin, INPUT_PULLUP);</code> and wire the button straight from the pin to GND, with no resistor. The logic flips: the pin reads <code>HIGH</code> when released and <code>LOW</code> when pressed.</p>
 <hr>
 <h3>Step 5: Reading a Potentiometer</h3>
 <p>We can also read analog values using the Arduino. In this example, we'll read the value from a potentiometer and print it to the serial monitor. This is useful to understand how to handle analog inputs and see the output in real-time.</p>
@@ -185,8 +186,8 @@ void loop() {
   delay(100); // Wait for 100ms
 }</code></pre>
 <p>To see the output, click the serial monitor button in the Arduino IDE after uploading the code.</p>
-<p><!-- RELINK REQUIRED: after uploading this image to Canvas, replace the src below with the Canvas file URL. Original export ref: $IMS-CC-FILEBASE$/Uploaded%20Media/potmeter.png -->
-<img src="images/potmeter.png" alt="potmeter.png"></p>
+<p><!-- Points at the Canvas file already used on the live page (course 17192). If it does not display in this term's course, upload the copy in images/ and repoint. -->
+<img src="/courses/17192/files/2567492/preview" alt="potmeter.png"></p>
 <hr>
 <h3>Step 6: WebSocket Connection Strategy</h3>
 <h4>Step 6a: The Overall Strategy</h4>
@@ -246,18 +247,21 @@ wss.on('connection', function connection(ws, req) {
 });
 
 console.log(ip.address() + ' listening on port ', port);</code></pre>
-<p>Then in terminal type <code>npm init</code>, go through all the steps until you are out of it.</p>
+<p>Then in terminal, inside that folder, type <code>npm init -y</code>. It creates a <code>package.json</code> without asking any questions.</p>
 <p>Then run: <code>npm install ws ip</code></p>
 <p>And finally run <code>node server.js</code>, which starts your server. Note the IP address it prints: the Arduino needs it.</p>
 <h4>Step 6c: React App WebSocket Integration</h4>
-<p>Now, we will add WebSocket integration to the React app. We can create a new project for the react app with Vite:</p>
+<p>Now, we will add WebSocket integration to the React app. This step shows it on a fresh app so you can see the parts on their own; in class we add the same code to your React Number Adder. We can create a new project for the react app with Vite:</p>
 <pre><code>npm create vite@latest react_app_ws -- --template react<br>cd react_app_ws<br>npm install</code></pre>
 <p>Choose the plain <code>react</code> template, not <code>react-ts</code>. We will use the <code>react-use-websocket</code> library to handle WebSocket connections. Install it using npm:</p>
 <pre><code>npm install react-use-websocket</code></pre>
 <p>Here is the updated React code with WebSocket functionality:</p>
 <pre><code>import React, { useState, useEffect } from 'react';
 import './App.css';
-import useWebSocket, { ReadyState } from 'react-use-websocket';
+import useWebSocketImport, { ReadyState } from 'react-use-websocket';
+
+// Vite 8 imports this package as an object, not a function. This line works either way.
+const useWebSocket = useWebSocketImport.default || useWebSocketImport;
 
 function App() {
   const socketUrl = 'ws://localhost:8080';
@@ -317,7 +321,7 @@ function App() {
 
 export default App;</code></pre>
 <h4>Step 6d: Arduino Integration</h4>
-<p>Finally, here is the Arduino code to integrate with the WebSocket server. Ensure the necessary libraries are installed, including <code>ArduinoHttpClient</code>, <code>WiFiS3</code>:</p>
+<p>Finally, here is the Arduino code to integrate with the WebSocket server. Ensure the necessary libraries are installed, including <code>ArduinoHttpClient</code>, <code>WiFiS3</code>. In class we use a shorter version of this sketch, connected to your Number Adder.</p>
 <pre><code>#include &lt;ArduinoHttpClient.h&gt;
 #include &lt;WiFiS3.h&gt;
 #include "Arduino_LED_Matrix.h"

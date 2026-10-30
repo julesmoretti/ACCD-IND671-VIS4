@@ -1,83 +1,378 @@
 <!-- Canvas page: Week 7 - Arduino + IDE + WebSocket (In-Class Exercises) -->
 <!-- Paste the contents of this file into the Canvas HTML editor. -->
-<!-- DRAFT 12 Oct 2026: not yet reviewed by Jules. -->
-<!-- KNOWN GAP: the Exercise 5 code (button on pin 2 -> server -> React Number
-     Adder, and back to the LED matrix) was written but never run on a real
-     UNO R4. Run it end to end once before 30 Oct. -->
+<!-- DRAFT 29 Oct 2026: not yet reviewed by Jules. All sketches compiled for
+     the UNO R4 WiFi (arduino-cli, renesas_uno 1.6.0, ArduinoHttpClient 0.6.2).
+     Server + React side tested end to end with a simulated Arduino (all five
+     buttons, negative totals). Not yet run on a real board. -->
+<!-- Do not write the campus WiFi password into this file: the repo is public.
+     Give it out in class. -->
 
-<p>Today the Arduino and your React apps start talking. Keep the Week 7 reading open: the exercises point to its steps rather than repeating the code.</p>
+<p>Today you build your first working prototype end to end: buttons on your breadboard work your React Number Adder, and the Number Adder shows its total on the Arduino's LED matrix. Part 1 you follow along with me, step by step. Part 2 you do on your own.</p>
 
-<h3>Exercise 1: First Sketch (10 min)</h3>
+<h3>Before We Start</h3>
+<ul>
+    <li><strong>Bring</strong>: your laptop with the React Number Adder from Week 4, your UNO R4 WiFi and a USB-C cable that carries data, your BOJACK kit (breadboard, 5 push buttons, an LED, a 1 k&Omega; resistor, a potentiometer, jumper wires).</li>
+    <li><strong>Network</strong>: your laptop and your Arduino both join the campus WiFi. I give you the network name and password in class.</li>
+</ul>
+
+<h3>How It Fits Together</h3>
+<pre><code>Arduino  &lt;--WiFi--&gt;  server (on your laptop)  &lt;--&gt;  React Number Adder (in your browser)
+
+device to screen:   {"button": "+1"}   a physical button works the Number Adder
+screen to device:   TOTAL:5            the LED matrix shows the total</code></pre>
+<p>The Arduino and the React app never talk to each other directly. Both connect to a small server on your laptop, and the server passes each message on.</p>
+
+<hr />
+<h3>Part 1: Follow Along (1 hour)</h3>
+<p>I do each step on the screen; you do it at the same time. Do not move on until your board does what mine does.</p>
+
+<h4>F1. Board, Port and Blink (10 min)</h4>
 <ol>
-    <li>Set the board and port (reading, Step 2b).</li>
-    <li>Write a sketch that prints <code>"Hello from Arduino"</code> and a counter to the Serial Monitor once a second.</li>
-    <li>Change it so the counter is an <code>int</code> that goes up by one each time. Compare with how you wrote <code>total</code> in JavaScript.</li>
+    <li>Plug in the UNO R4. In the Arduino IDE: <em>Tools &gt; Board &gt; Arduino UNO R4 Boards &gt; Arduino UNO R4 WiFi</em>, then <em>Tools &gt; Port</em> and pick the one labelled UNO R4 WiFi.</li>
+    <li>Upload this, then open <em>Tools &gt; Serial Monitor</em> at 9600 baud. The LED marked <strong>L</strong> blinks, and the Serial Monitor counts:
+<pre><code>int counter = 0;
+
+void setup() {
+  Serial.begin(9600);
+  pinMode(LED_BUILTIN, OUTPUT);   // the small LED marked L on the board
+}
+
+void loop() {
+  digitalWrite(LED_BUILTIN, HIGH);  // on
+  delay(500);
+  digitalWrite(LED_BUILTIN, LOW);   // off
+  delay(500);
+  Serial.print("Blink number ");
+  Serial.println(counter);
+  counter = counter + 1;
+}</code></pre>
+    </li>
+    <li>Compare with JavaScript: <code>int</code> instead of <code>let</code>, <code>Serial.println</code> instead of <code>console.log</code>, and <code>loop()</code> runs over and over by itself.</li>
 </ol>
 
-<hr />
-<h3>Exercise 2: LED and Button on the Breadboard (25 min)</h3>
+<h4>F2. One LED on the Matrix (5 min)</h4>
+<p>The UNO R4 WiFi has a grid of 96 red LEDs, 8 rows by 12 columns. Light one:</p>
+<pre><code>#include "Arduino_LED_Matrix.h"
+
+ArduinoLEDMatrix matrix;
+uint8_t frame[8][12] = {0};   // 8 rows, 12 columns, all off
+
+void setup() {
+  matrix.begin();
+}
+
+void loop() {
+  frame[2][2] = 1;                    // row 2, column 2 on
+  matrix.renderBitmap(frame, 8, 12);
+  delay(1000);
+  frame[2][2] = 0;                    // off again
+  matrix.renderBitmap(frame, 8, 12);
+  delay(1000);
+}</code></pre>
+<p>Change <code>frame[2][2]</code> to another row and column. Later today this matrix shows your Number Adder's total.</p>
+
+<h4>F3. An LED and a Button on the Breadboard (15 min)</h4>
 <ol>
-    <li>Build reading Step 3c: an external LED on pin 7 with a 1 k&Omega; resistor. Make it blink.</li>
-    <li>Build reading Step 4: a button that turns the LED on while pressed.</li>
-    <li>Print the button state to the Serial Monitor. Watch how many times one press is printed: <code>loop()</code> runs thousands of times a second.</li>
-</ol>
-
-<hr />
-<h3>Exercise 3: Potentiometer (10 min)</h3>
-<p>Build reading Step 5. Turn the knob and watch the value go from 0 to 1023 in the Serial Monitor.</p>
-
-<hr />
-<h3>Exercise 4: Run the WebSocket Example (40 min)</h3>
-<ol>
-    <li>Start the server (reading Step 6b). Write down the IP address it prints.</li>
-    <li>Create and run the React app (Step 6c). The connection status should read <em>Open</em>.</li>
-    <li>Put that IP address and your WiFi details into the Arduino sketch (Step 6d) and upload it.</li>
-    <li>Turn the potentiometer: the value should update in the React app. Click <em>Add 1 LED</em>: an LED should light on the board's matrix.</li>
-</ol>
-<p>If it does not connect: laptop and Arduino must be on the <strong>same WiFi network</strong>, the server must be running first, and the IP in the sketch must match the one the server printed.</p>
-
-<hr />
-<h3>Exercise 5: Connect Your Number Adder (40 min)</h3>
-<p>Now use the same server with your React Number Adder (the one you finished in Week 5). A physical button adds 1, and the board's LED matrix shows the total.</p>
-<h4>Arduino side</h4>
-<p>Wire a button between <strong>pin 2</strong> and <strong>GND</strong> (no resistor needed: we use the board's internal pull-up). Add to the Step 6d sketch:</p>
-<pre><code>const int buttonPin = 2;
+    <li>LED: <strong>pin 7</strong> &rarr; 1 k&Omega; resistor &rarr; LED long leg (+); LED short leg (&minus;) &rarr; the breadboard's &minus; rail. Wire the &minus; rail to the Arduino's <strong>GND</strong>.</li>
+    <li>Button: across the centre gap. One leg to <strong>pin 2</strong>, the diagonal leg to the &minus; rail. No resistor: <code>INPUT_PULLUP</code> switches on the one built into the pin.</li>
+    <li>Upload this. The LED lights while you hold the button, and each press prints once:
+<pre><code>const int ledPin = 7;      // LED + 1k resistor on pin 7
+const int buttonPin = 2;   // button between pin 2 and GND
 int lastButtonState = HIGH;
 
-// in setup():
-pinMode(buttonPin, INPUT_PULLUP);
-
-// in loop(), after the message-reading block:
-int buttonState = digitalRead(buttonPin);
-if (buttonState == LOW &amp;&amp; lastButtonState == HIGH) {   // just pressed
-  client.beginMessage(TYPE_TEXT);
-  client.print("{\"button\": \"+1\"}");
-  client.endMessage();
-  delay(50);                                           // ignore switch bounce
+void setup() {
+  Serial.begin(9600);
+  pinMode(ledPin, OUTPUT);
+  pinMode(buttonPin, INPUT_PULLUP);   // HIGH when released, LOW when pressed
 }
-lastButtonState = buttonState;</code></pre>
-<h4>React side</h4>
-<p>In your Week 4 Number Adder, run <code>npm install react-use-websocket</code>, then in <code>App.jsx</code>:</p>
-<pre><code>import { useState, useEffect } from 'react';
-import useWebSocket from 'react-use-websocket';
 
-// inside App(), after your useState lines:
-const { sendMessage, lastMessage } = useWebSocket('ws://localhost:8080');
+void loop() {
+  int buttonState = digitalRead(buttonPin);
 
-useEffect(() =&gt; {
-  if (lastMessage === null) return;
-  try {
-    const data = JSON.parse(lastMessage.data);
-    if (data.button === '+1') {
-      handleAddOne();
-    }
-  } catch (error) {
-    // not JSON, ignore it
+  // The LED follows the button
+  if (buttonState == LOW) {
+    digitalWrite(ledPin, HIGH);
+  } else {
+    digitalWrite(ledPin, LOW);
   }
-}, [lastMessage]);</code></pre>
-<p>Then, inside <code>handleAddOne()</code>, add <code>sendMessage('ADD_1_LED');</code>, and inside <code>handleRemoveOne()</code>, add <code>sendMessage('REMOVE_1_LED');</code>.</p>
-<p>Test both directions: the physical button changes the total on screen, and the on-screen buttons change the LED matrix.</p>
+
+  // Print once, at the moment the button is pressed
+  if (buttonState == LOW &amp;&amp; lastButtonState == HIGH) {
+    Serial.println("Pressed!");
+    delay(50);   // ignore switch bounce
+  }
+  lastButtonState = buttonState;
+}</code></pre>
+    </li>
+    <li>Without <code>lastButtonState</code>, one press would print hundreds of times, because <code>loop()</code> runs thousands of times a second.</li>
+</ol>
+
+<h4>F4. A Potentiometer (5 min)</h4>
+<p>Outer legs to 5V and GND, middle leg to <strong>A2</strong>. Upload and turn the knob: the Serial Monitor goes from 0 to 1023.</p>
+<pre><code>const int potPin = A2;   // middle leg of the potentiometer
+
+void setup() {
+  Serial.begin(9600);
+}
+
+void loop() {
+  int potValue = analogRead(potPin);   // 0 to 1023
+  Serial.println(potValue);
+  delay(100);
+}</code></pre>
+
+<h4>F5. The Server on Your Laptop (10 min)</h4>
+<ol>
+    <li>In your <code>vis4/week 7</code> folder, make a folder called <code>WSServer</code> and open a terminal in it:
+<pre><code>npm init -y
+npm install ws ip</code></pre>
+    </li>
+    <li>Create <code>server.js</code> in that folder and paste:
+<pre><code>const ip = require('ip');
+const WebSocket = require('ws');
+
+const port = 8080;
+const wss = new WebSocket.Server({ port });
+
+const clients = {};
+
+wss.on('error', function error(err) {
+  console.log('Error: ' + err.code);
+});
+
+wss.on('connection', function connection(ws, req) {
+  console.log('connected');
+
+  let clientID = req.headers['sec-websocket-key'];
+  clients[clientID] = ws;
+
+  ws.on('error', function (err) {
+    console.log('Found error: ' + err);
+  });
+
+  ws.on('message', function incoming(message) {
+    const decodedMessage = message.toString();
+    console.log('received:', decodedMessage, 'from', clientID, Object.keys(clients));
+
+    wss.clients.forEach((client) =&gt; {
+      if (client !== ws &amp;&amp; client.readyState === WebSocket.OPEN) {
+        client.send(`${decodedMessage}`);
+      }
+    });
+
+    if (decodedMessage === 'Hello WebSocket!') {
+      console.log('received Hello WebSocket!');
+    } else if (decodedMessage === 'RESET_CELESTIA') {
+      console.log('received RESET_CELESTIA');
+    }
+  });
+
+  ws.on('close', function () {
+    console.log(new Date() + ' Peer ' + clientID + ' disconnected.');
+    delete clients[clientID];
+  });
+});
+
+console.log(ip.address() + ' listening on port ', port);</code></pre>
+    </li>
+    <li>Start it with <code>node server.js</code>. It prints an IP address, for example <code>192.168.1.23 listening on port 8080</code>. <strong>Write that IP down</strong>: the Arduino needs it. Leave this terminal running.</li>
+</ol>
+
+<h4>F6. The Arduino Joins (15 min)</h4>
+<ol>
+    <li>In the IDE: <em>Tools &gt; Manage Libraries</em>, search <strong>ArduinoHttpClient</strong>, Install.</li>
+    <li>Start a new sketch called <code>NumberAdderDevice</code>. Add a second tab (the small arrow at the right of the tabs, <em>New Tab</em>) named <code>arduino_secrets.h</code>:
+<pre><code>#define SECRET_SSID "campus network name"
+#define SECRET_PASS "campus network password"</code></pre>
+    </li>
+    <li>Paste this into the main tab and change <code>serverAddress</code> to the IP your server printed:
+<pre><code>// Number Adder device: five buttons work the Number Adder on screen,
+// and the LED matrix shows the total.
+#include &lt;ArduinoHttpClient.h&gt;
+#include &lt;WiFiS3.h&gt;
+#include "Arduino_LED_Matrix.h"
+#include "arduino_secrets.h"
+
+char ssid[] = SECRET_SSID;
+char pass[] = SECRET_PASS;
+char serverAddress[] = "192.168.1.23";  // change to the IP your server printed
+int port = 8080;
+
+WiFiClient wifi;
+WebSocketClient client = WebSocketClient(wifi, serverAddress, port);
+ArduinoLEDMatrix matrix;
+uint8_t frame[8][12];
+
+// Same order as the buttons on screen, left to right
+const int buttonPins[5] = {2, 3, 4, 5, 6};
+const char* buttonNames[5] = {"-2", "-1", "reset", "+1", "+2"};
+int lastStates[5] = {HIGH, HIGH, HIGH, HIGH, HIGH};
+
+int total = 0;
+
+void setup() {
+  Serial.begin(9600);
+  matrix.begin();
+  for (int i = 0; i &lt; 5; i++) {
+    pinMode(buttonPins[i], INPUT_PULLUP);  // HIGH when released, LOW when pressed
+  }
+
+  while (WiFi.begin(ssid, pass) != WL_CONNECTED) {
+    Serial.println("Connecting to WiFi...");
+    delay(1000);
+  }
+  delay(2000);  // give the board time to get its IP address
+  Serial.print("WiFi connected. Arduino IP: ");
+  Serial.println(WiFi.localIP());
+  client.begin();
+}
+
+void loop() {
+  // Keep the connection to the server open
+  if (!client.connected()) {
+    Serial.println("Connecting to server...");
+    client.begin();
+    delay(1000);
+    return;
+  }
+
+  // Screen -&gt; device: the React app sends "TOTAL:5"
+  if (client.parseMessage() &gt; 0) {
+    String message = client.readString();
+    Serial.println("Received: " + message);
+    if (message.startsWith("TOTAL:")) {
+      total = message.substring(6).toInt();
+      showTotal();
+    }
+  }
+
+  // Device -&gt; screen: one message per press, per button
+  for (int i = 0; i &lt; 5; i++) {
+    int state = digitalRead(buttonPins[i]);
+    if (state == LOW &amp;&amp; lastStates[i] == HIGH) {
+      sendButton(buttonNames[i]);
+      delay(50);  // ignore switch bounce
+    }
+    lastStates[i] = state;
+  }
+}
+
+// Sends {"button": "+1"} and so on
+void sendButton(const char* name) {
+  client.beginMessage(TYPE_TEXT);
+  client.print("{\"button\": \"");
+  client.print(name);
+  client.print("\"}");
+  client.endMessage();
+  Serial.print("Sent: ");
+  Serial.println(name);
+}
+
+// One LED per point: positive totals fill from the start of the matrix,
+// negative totals fill backwards from the end
+void showTotal() {
+  memset(frame, 0, sizeof(frame));
+  int count = min(abs(total), 96);
+  for (int i = 0; i &lt; count; i++) {
+    int led = (total &gt;= 0) ? i : 95 - i;
+    frame[led / 12][led % 12] = 1;
+  }
+  matrix.renderBitmap(frame, 8, 12);
+}</code></pre>
+    </li>
+    <li>Upload and open the Serial Monitor: <em>WiFi connected</em>. The server terminal prints <em>connected</em>.</li>
+    <li>Press your button on pin 2. The server terminal prints <code>received: {"button": "-2"}</code>. The device is talking.</li>
+</ol>
+<p><strong>If it does not connect</strong>: check the Arduino joined the WiFi (Serial Monitor), the server is running, and the IP in the sketch matches the one the server printed. If the Arduino is on the WiFi but never reaches the server, the network is blocking it: switch both laptop and Arduino to a phone hotspot.</p>
 
 <hr />
-<h3>Discussion: Your Project (10 min)</h3>
-<p>Take the notes you made on your project parts in Week 6. For each part, what message would it send, or what message would it need to receive? Write the list down. It is the start of this week's hardware overview, which feeds next week's HMI document.</p>
+<p><strong>Short break.</strong></p>
+<hr />
+
+<h3>Part 2: Do It Yourself (about 1 hour)</h3>
+<p>Now connect the rest yourself. I come round to help.</p>
+
+<h4>D1. Five Buttons, Same Order as the Screen (15 min)</h4>
+<p>Your Number Adder has five buttons. Give the breadboard the same five, left to right. Each one goes across the centre gap: one leg to its pin, the diagonal leg to the &minus; rail. Keep F3's button on pin 2 as the first one.</p>
+<table style="border-collapse: collapse; width: 100%;" border="1">
+    <thead>
+        <tr>
+            <th style="padding: 6px;">Button</th>
+            <th style="padding: 6px;">&minus;2</th>
+            <th style="padding: 6px;">&minus;1</th>
+            <th style="padding: 6px;">Reset</th>
+            <th style="padding: 6px;">+1</th>
+            <th style="padding: 6px;">+2</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td style="padding: 6px;">Pin</td>
+            <td style="padding: 6px;">2</td>
+            <td style="padding: 6px;">3</td>
+            <td style="padding: 6px;">4</td>
+            <td style="padding: 6px;">5</td>
+            <td style="padding: 6px;">6</td>
+        </tr>
+        <tr>
+            <td style="padding: 6px;">Sends</td>
+            <td style="padding: 6px;"><code>"-2"</code></td>
+            <td style="padding: 6px;"><code>"-1"</code></td>
+            <td style="padding: 6px;"><code>"reset"</code></td>
+            <td style="padding: 6px;"><code>"+1"</code></td>
+            <td style="padding: 6px;"><code>"+2"</code></td>
+        </tr>
+    </tbody>
+</table>
+<p>The sketch from F6 already reads all five. Press each one and check the server terminal shows the right name.</p>
+
+<h4>D2. Device to Screen: the Buttons Work the Number Adder (25 min)</h4>
+<ol>
+    <li>In your Week 4 React Number Adder folder: <code>npm install react-use-websocket</code>, then <code>npm run dev</code>.</li>
+    <li>At the top of <code>App.jsx</code>, add the imports:
+<pre><code>import { useState, useEffect } from 'react';
+import useWebSocketImport, { ReadyState } from 'react-use-websocket';
+
+// Vite 8 imports this package as an object, not a function. This line works either way.
+const useWebSocket = useWebSocketImport.default || useWebSocketImport;</code></pre>
+    </li>
+    <li>Inside <code>App()</code>, after your <code>useState</code> lines, connect to the server:
+<pre><code>const { sendMessage, lastMessage, readyState } = useWebSocket('ws://localhost:8080', {
+  shouldReconnect: () =&gt; true,
+});</code></pre>
+    </li>
+    <li>After your <code>handle...</code> functions, react to each button. Use your own function names if they differ:
+<pre><code>useEffect(() =&gt; {
+  if (lastMessage === null) return;
+  let data;
+  try {
+    data = JSON.parse(lastMessage.data);
+  } catch (error) {
+    return; // not JSON, ignore it
+  }
+  if (data.button === '+1') handleAddOne();
+  else if (data.button === '+2') handleAddTwo();
+  else if (data.button === '-1') handleRemoveOne();
+  else if (data.button === '-2') handleRemoveTwo();
+  else if (data.button === 'reset') handleReset();
+}, [lastMessage]);</code></pre>
+    </li>
+    <li>Show the connection in your header, so the user knows whether the device is there:
+<pre><code>&lt;p&gt;Device: {readyState === ReadyState.OPEN ? 'connected' : 'not connected'}&lt;/p&gt;</code></pre>
+    </li>
+    <li>Press each physical button: the total and the history change exactly as if you clicked on screen.</li>
+</ol>
+
+<h4>D3. Screen to Device: the Matrix Shows the Total (10 min)</h4>
+<ol>
+    <li>Add one more effect. Every time <code>total</code> changes, whichever button caused it, it is sent to the Arduino:
+<pre><code>useEffect(() =&gt; {
+  sendMessage('TOTAL:' + total);
+}, [total]);</code></pre>
+    </li>
+    <li>Click the on-screen buttons. The matrix lights one LED per point: a positive total fills from the top-left corner, a negative total fills backwards from the bottom-right corner. Reset clears it.</li>
+    <li>Press the physical buttons: screen and matrix move together.</li>
+</ol>
+
+<h4>D4. Your Project (10 min)</h4>
+<p>Take your midterm "Ready for hardware" list and your Week 6 notes on your parts. For each part, write the message it would send or receive, in the same style as today: <code>{"button": "+1"}</code> one way, <code>TOTAL:5</code> the other. This list is the start of this week's hardware overview.</p>
