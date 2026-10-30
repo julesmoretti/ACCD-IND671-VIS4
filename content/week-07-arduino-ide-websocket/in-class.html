@@ -1,9 +1,8 @@
 <!-- Canvas page: Week 7 - Arduino + IDE + WebSocket (In-Class Exercises) -->
 <!-- Paste the contents of this file into the Canvas HTML editor. -->
-<!-- DRAFT 29 Oct 2026: not yet reviewed by Jules. All sketches compiled for
-     the UNO R4 WiFi (arduino-cli, renesas_uno 1.6.0, ArduinoHttpClient 0.6.2).
-     Server + React side tested end to end with a simulated Arduino (all five
-     buttons, negative totals). Not yet run on a real board. -->
+<!-- Tested 29 Oct 2026 on a real UNO R4 WiFi from a Mac (Apple Silicon), Arduino
+     IDE 2.3.10, Vite 8: F1-F6 and D1-D3 all work end to end. Board examples
+     come from the ACCD-Fritzing-Parts library rather than being repeated here. -->
 <!-- Do not write the campus WiFi password into this file: the repo is public.
      Give it out in class. -->
 
@@ -26,161 +25,84 @@ screen to device:   TOTAL:5            the LED matrix shows the total</code></pr
 <h3>Part 1: Follow Along (1 hour)</h3>
 <p>I do each step on the screen; you do it at the same time. Do not move on until your board does what mine does.</p>
 
+<p>F1 to F4 use the examples in the class library, <a href="https://github.com/julesmoretti/ACCD-Fritzing-Parts/tree/main" target="_blank" rel="noopener">ACCD-Fritzing-Parts</a>. For each one: open the folder, copy the <code>.ino</code> sketch into the Arduino IDE, wire it as the Fritzing diagram shows, and upload.</p>
+
 <h4>F1. Board, Port and Blink (10 min)</h4>
 <ol>
-    <li>Plug in the UNO R4. In the Arduino IDE: <em>Tools &gt; Board &gt; Arduino UNO R4 Boards &gt; Arduino UNO R4 WiFi</em>, then <em>Tools &gt; Port</em> and pick the one labelled UNO R4 WiFi.</li>
-    <li>Upload this, then open <em>Tools &gt; Serial Monitor</em> at 9600 baud. The LED marked <strong>L</strong> blinks, and the Serial Monitor counts:
-<pre><code>int counter = 0;
-
-void setup() {
-  Serial.begin(9600);
-  pinMode(LED_BUILTIN, OUTPUT);   // the small LED marked L on the board
-}
-
-void loop() {
-  digitalWrite(LED_BUILTIN, HIGH);  // on
-  delay(500);
-  digitalWrite(LED_BUILTIN, LOW);   // off
-  delay(500);
-  Serial.print("Blink number ");
-  Serial.println(counter);
-  counter = counter + 1;
-}</code></pre>
-    </li>
-    <li>Compare with JavaScript: <code>int</code> instead of <code>let</code>, <code>Serial.println</code> instead of <code>console.log</code>, and <code>loop()</code> runs over and over by itself.</li>
+    <li>Plug in the UNO R4. In the Arduino IDE: <em>Tools &gt; Board &gt; Arduino UNO R4 Boards &gt; Arduino UNO R4 WiFi</em>, then <em>Tools &gt; Port</em> and pick the one labelled UNO R4 WiFi (on a Mac, <code>/dev/cu.usbmodem&hellip;</code>).</li>
+    <li>Upload <a href="https://github.com/julesmoretti/ACCD-Fritzing-Parts/tree/main/1_Arduino/LED_built_in" target="_blank" rel="noopener">LED_built_in</a>. The LED marked <strong>L</strong> blinks once a second.</li>
+    <li><strong>Mac with Apple Silicon</strong>: if Upload fails with <em>"bad CPU type in executable"</em>, open Terminal, run <code>softwareupdate --install-rosetta --agree-to-license</code>, then click Upload again.</li>
 </ol>
 
 <h4>F2. One LED on the Matrix (5 min)</h4>
-<p>The UNO R4 WiFi has a grid of 96 red LEDs, 8 rows by 12 columns. Light one:</p>
-<pre><code>#include "Arduino_LED_Matrix.h"
-
-ArduinoLEDMatrix matrix;
-uint8_t frame[8][12] = {0};   // 8 rows, 12 columns, all off
-
-void setup() {
-  matrix.begin();
-}
-
-void loop() {
-  frame[2][2] = 1;                    // row 2, column 2 on
-  matrix.renderBitmap(frame, 8, 12);
-  delay(1000);
-  frame[2][2] = 0;                    // off again
-  matrix.renderBitmap(frame, 8, 12);
-  delay(1000);
-}</code></pre>
-<p>Change <code>frame[2][2]</code> to another row and column. Later today this matrix shows your Number Adder's total.</p>
+<p>Upload <a href="https://github.com/julesmoretti/ACCD-Fritzing-Parts/tree/main/1_Arduino/LED_matrix" target="_blank" rel="noopener">LED_matrix</a>. One LED on the board's 8 &times; 12 grid blinks: third row, third column. Change <code>frame[2][2]</code> to another row and column. Later today this matrix shows your Number Adder's total.</p>
 
 <h4>F3. An LED and a Button on the Breadboard (15 min)</h4>
 <ol>
-    <li>LED: <strong>pin 7</strong> &rarr; 1 k&Omega; resistor &rarr; LED long leg (+); LED short leg (&minus;) &rarr; the breadboard's &minus; rail. Wire the &minus; rail to the Arduino's <strong>GND</strong>.</li>
-    <li>Button: across the centre gap. One leg to <strong>pin 2</strong>, the diagonal leg to the &minus; rail. No resistor: <code>INPUT_PULLUP</code> switches on the one built into the pin.</li>
-    <li>Upload this. The LED lights while you hold the button, and each press prints once:
-<pre><code>const int ledPin = 7;      // LED + 1k resistor on pin 7
-const int buttonPin = 2;   // button between pin 2 and GND
-int lastButtonState = HIGH;
-
-void setup() {
-  Serial.begin(9600);
-  pinMode(ledPin, OUTPUT);
-  pinMode(buttonPin, INPUT_PULLUP);   // HIGH when released, LOW when pressed
-}
-
-void loop() {
-  int buttonState = digitalRead(buttonPin);
-
-  // The LED follows the button
-  if (buttonState == LOW) {
-    digitalWrite(ledPin, HIGH);
-  } else {
-    digitalWrite(ledPin, LOW);
-  }
-
-  // Print once, at the moment the button is pressed
-  if (buttonState == LOW &amp;&amp; lastButtonState == HIGH) {
-    Serial.println("Pressed!");
-    delay(50);   // ignore switch bounce
-  }
-  lastButtonState = buttonState;
-}</code></pre>
-    </li>
-    <li>Without <code>lastButtonState</code>, one press would print hundreds of times, because <code>loop()</code> runs thousands of times a second.</li>
+    <li>Upload <a href="https://github.com/julesmoretti/ACCD-Fritzing-Parts/tree/main/1_Arduino/LED" target="_blank" rel="noopener">LED</a> and wire it as its diagram shows, <strong>with a 1 k&Omega; resistor</strong> between the pin and the LED's long leg (+). The breadboard LED blinks.</li>
+    <li>Upload <a href="https://github.com/julesmoretti/ACCD-Fritzing-Parts/tree/main/1_Arduino/Button_push_on" target="_blank" rel="noopener">Button_push_on</a> and wire it as its diagram shows. The board's L LED lights while you hold the button.</li>
+    <li>Notice the resistor in the button circuit: it holds the pin LOW until you press (a <em>pull-down</em>). In F6 we drop it and use the pin's built-in resistor instead.</li>
 </ol>
 
 <h4>F4. A Potentiometer (5 min)</h4>
-<p>Outer legs to 5V and GND, middle leg to <strong>A2</strong>. Upload and turn the knob: the Serial Monitor goes from 0 to 1023.</p>
-<pre><code>const int potPin = A2;   // middle leg of the potentiometer
-
-void setup() {
-  Serial.begin(9600);
-}
-
-void loop() {
-  int potValue = analogRead(potPin);   // 0 to 1023
-  Serial.println(potValue);
-  delay(100);
-}</code></pre>
+<p>Upload <a href="https://github.com/julesmoretti/ACCD-Fritzing-Parts/tree/main/1_Arduino/Potentiometer" target="_blank" rel="noopener">Potentiometer</a> and wire it as its diagram shows (middle leg to <strong>A2</strong>). Open <em>Tools &gt; Serial Monitor</em> at 9600 baud and turn the knob: the value goes from 0 to 1023. The Serial Monitor is where the Arduino talks to you; you need it in F6.</p>
 
 <h4>F5. The Server on Your Laptop (10 min)</h4>
 <ol>
-    <li>In your <code>vis4/week 7</code> folder, make a folder called <code>WSServer</code> and open a terminal in it:
-<pre><code>npm init -y
-npm install ws ip</code></pre>
+    <li>In a terminal, inside your <code>vis4/week 7</code> folder:
+<pre><code>mkdir WSServer
+cd WSServer
+npm init -y
+npm install ws
+touch server.js
+subl server.js</code></pre>
     </li>
-    <li>Create <code>server.js</code> in that folder and paste:
-<pre><code>const ip = require('ip');
+    <li>Paste this into <code>server.js</code> and save:
+<pre><code>const os = require('os');
 const WebSocket = require('ws');
 
 const port = 8080;
 const wss = new WebSocket.Server({ port });
 
-const clients = {};
+// Find this laptop's IP address on the WiFi, so the Arduino knows where to connect
+function localIP() {
+  for (const addresses of Object.values(os.networkInterfaces())) {
+    for (const a of addresses) {
+      if (a.family === 'IPv4' &amp;&amp; !a.internal) return a.address;
+    }
+  }
+  return 'localhost';
+}
 
-wss.on('error', function error(err) {
-  console.log('Error: ' + err.code);
-});
-
-wss.on('connection', function connection(ws, req) {
+wss.on('connection', function connection(ws) {
   console.log('connected');
 
-  let clientID = req.headers['sec-websocket-key'];
-  clients[clientID] = ws;
-
-  ws.on('error', function (err) {
-    console.log('Found error: ' + err);
-  });
-
   ws.on('message', function incoming(message) {
-    const decodedMessage = message.toString();
-    console.log('received:', decodedMessage, 'from', clientID, Object.keys(clients));
+    const text = message.toString();
+    console.log('received:', text);
 
+    // Pass the message on to everyone else who is connected
     wss.clients.forEach((client) =&gt; {
       if (client !== ws &amp;&amp; client.readyState === WebSocket.OPEN) {
-        client.send(`${decodedMessage}`);
+        client.send(text);
       }
     });
-
-    if (decodedMessage === 'Hello WebSocket!') {
-      console.log('received Hello WebSocket!');
-    } else if (decodedMessage === 'RESET_CELESTIA') {
-      console.log('received RESET_CELESTIA');
-    }
   });
 
   ws.on('close', function () {
-    console.log(new Date() + ' Peer ' + clientID + ' disconnected.');
-    delete clients[clientID];
+    console.log('disconnected');
   });
 });
 
-console.log(ip.address() + ' listening on port ', port);</code></pre>
+console.log(localIP() + ' listening on port', port);</code></pre>
     </li>
-    <li>Start it with <code>node server.js</code>. It prints an IP address, for example <code>192.168.1.23 listening on port 8080</code>. <strong>Write that IP down</strong>: the Arduino needs it. Leave this terminal running.</li>
+    <li>Start it with <code>node server.js</code>. It prints an IP address, for example <code>192.168.1.15 listening on port 8080</code>. <strong>Write that IP down</strong>: the Arduino needs it. Leave this terminal running.</li>
 </ol>
 
 <h4>F6. The Arduino Joins (15 min)</h4>
 <ol>
-    <li>In the IDE: <em>Tools &gt; Manage Libraries</em>, search <strong>ArduinoHttpClient</strong>, Install.</li>
+    <li><strong>Install the ArduinoHttpClient library first.</strong> Click the Library Manager (the books icon in the left sidebar), search <strong>ArduinoHttpClient</strong>, and install the one <strong>by Arduino</strong>. Skip this and the upload fails with <em>"ArduinoHttpClient.h: No such file or directory"</em>.</li>
+    <li><strong>Rewire the button</strong> for the built-in resistor: remove the F3 resistor and the wire to 5V. The button goes across the centre gap, one leg to <strong>pin 2</strong>, the diagonal leg to the &minus; rail, and the &minus; rail to <strong>GND</strong>. The sketch below turns the pin's resistor on with <code>INPUT_PULLUP</code>.</li>
     <li>Start a new sketch called <code>NumberAdderDevice</code>. Add a second tab (the small arrow at the right of the tabs, <em>New Tab</em>) named <code>arduino_secrets.h</code>:
 <pre><code>#define SECRET_SSID "campus network name"
 #define SECRET_PASS "campus network password"</code></pre>
@@ -372,6 +294,14 @@ const useWebSocket = useWebSocketImport.default || useWebSocketImport;</code></p
     </li>
     <li>Click the on-screen buttons. The matrix lights one LED per point: a positive total fills from the top-left corner, a negative total fills backwards from the bottom-right corner. Reset clears it.</li>
     <li>Press the physical buttons: screen and matrix move together.</li>
+</ol>
+
+<h4>Stretch: a Clear Button (if you finish early)</h4>
+<p>Reset sets the total to 0 but keeps the history; that is how Reset was defined in Week 3. If your Number Adder has the <strong>Clear History &amp; Results</strong> button from the Week 4 assignment, give it a physical button too:</p>
+<ol>
+    <li>Wire a sixth button to <strong>pin 7</strong> the same way.</li>
+    <li>In the sketch, add it to the three lists: <code>{2, 3, 4, 5, 6, 7}</code>, <code>{"-2", "-1", "reset", "+1", "+2", "clear"}</code>, and one more <code>HIGH</code>. Change every <code>5</code> that counts the buttons (the array sizes and both <code>for</code> loops) to <code>6</code>.</li>
+    <li>In React, add <code>else if (data.button === 'clear') ClearAll();</code> (use your own function name).</li>
 </ol>
 
 <h4>D4. Your Project (10 min)</h4>

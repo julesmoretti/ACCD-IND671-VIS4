@@ -146,6 +146,13 @@ pins, platform mismatches) but do not rewrite pedagogy or restructure lessons.
   (UNO R4 WiFi + BOJACK component kit, Amazon links). Both were missing from the page
   until the first 26FA class surfaced it. Keep the kit links in the Week 1 reading page,
   not the assignment; the assignment points to the reading page.
+- Apple Silicon Macs need Rosetta 2 for the UNO R4 board package (its arm-none-eabi-gcc
+  is Intel-only). Without it, upload fails with "bad CPU type in executable". Week 1 and
+  Week 7 F1 give the one-line fix.
+- `react-use-websocket` under Vite 8 imports as an object, not a function. Week 7 uses
+  `useWebSocketImport.default || useWebSocketImport`; keep that line wherever the hook is used.
+- Week 7 board examples link to ACCD-Fritzing-Parts/1_Arduino instead of repeating the
+  code. Fix examples there, not in this repo.
 - Clipboard trap in the SSH steps: `pbcopy` / `clip` must be the last thing run before
   pasting into GitHub, and the key title must be typed, not pasted.
 
