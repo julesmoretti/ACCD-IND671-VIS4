@@ -32,6 +32,7 @@ screen to device:   TOTAL:5            the LED matrix shows the total</code></pr
     <li>Plug in the UNO R4. In the Arduino IDE: <em>Tools &gt; Board &gt; Arduino UNO R4 Boards &gt; Arduino UNO R4 WiFi</em>, then <em>Tools &gt; Port</em> and pick the one labelled UNO R4 WiFi (on a Mac, <code>/dev/cu.usbmodem&hellip;</code>).</li>
     <li>Upload <a href="https://github.com/julesmoretti/ACCD-Fritzing-Parts/tree/main/1_Arduino/LED_built_in" target="_blank" rel="noopener">LED_built_in</a>. The LED marked <strong>L</strong> blinks once a second.</li>
     <li><strong>Mac with Apple Silicon</strong>: if Upload fails with <em>"bad CPU type in executable"</em>, open Terminal, run <code>softwareupdate --install-rosetta --agree-to-license</code>, then click Upload again.</li>
+    <li><strong>Upload fails with "No device found on COM5"</strong> (or any port, on Windows or Mac): the port is wrong or busy. Close the Serial Monitor and any other IDE window, unplug and replug the board, then pick the port again in <em>Tools &gt; Port</em>: the number may have changed. If no port shows, try another USB-C cable (many only charge) without a hub. Still stuck: press the board's RESET button twice quickly, pick the new port and upload straight away.</li>
 </ol>
 
 <h4>F2. One LED on the Matrix (5 min)</h4>

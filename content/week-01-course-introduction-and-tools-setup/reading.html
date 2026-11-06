@@ -129,6 +129,9 @@ Resolving deltas: 100% (59/59), done.</code></pre>
 <p>To download Node.js, go to the <a class="inline_disabled" title="Link" href="https://nodejs.org/en/download" target="_blank" rel="noopener">Node.js download page</a>. Leave the version dropdown on the default <strong>LTS</strong> release and the platform on <strong>Windows</strong> / <strong>x64</strong>, then click <strong>Windows Installer (.msi)</strong>. Run the downloaded file (named like <code>node-v24.21.0-x64.msi</code>).</p>
 <p>Click <strong>Next</strong> through the installer, accepting the license and the default folder. On the <strong>Tools for Native Modules</strong> screen, leave the checkbox <em>Automatically install the necessary tools</em> <strong>unchecked</strong> (it installs several gigabytes of build tools that this course does not use). Click <strong>Next</strong>, <strong>Install</strong>, then <strong>Finish</strong>.</p>
 <p>To check it worked, open a <strong>new</strong> PowerShell window (Start menu, type <code>PowerShell</code>) and run <code>node -v</code> and <code>npm -v</code>. Each should print a version number. If you get "not recognized", close PowerShell and open a new one.</p>
+<p>If <code>npm -v</code> instead says <em>"npm.ps1 cannot be loaded because running scripts is disabled on this system"</em>, Windows is blocking PowerShell scripts. Node is installed correctly. Run this once in PowerShell, type <code>Y</code> when asked, then try <code>npm -v</code> again:</p>
+<pre><code>Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy RemoteSigned</code></pre>
+<p>From here on, use <strong>Git Bash</strong> (installed below) for all course commands, including <code>npm</code>. It does not have this restriction.</p>
 
 <h4>Sublime Text Editor</h4>
 <p>Go to the <a class="inline_disabled" href="https://www.sublimetext.com/download" target="_blank" rel="noopener">Sublime Text download page</a> and click <strong>Windows</strong>. This downloads a file named like <code>sublime_text_build_4200_x64_setup.exe</code>. Run it, keep the default folder, and on the <strong>Select Additional Tasks</strong> screen tick <strong>Add to explorer context menu</strong> (this gives you a right-click "Open with Sublime Text" option on any folder). Click <strong>Install</strong>, then <strong>Finish</strong>.</p>
@@ -187,6 +190,7 @@ Resolving deltas: 100% (59/59), done.</code></pre>
 source ~/.bashrc
 subl --version</code></pre>
 <p>The last line should print <code>Sublime Text Build XXXX</code>.</p>
+<p>NOTE: If OneDrive backs up your Documents folder (your path shows <code>OneDrive\Documents</code>), keep your course work outside it, for example in <code>C:\Users\yourname\GitHub</code> (in Git Bash: <code>mkdir ~/GitHub</code>, then <code>cd ~/GitHub</code>). OneDrive tries to sync the thousands of files <code>npm install</code> creates, which slows everything down and can lock files mid-install.</p>
 <p>That concludes the Windows configuration for your machine.</p>
 
 <h3>GitHub Desktop (Mac and Windows)</h3>

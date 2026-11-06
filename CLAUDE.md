@@ -146,6 +146,13 @@ pins, platform mismatches) but do not rewrite pedagogy or restructure lessons.
   (UNO R4 WiFi + BOJACK component kit, Amazon links). Both were missing from the page
   until the first 26FA class surfaced it. Keep the kit links in the Week 1 reading page,
   not the assignment; the assignment points to the reading page.
+- Windows PowerShell blocks `npm` by default ("npm.ps1 cannot be loaded because running
+  scripts is disabled"). Week 1 gives the one-line `Set-ExecutionPolicy -Scope CurrentUser
+  RemoteSigned` fix and tells students to use Git Bash for course commands. Surfaced 26FA Week 7.
+- Windows students with OneDrive-redirected Documents: npm installs inside OneDrive are slow
+  and can fail on locked files. Week 1 tells them to keep course work in `~/GitHub`.
+- UNO R4 upload "No device found on COMn": wrong or busy port. Week 7 F1 has the fix list
+  (close Serial Monitor, replug, reselect port, data cable, double-tap RESET). Surfaced 26FA.
 - Apple Silicon Macs need Rosetta 2 for the UNO R4 board package (its arm-none-eabi-gcc
   is Intel-only). Without it, upload fails with "bad CPU type in executable". Week 1 and
   Week 7 F1 give the one-line fix.
