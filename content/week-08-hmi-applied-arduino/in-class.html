@@ -1,11 +1,33 @@
 <!-- Canvas page: Week 8 - HMI + Applied Arduino (In-Class Exercises) -->
 <!-- Paste the contents of this file into the Canvas HTML editor. -->
-<!-- DRAFT 12 Oct 2026: not yet reviewed by Jules. -->
+<!-- Updated 5 Nov 2026: added the review and the "what an HMI document looks
+     like" demo, retimed to 9:00-12:00 with a break, aligned priority names with
+     the reading (Must / Should / Nice to have, Dropped). -->
+<!-- KNOWN GAP: LUMI (Milo Menghao Yuan, 25FA) is used as the past student
+     example. Ask Milo before showing his sheet, and share it view-only if
+     linked. The Logitech HMI examples are shown live in class only and are
+     never posted to Canvas. -->
 
 <p>Today you design how your product talks to its user, and write it down in your HMI spreadsheet. Bring your Week 3 requirements list, your Week 4 test findings, your Week 7 hardware overview, and your breadboarded parts.</p>
 
+<h3>Review (20 min)</h3>
+<ul>
+    <li><strong>Number Adder</strong>: show it working in both directions, buttons to screen and screen to matrix.</li>
+    <li><strong>Hardware overview</strong>: your table and block diagram. Flag any pin count over the UNO R4's 14 digital and 6 analog pins.</li>
+    <li><strong>Library part</strong>: is it working on the breadboard? Anything blocking the soldered version?</li>
+</ul>
+
+<hr />
+<h3>Watch Me: What an HMI Document Looks Like (30 min)</h3>
+<ol>
+    <li><strong>Industry examples</strong>: HMI specifications from shipped headsets. How rows and categories are organised, how LED and sound patterns are written down, and how the design, engineering and test teams used the same sheet.</li>
+    <li><strong>A past student example</strong>: <a href="https://menghaoyuan.myportfolio.com/lumi" target="_blank" rel="noopener">LUMI</a>, a projector and floor lamp in one product. What works: clear categories, every row written as a user need, a motor flagged as Complex. What to improve: feedback written as "On screen", user needs that repeat, almost every row a Must have, no error or disconnected rows, and an empty diagram.</li>
+    <li><strong>The Number Adder</strong> example in the reading, section 3c: the format applied to something you have all built.</li>
+</ol>
+
+<hr />
 <h3>Exercise 1: Step Through the Hero Experience (15 min)</h3>
-<p>Write your hero experience as a sequence of steps, the same way you broke tasks into steps for testing. For each step, three columns:</p>
+<p>Write your hero experience as a sequence of steps, the same way you broke tasks into steps for testing. For each step:</p>
 <table style="border-collapse: collapse; width: 100%;" border="1">
     <thead>
         <tr>
@@ -26,7 +48,10 @@
 </table>
 
 <hr />
-<h3>Exercise 2: States and Feedback (30 min)</h3>
+<h3>Break (10 min)</h3>
+
+<hr />
+<h3>Exercise 2: States and Feedback (25 min)</h3>
 <ol>
     <li>List every <strong>state</strong> your device can be in. Most products have at least: off, idle/ready, working, done, and error. Add <strong>disconnected</strong>: what happens when the WebSocket drops?</li>
     <li>For each state, decide how the user knows they are in it, on the device and on screen. Use more than one channel where it matters:
@@ -41,19 +66,19 @@
 </ol>
 
 <hr />
-<h3>Exercise 3: Run-Through in Pairs (25 min)</h3>
+<h3>Exercise 3: Run-Through in Pairs (20 min)</h3>
 <p>One person plays the device; the other is the user. The user tries the hero experience using your interface on screen. The "device" responds out loud and by hand: "the ring lights up to 40", "it beeps twice". No explaining.</p>
 <p>Swap. Write down every moment where the user did not know what had happened. Those are missing or unclear feedback.</p>
 
 <hr />
-<h3>Exercise 4: Build Your HMI Spreadsheet (60 min)</h3>
-<p>You already have most of what goes in it. This exercise puts it in one place, in the format of the reading (Step 3).</p>
+<h3>Exercise 4: Build Your HMI Spreadsheet (40 min)</h3>
+<p>You already have most of what goes in it. This exercise puts it in one place, in the format of the reading (section 3).</p>
 <ol>
-    <li>Set up your Google Sheet with the two tabs: <strong>Product Information</strong> and <strong>UX</strong>.</li>
-    <li>In the UX tab, add one row for each requirement on your <strong>Week 3 requirements list</strong>. Keep its priority (Must-have, Should-have, Nice-to-have).</li>
+    <li>Set up your Google Sheet with the two tabs: <strong>Product Information</strong> and <strong>UX</strong>, with the UX columns from the reading.</li>
+    <li>In the UX tab, add one row for each requirement on your <strong>Week 3 requirements list</strong>. Keep its priority: Must have, Nice to have, or Dropped (with the reason in Notes). Move any that now feel in between to Should have.</li>
     <li>Add one row for each interaction in your <strong>Week 7 hardware overview</strong> that is not on the list yet. The last column of the overview tells you what each row must say.</li>
     <li>Add the states and feedback from Exercise 2, and fix every gap Exercise 3 found.</li>
-    <li>Group the rows into categories (for example Power, Setup, Main task, Errors).</li>
+    <li>Group the rows into categories (for example Power, Setup, Main task, Errors), and give each row a Prototype Complexity.</li>
     <li>Finish at least the category that holds your hero experience. The rest is homework.</li>
 </ol>
 <p>Your Week 4 test findings belong in the <strong>Notes</strong> column of the rows they affect.</p>

@@ -1,38 +1,154 @@
 <!-- Canvas page: Week 8 - Human Machine Interface aka HMI (Reading) -->
 <!-- Paste the contents of this file into the Canvas HTML editor. -->
+<!-- Updated 5 Nov 2026: added what an HMI document is for, the Prototype
+     Complexity column, a Number Adder example and "Writing good rows", so the
+     reading matches the Week 8 assignment column for column. The 24FA/25FA
+     history and components text is kept as written. -->
 
-<p>Historically, HMIs began as simple control panels with buttons, switches, and indicator lights. Over time, they evolved to include digital screens and touch interfaces, providing richer feedback and improved usability. Today, HMIs often involve complex systems with visual displays, voice interaction, and even augmented reality to facilitate effective human-machine interaction. For a visual representation of the evolution of HMI, consider referring to <a href="https://library.automationdirect.com/evolution-of-human-machine-interface/">this timeline of HMI development</a>, which provides an overview of key milestones in HMI technology.</p>
+<h3>Introduction</h3>
+<p>Historically, HMIs began as simple control panels with buttons, switches, and indicator lights. Over time, they evolved to include digital screens and touch interfaces, providing richer feedback and improved usability. Today, HMIs often involve complex systems with visual displays, voice interaction, and even augmented reality to facilitate effective human-machine interaction. For a visual representation of the evolution of HMI, consider referring to <a href="https://library.automationdirect.com/evolution-of-human-machine-interface/" target="_blank" rel="noopener">this timeline of HMI development</a>, which provides an overview of key milestones in HMI technology.</p>
 <p>Apple has been a key player in the evolution of user interfaces, especially through its development of highly intuitive Human Machine Interfaces. The introduction of the Macintosh in 1984 revolutionized personal computing with its graphical user interface (GUI), which utilized windows, icons, and a mouse. Later, the iPhone's introduction in 2007 significantly advanced HMI by bringing multitouch gestures and voice control (through Siri) into widespread use, setting new standards for how humans interact with machines.</p>
+<p>In this class, the HMI is everything between your user and your product: what they touch, see, hear and feel, on the device and on the screen.</p>
+
+<hr />
+<h3>1. What an HMI Document Is For</h3>
+<p>In industry, the HMI document is usually a spreadsheet: one row for every interaction the product has. Each row says what the user does, what the product does back, and what makes that happen. Industrial design, electrical engineering, firmware, the app team and QA all work from the same rows.</p>
+<ul>
+    <li><strong>Design</strong> decides each behaviour once, in one place, instead of in many meetings.</li>
+    <li><strong>Engineering</strong> knows what to build: which button, which LED pattern, which message to the app.</li>
+    <li><strong>Testing</strong> works from it: each row becomes something to test. In this class, your Week 9 test tasks come from your Must-have rows.</li>
+    <li><strong>It is versioned</strong>: it changes as the product changes. Version 1 is due this week; the final version follows your final presentation.</li>
+</ul>
+<p>It does not describe what the product looks like. It describes how the product <strong>behaves</strong>.</p>
+
+<hr />
+<h3>2. The Components of an HMI</h3>
 <p>Designing an effective HMI requires careful consideration of several components:</p>
 <ul>
-<li><strong>The Product:</strong> The hardware or device that the user interacts with. This could be a machine, a consumer product, or a piece of software.</li>
-<li><strong>User Interactions:</strong> The ways in which a user can control or manipulate the product. This includes physical buttons, touchscreens, voice commands, etc.</li>
-<li><strong>The User:</strong> Understanding who the user is, their needs, capabilities, and limitations. User personas are often used to help define these characteristics.</li>
-<li><strong>Senses Involved:</strong> The human senses that are engaged during interaction, such as sight, touch, and hearing. This helps in designing feedback mechanisms (e.g., visual indicators, audio alerts).</li>
-<li><strong>Feedback:</strong> The type of feedback the product provides in response to user interactions. This includes visual cues, haptic feedback, or auditory signals that inform the user of the system's status or actions.</li>
-<li><strong>Software Components:</strong> In addition to hardware, HMIs often include software components. These may involve a combination of embedded software, mobile applications, and web applications. Each software component should be designed to provide a cohesive user experience. For example, a mobile app might allow remote control of the hardware, while a web app provides detailed analytics or reporting features. Ensuring consistency across these components is crucial for an effective HMI.</li>
+    <li><strong>The Product:</strong> The hardware or device that the user interacts with. This could be a machine, a consumer product, or a piece of software.</li>
+    <li><strong>User Interactions:</strong> The ways in which a user can control or manipulate the product. This includes physical buttons, touchscreens, voice commands, etc.</li>
+    <li><strong>The User:</strong> Understanding who the user is, their needs, capabilities, and limitations. User personas are often used to help define these characteristics.</li>
+    <li><strong>Senses Involved:</strong> The human senses that are engaged during interaction, such as sight, touch, and hearing. This helps in designing feedback mechanisms (e.g., visual indicators, audio alerts).</li>
+    <li><strong>Feedback:</strong> The type of feedback the product provides in response to user interactions. This includes visual cues, haptic feedback, or auditory signals that inform the user of the system's status or actions.</li>
+    <li><strong>Software Components:</strong> In addition to hardware, HMIs often include software components. These may involve a combination of embedded software, mobile applications, and web applications. Each software component should be designed to provide a cohesive user experience. For example, a mobile app might allow remote control of the hardware, while a web app provides detailed analytics or reporting features. Ensuring consistency across these components is crucial for an effective HMI.</li>
 </ul>
-<hr>
-<h3>Step 3: Drafting Your Own HMI Specifications</h3>
-<p>In this step, you will draft your own HMI specifications using a Google Sheet. This document will serve as a blueprint for your HMI design, detailing the hardware interactions and user needs. Here is how to structure your document:</p>
-<h4>Step 3a: Hardware Product Purpose and Interaction Diagram</h4>
-<p>Create a tab that covers the following aspects:</p>
+
+<hr />
+<h3>3. Drafting Your Own HMI Specifications</h3>
+<p>You will draft your own HMI specifications using a Google Sheet. This document will serve as a blueprint for your HMI design, detailing the hardware interactions and user needs. Here is how to structure your document:</p>
+
+<h4>3a. Product Information tab</h4>
 <ul>
-<li><strong>Product Purpose:</strong> Clearly define the purpose of your hardware product. What problem does it solve, and who is the target user?</li>
-<li><strong>Interaction Diagram:</strong> Create a diagram that indicates the main buttons and interactions. This can be a simple sketch or a flowchart that shows how users interact with the hardware, including buttons, switches, or other input methods. Be sure to also consider the role of any software components, such as mobile or web applications, in supporting these interactions.</li>
+    <li><strong>Product Name.</strong></li>
+    <li><strong>Description:</strong> Clearly define the purpose of your hardware product. What problem does it solve, who is the target user, where is it used, and what are its basic functions?</li>
+    <li><strong>Link</strong> to your presentation or portfolio page for the project.</li>
+    <li><strong>Interaction Diagram:</strong> A drawing or render of the product with leader lines to each input and output: buttons, switches, dials, lights, speaker, screen. This can be a simple sketch. Be sure to also consider the role of any software components, such as your React app, in supporting these interactions.</li>
 </ul>
-<h4>Step 3b: User Needs Table</h4>
-<p>In another tab, create a table to capture user needs. Use the following columns to make the HMI document complete:</p>
+
+<h4>3b. UX tab</h4>
+<p>A table with one row per interaction, and these columns:</p>
 <ul>
-<li><strong>Interaction Title:</strong> The interaction and the state control of that behavior (example: Power ON)<em>.</em><strong></strong></li>
-<li><strong>User Needs:</strong> Fill in the template: <em>As a user, when I [perform an action], I expect [desired outcome], so that [benefit or purpose].</em></li>
-<li><strong>Interaction Type:</strong> Specify the type of interaction, such as physical button press, touchscreen, voice command, or software interaction (e.g., mobile or web app control).</li>
-<li><strong>Feedback Mechanism:</strong> Describe the type of feedback the user receives (e.g., visual, auditory, haptic).</li>
-<li><strong>Priority Level:</strong> Assign a priority level to each need to help determine which features are most critical for user satisfaction.</li>
-<li><strong>Software Integration:</strong> Note any software components involved in meeting the user need. For instance, indicate if the interaction is supported by a mobile app or web app.</li>
-<li><strong>Notes:</strong> Any additional information or considerations relevant to the user need or interaction.</li>
+    <li><strong>Interaction:</strong> The interaction and the state control of that behavior (example: Power ON).</li>
+    <li><strong>User Needs:</strong> Fill in the template: <em>As a user, when I [perform an action], I expect [desired outcome], so that [benefit or purpose].</em> This is the same form as your Week 3 requirements.</li>
+    <li><strong>Interaction Type:</strong> Specify the type of interaction, such as physical button press, touchscreen, voice command, or software interaction (e.g., your React app).</li>
+    <li><strong>Feedback:</strong> Describe the feedback the user receives, and through which sense: visual, auditory, haptic. Be specific (see section 4).</li>
+    <li><strong>Priority:</strong> <strong>Must have</strong> (the product is broken without it), <strong>Should have</strong> (expected, but the product still works), <strong>Nice to have</strong>. Keep the requirements you <strong>Dropped</strong> in Week 3 as rows too, with the reason in Notes.</li>
+    <li><strong>Prototype Complexity:</strong> How hard this row is to prototype with what we have covered in class:
+        <ul>
+            <li><strong>Simple</strong>: done in class already. Button, LED, LED matrix, potentiometer, a WebSocket message.</li>
+            <li><strong>Medium</strong>: a part that is new to you but has an example in the class library or online, such as a servo, NeoPixel ring or buzzer.</li>
+            <li><strong>Complex</strong>: a mechanism, a motor that moves something, battery power, a sensor nobody in class has tried, or a part that may not arrive in time.</li>
+        </ul>
+    </li>
+    <li><strong>Software Integration:</strong> Note any software involved in meeting the user need: the React app, and the WebSocket message that goes between them.</li>
+    <li><strong>Notes:</strong> Anything else: your Week 4 test findings, open questions, why a row was dropped.</li>
 </ul>
-<p>Recommendation it is worth categorizing the interactions by types, for example in the Headphone space: <em>Power, Connectivity, Audio</em>.</p>
-<hr>
-<h3>Step 4: Summary</h3>
+<p>Group the rows by <strong>category</strong>, with a header row for each. For example, in the headphone space: <em>Power, Connectivity, Audio</em>. For your project, categories such as <em>Power, Setup, Main task, Errors</em> work for most products.</p>
+
+<h4>3c. Example: the Number Adder</h4>
+<p>Here is part of an HMI document for the Number Adder you built in Week 7:</p>
+<table style="border-collapse: collapse; width: 100%;" border="1">
+    <thead>
+        <tr>
+            <th style="padding: 6px;">Interaction</th>
+            <th style="padding: 6px;">User Needs</th>
+            <th style="padding: 6px;">Interaction Type</th>
+            <th style="padding: 6px;">Feedback</th>
+            <th style="padding: 6px;">Priority</th>
+            <th style="padding: 6px;">Prototype Complexity</th>
+            <th style="padding: 6px;">Software Integration</th>
+            <th style="padding: 6px;">Notes</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr><td style="padding: 6px;" colspan="8"><strong>COUNTING</strong></td></tr>
+        <tr>
+            <td style="padding: 6px;">Add 1</td>
+            <td style="padding: 6px;">As a user, when I press +1 on the device, I expect the total to go up by one, so that I can count without touching the laptop.</td>
+            <td style="padding: 6px;">Physical button press</td>
+            <td style="padding: 6px;">Visual: the total on screen goes up by one; one more LED lights on the matrix.</td>
+            <td style="padding: 6px;">Must have</td>
+            <td style="padding: 6px;">Simple</td>
+            <td style="padding: 6px;">React app receives <code>{"button": "+1"}</code></td>
+            <td style="padding: 6px;">The on-screen +1 button does the same.</td>
+        </tr>
+        <tr>
+            <td style="padding: 6px;">Reset</td>
+            <td style="padding: 6px;">As a user, when I press reset, I expect the total to go back to 0, so that I can start a new count.</td>
+            <td style="padding: 6px;">Physical button press</td>
+            <td style="padding: 6px;">Visual: the screen shows 0; the matrix goes dark.</td>
+            <td style="padding: 6px;">Must have</td>
+            <td style="padding: 6px;">Simple</td>
+            <td style="padding: 6px;">React app receives <code>{"button": "reset"}</code></td>
+            <td style="padding: 6px;">Easy to press by accident: consider a long press.</td>
+        </tr>
+        <tr>
+            <td style="padding: 6px;">Negative total</td>
+            <td style="padding: 6px;">As a user, when the total goes below zero, I expect the matrix to look different, so that I can tell negative from positive without the screen.</td>
+            <td style="padding: 6px;">Result of -1 / -2</td>
+            <td style="padding: 6px;">Visual: LEDs fill backwards from the bottom-right corner.</td>
+            <td style="padding: 6px;">Should have</td>
+            <td style="padding: 6px;">Simple</td>
+            <td style="padding: 6px;">Device receives <code>TOTAL:-3</code></td>
+            <td style="padding: 6px;"></td>
+        </tr>
+        <tr>
+            <td style="padding: 6px;">Press confirmation</td>
+            <td style="padding: 6px;">As a user, when I press any button, I expect a click I can hear, so that I know the press registered.</td>
+            <td style="padding: 6px;">Physical button press</td>
+            <td style="padding: 6px;">Auditory: short tick from a buzzer.</td>
+            <td style="padding: 6px;">Nice to have</td>
+            <td style="padding: 6px;">Medium</td>
+            <td style="padding: 6px;">None (device only)</td>
+            <td style="padding: 6px;">Needs a buzzer: add it to the hardware overview.</td>
+        </tr>
+        <tr><td style="padding: 6px;" colspan="8"><strong>CONNECTION</strong></td></tr>
+        <tr>
+            <td style="padding: 6px;">Device not connected</td>
+            <td style="padding: 6px;">As a user, when the device is not connected, I expect to be told, so that I do not press buttons that do nothing.</td>
+            <td style="padding: 6px;">System state</td>
+            <td style="padding: 6px;">Visual: "Device: not connected" on screen. Nothing on the device yet.</td>
+            <td style="padding: 6px;">Must have</td>
+            <td style="padding: 6px;">Simple</td>
+            <td style="padding: 6px;"><code>readyState</code> from react-use-websocket</td>
+            <td style="padding: 6px;">Gap: the device itself gives no sign. Use the matrix?</td>
+        </tr>
+    </tbody>
+</table>
+
+<hr />
+<h3>4. Writing Good Rows</h3>
+<ul>
+    <li><strong>One row per action and state.</strong> Power ON and Power OFF are two rows, because the feedback is different.</li>
+    <li><strong>Feedback is specific.</strong> "LED solid white and a start-up chime", not "On screen" or "visual". Someone else should be able to build it from the row.</li>
+    <li><strong>The user need says why.</strong> The "so that" part is what tells you whether a feature is worth building. If you cannot finish the sentence, question the feature.</li>
+    <li><strong>Include what goes wrong.</strong> Errors, disconnected, low battery, pressed twice, pressed during start-up. Products fail here, and so do user tests.</li>
+    <li><strong>Not everything is a Must have.</strong> If every row is a Must have, the column tells nobody anything.</li>
+    <li><strong>Every piece of feedback needs a part.</strong> If a row says "beeps", there is a buzzer in your Week 7 hardware overview.</li>
+    <li><strong>Every part needs a row.</strong> Every input and output in your hardware overview appears in at least one row.</li>
+</ul>
+
+<hr />
+<h3>5. Summary</h3>
 <p>In this lesson, we introduced the concept of Human Machine Interface (HMI) and its role in industrial design. We explored the key components to consider when designing an HMI, including the product, user interactions, feedback mechanisms, and the inclusion of both hardware and software elements. Finally, we provided a structure for drafting HMI specifications, helping you document hardware interactions and user needs effectively, while also considering multiple software components for a cohesive user experience.</p>
+<p>Version 1 of your HMI document is due this week. It is the source of your Week 9 test tasks, and it counts toward the HMI design and documentation score of your final project (30 of 100 points).</p>
