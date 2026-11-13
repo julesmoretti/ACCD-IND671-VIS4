@@ -2,6 +2,7 @@
 <!-- Paste the contents of this file into the Canvas HTML editor. -->
 <!-- Assigned in Week 9 (round 1) and used again in Weeks 10 and 12, so it lives in the Week 9 folder. Referenced by the Week 13 final project assignment,
      where "User testing and iteration evidence" is worth 20 of 100 points. -->
+<!-- Revised 13 Nov 2026: expert walkthrough, Table A with participants as rows. -->
 
 <h2>User Testing: Rubric &amp; Protocol</h2>
 
@@ -161,7 +162,7 @@ Record priority against every task so your severity ratings mean something.</p>
 
 <h3>Scoring, part 1: Functionality</h3>
 
-<p><strong>Scored per step</strong>, as in the Week 4 protocol: one row per participant per step.</p>
+<p><strong>Scored per step</strong>, with one row per participant and the steps across. Week 4 used one row per participant per step; from Week 9 the table turns, so each participant reads as one line.</p>
 
 <p><strong>One change from Week 4:</strong> a task's score is now the <strong>mean</strong> of its steps, not its worst step. That way smaller improvements show between rounds. The worst step still shows in the Severity column.</p>
 
@@ -205,13 +206,19 @@ something untrue.</p>
 
 <h4>Time on task</h4>
 
-<p>Before testing, write down how long you expect each task to take. Record actual time.
-What matters is the ratio, not the seconds: a task you expected to take 5 seconds that takes
-40 is a finding.</p>
+<p>Before testing, do an <strong>expert walkthrough</strong>: run every step yourself on the
+prototype and time it (record the run and replay it if that is easier). That time goes in the
+walkthrough row. For each participant, the time ratio is their time over yours. You know the
+device, so participants are always slower: the sheet flags a time amber at 3x your
+walkthrough and red at 5x. These are starting values in two input cells, and you can change
+them. What matters is the ratio, not the seconds: a step that takes you 5 seconds and a
+participant 40 is a finding.</p>
 
 <h4>Issue severity</h4>
 
-<p>For every issue observed, rate it:</p>
+<p>For every issue observed, rate it. Severity stays your judgement; the sheet only hints. A
+Sev cell turns yellow when a score of 1 (suggests a blocker on a Must-have), a score of 2
+(suggests major) or a red time (suggests minor) has a lower or missing severity.</p>
 
 <table style="border-collapse: collapse; width: 100%;" border="1">
     <thead>
@@ -332,41 +339,135 @@ scoring +2, you are recording your own enthusiasm rather than theirs.</p>
 
 <h3>Recording</h3>
 
-<p>Two tables per round, kept in your <strong>HMI document</strong> (the same Google Sheet),
-so tasks, steps and priorities come straight from your UX tab. Add one new tab per table:
-"R1 Table A", "R1 Table B", then "R2 Table A" and so on, plus one <strong>"Comparison"</strong>
-tab for the round-over-round tables below.</p>
+<p>Two tables per round, plus your walkthrough, kept in your <strong>HMI document</strong>
+(the same Google Sheet), so tasks, steps and priorities come straight from your UX tab. Add
+one new tab each: "R1 Walkthrough", "R1 Table A", "R1 Table B", then "R2 Walkthrough",
+"R2 Table A" and so on, plus one <strong>"Comparison"</strong> tab for the round-over-round
+tables below.</p>
 
-<h4>Table A &mdash; Functionality, one row per participant per step</h4>
+<h4>Table A &mdash; Functionality, one row per participant, steps across</h4>
 
 <table style="border-collapse: collapse; width: 100%;" border="1">
     <thead>
         <tr>
-            <th style="padding: 6px;">Task</th>
-            <th style="padding: 6px;">Step</th>
-            <th style="padding: 6px;">Priority</th>
-            <th style="padding: 6px;">P#</th>
-            <th style="padding: 6px;">Outcome</th>
-            <th style="padding: 6px;">Expected</th>
-            <th style="padding: 6px;">Actual</th>
-            <th style="padding: 6px;">Severity</th>
-            <th style="padding: 6px;">What happened</th>
+            <th style="padding: 6px;">Participant</th>
+            <th style="padding: 6px;">Profile</th>
+            <th style="padding: 6px;" colspan="8">T2 Set target turns (Must have)</th>
+        </tr>
+        <tr>
+            <th style="padding: 6px;"></th>
+            <th style="padding: 6px;"></th>
+            <th style="padding: 6px;" colspan="4">S1 Turn the dial to the target</th>
+            <th style="padding: 6px;" colspan="4">S2 Confirm the target</th>
+        </tr>
+        <tr>
+            <th style="padding: 6px;"></th>
+            <th style="padding: 6px;"></th>
+            <th style="padding: 6px;">Score</th>
+            <th style="padding: 6px;">Time</th>
+            <th style="padding: 6px;">Sev</th>
+            <th style="padding: 6px;">Note</th>
+            <th style="padding: 6px;">Score</th>
+            <th style="padding: 6px;">Time</th>
+            <th style="padding: 6px;">Sev</th>
+            <th style="padding: 6px;">Note</th>
         </tr>
     </thead>
     <tbody>
         <tr>
-            <td style="padding: 6px;">T2 Set target turns</td>
-            <td style="padding: 6px;">S2 Confirm the target</td>
-            <td style="padding: 6px;">Must</td>
+            <td style="padding: 6px; font-style: italic;">Walkthrough</td>
+            <td style="padding: 6px; font-style: italic;">You</td>
+            <td style="padding: 6px; font-style: italic;"></td>
+            <td style="padding: 6px; font-style: italic;">4s</td>
+            <td style="padding: 6px; font-style: italic;"></td>
+            <td style="padding: 6px; font-style: italic;"></td>
+            <td style="padding: 6px; font-style: italic;"></td>
+            <td style="padding: 6px; font-style: italic;">6s</td>
+            <td style="padding: 6px; font-style: italic;"></td>
+            <td style="padding: 6px; font-style: italic;"></td>
+        </tr>
+        <tr>
+            <td style="padding: 6px;">P1</td>
+            <td style="padding: 6px;">Classmate</td>
+            <td style="padding: 6px;">4</td>
+            <td style="padding: 6px;">5s</td>
+            <td style="padding: 6px;"></td>
+            <td style="padding: 6px;">Turned straight to 40.</td>
+            <td style="padding: 6px;">4</td>
+            <td style="padding: 6px;">7s</td>
+            <td style="padding: 6px;"></td>
+            <td style="padding: 6px;">Pressed to confirm at once.</td>
+        </tr>
+        <tr>
             <td style="padding: 6px;">P3</td>
-            <td style="padding: 6px;">2 &mdash; with help</td>
-            <td style="padding: 6px;">10s</td>
+            <td style="padding: 6px;">Classmate</td>
+            <td style="padding: 6px;">3</td>
+            <td style="padding: 6px;">12s</td>
+            <td style="padding: 6px;">2</td>
+            <td style="padding: 6px;">Turned the dial the wrong way first.</td>
+            <td style="padding: 6px;">2</td>
             <td style="padding: 6px;">48s</td>
             <td style="padding: 6px;">3</td>
             <td style="padding: 6px;">Turned the dial to change the value but never pressed to confirm. Waited for the display to update on its own. Needed a hint.</td>
         </tr>
+        <tr>
+            <td style="padding: 6px; font-weight: bold;">Mean score</td>
+            <td style="padding: 6px; font-weight: bold;"></td>
+            <td style="padding: 6px; font-weight: bold;">3.5</td>
+            <td style="padding: 6px; font-weight: bold;"></td>
+            <td style="padding: 6px; font-weight: bold;"></td>
+            <td style="padding: 6px; font-weight: bold;"></td>
+            <td style="padding: 6px; font-weight: bold;">3.0</td>
+            <td style="padding: 6px; font-weight: bold;"></td>
+            <td style="padding: 6px; font-weight: bold;"></td>
+            <td style="padding: 6px; font-weight: bold;"></td>
+        </tr>
+        <tr>
+            <td style="padding: 6px; font-weight: bold;">Time ratio</td>
+            <td style="padding: 6px; font-weight: bold;"></td>
+            <td style="padding: 6px; font-weight: bold;"></td>
+            <td style="padding: 6px; font-weight: bold;">2.1x</td>
+            <td style="padding: 6px; font-weight: bold;"></td>
+            <td style="padding: 6px; font-weight: bold;"></td>
+            <td style="padding: 6px; font-weight: bold;"></td>
+            <td style="padding: 6px; font-weight: bold;">4.6x</td>
+            <td style="padding: 6px; font-weight: bold;"></td>
+            <td style="padding: 6px; font-weight: bold;"></td>
+        </tr>
+        <tr>
+            <td style="padding: 6px; font-weight: bold;">Worst severity</td>
+            <td style="padding: 6px; font-weight: bold;"></td>
+            <td style="padding: 6px; font-weight: bold;"></td>
+            <td style="padding: 6px; font-weight: bold;"></td>
+            <td style="padding: 6px; font-weight: bold;">2</td>
+            <td style="padding: 6px; font-weight: bold;"></td>
+            <td style="padding: 6px; font-weight: bold;"></td>
+            <td style="padding: 6px; font-weight: bold;"></td>
+            <td style="padding: 6px; font-weight: bold;">3</td>
+            <td style="padding: 6px; font-weight: bold;"></td>
+        </tr>
+        <tr>
+            <td style="padding: 6px; font-weight: bold;">Task mean</td>
+            <td style="padding: 6px; font-weight: bold;"></td>
+            <td style="padding: 6px; font-weight: bold;">3.3</td>
+            <td style="padding: 6px; font-weight: bold;"></td>
+            <td style="padding: 6px; font-weight: bold;"></td>
+            <td style="padding: 6px; font-weight: bold;"></td>
+            <td style="padding: 6px; font-weight: bold;"></td>
+            <td style="padding: 6px; font-weight: bold;"></td>
+            <td style="padding: 6px; font-weight: bold;"></td>
+            <td style="padding: 6px; font-weight: bold;"></td>
+        </tr>
     </tbody>
 </table>
+
+<p>Build the tab in this order:</p>
+<ol>
+    <li>Copy the steps from your walkthrough tab, task by task, into rows 1 to 3: the task and its priority, the steps, then Score / Time / Sev / Note under each step.</li>
+    <li>One row per participant, P1 to P5, with a Profile column (classmate or naive).</li>
+    <li>A score, a time, a severity and a note for every step. Every score gets a note.</li>
+    <li>Summary rows at the bottom: mean score per step, time ratio per step, worst severity per step, and the task mean as the mean of its steps.</li>
+</ol>
 
 <h4>Table B &mdash; Emotion, one row per observed moment</h4>
 
@@ -375,7 +476,7 @@ tab for the round-over-round tables below.</p>
         <tr>
             <th style="padding: 6px;">Element</th>
             <th style="padding: 6px;">Type</th>
-            <th style="padding: 6px;">P#</th>
+            <th style="padding: 6px;">Participant</th>
             <th style="padding: 6px;">Score</th>
             <th style="padding: 6px;">Observed</th>
             <th style="padding: 6px;">Verbatim</th>
@@ -465,16 +566,18 @@ rough prototypes fail in obvious ways, and that is what makes them cheap to lear
 Include your naive participant here. Establish your baseline scores.</p>
 
 <h4>Round 2 &mdash; narrowing (Week 10, over the break)</h4>
-<p>Re-test what scored well quickly, just to confirm it held. Spend the time you save going
+<p>Run a fresh walkthrough on the new prototype first (R2 Walkthrough): the object changed, so
+your own times change too. Re-test what scored well quickly, just to confirm it held. Spend the time you save going
 deeper where round 1 showed low scores or high severity: probe harder, watch more closely.
 Keep the round 1 steps exactly as they were and score them the same way. Where you want more
-detail, add finer <strong>sub-steps</strong> as extra rows: score them, but leave them out of
-the task mean, so round 2 still compares with round 1. Name a sub-step after its step, for
+detail, add finer <strong>sub-steps</strong> as extra columns inside their step's group: score
+them, but leave them out of the task mean, so round 2 still compares with round 1. Name a sub-step after its step, for
 example S2a and S2b under S2, so they are easy to leave out of the mean. The large blind spots should be gone; what remains is
 functionality that is still struggling.</p>
 
 <h4>Round 3 &mdash; targeted (Week 12)</h4>
-<p>Focus on what still scored badly. Same tasks, same rubric, so improvement is measurable
+<p>Run a fresh walkthrough on the new prototype first (R3 Walkthrough), because the object
+changed again. Focus on what still scored badly. Same tasks, same rubric, so improvement is measurable
 rather than asserted. 6&ndash;8 participants, from outside product and industrial design. By now most problems have been combed out, and you are working on the
 hard ones. This is also the first round where desirability can be tested honestly, because
 it is the first time the object looks like a product.</p>
@@ -486,7 +589,7 @@ it is the first time the object looks like a product.</p>
 <p>With your final project, the night before you present in Week 13:</p>
 
 <ol>
-    <li>Tables A and B for all three rounds, as tabs in your HMI document</li>
+    <li>Your walkthrough and Tables A and B for all three rounds, as tabs in your HMI document</li>
     <li>The round-over-round comparison &mdash; task scores and element scores, in its "Comparison" tab</li>
     <li>An <strong>iteration log</strong>: what you found, what you changed, what happened
         to the score afterwards</li>
@@ -505,8 +608,8 @@ were confident about that a participant broke, and what you did about it.</p>
 
 <ul>
     <li>Tasks written out, taken from your HMI document, with priority marked</li>
-    <li>Expected time noted for each task</li>
-    <li>Tables A and B set up as new tabs in your HMI document, ready to write into</li>
+    <li>Walkthrough timed for every step, in your R1 Walkthrough tab</li>
+    <li>R1 Walkthrough, Table A and Table B set up as new tabs in your HMI document, ready to write into</li>
     <li>A way to capture what happens &mdash; phone on a stand is fine. Ask first.</li>
     <li>A second person if possible: one runs the session, one records</li>
     <li>Your naive participant lined up for round 1</li>
