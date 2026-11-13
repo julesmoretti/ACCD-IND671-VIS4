@@ -165,10 +165,12 @@ pins, platform mismatches) but do not rewrite pedagogy or restructure lessons.
 - UNO R4 upload "No device found on COMn": wrong or busy port. Week 7 F1 has the fix list
   (close Serial Monitor, replug, reselect port, data cable, double-tap RESET). Surfaced 26FA.
 - From Week 9 on, user testing uses one UT table per round ("UT1", "UT2", "UT3"):
-  participants as rows, steps across, with Score / Time / Emotion / Type / Sev / Note in each
+  participants as rows, steps across, with Score / Time / Emotion / Type / Note in each
   step. A "UTn Dry Run" tab per round (the designer's expert dry run of every step) is the time
   yardstick. There is no separate Table B. Week 4's testing protocol keeps its own Table A /
   Table B on purpose; it is already taught.
+  No Severity column from Week 9 on (dropped 13 Nov 2026 to keep the tables simple); Week 4
+  keeps its own severity scale.
 - Apple Silicon Macs need Rosetta 2 for the UNO R4 board package (its arm-none-eabi-gcc
   is Intel-only). Without it, upload fails with "bad CPU type in executable". Week 1 and
   Week 7 F1 give the one-line fix.

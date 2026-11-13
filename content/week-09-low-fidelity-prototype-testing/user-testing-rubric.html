@@ -3,7 +3,8 @@
 <!-- Assigned in Week 9 (round 1) and used again in Weeks 10 and 12, so it lives in the Week 9 folder. Referenced by the Week 13 final project assignment,
      where "User testing and iteration evidence" is worth 20 of 100 points. -->
 <!-- Revised 13 Nov 2026: expert walkthrough, Table A with participants as rows.
-     Revised 13 Nov 2026 (2): dry run; emotion merged into one UT table per round. -->
+     Revised 13 Nov 2026 (2): dry run; emotion merged into one UT table per round.
+     Revised 13 Nov 2026 (3): severity dropped from the UT tables. -->
 
 <h2>User Testing: Rubric &amp; Protocol</h2>
 
@@ -157,7 +158,7 @@ round</strong> &mdash; changing them destroys comparability.</p>
 </ul>
 
 <p>A Must-have that fails is a different order of problem from a Nice-to-have that fails.
-Record priority against every task so your severity ratings mean something.</p>
+Record priority against every task: a Must-have that scores 1 is the first thing to fix.</p>
 
 <hr />
 
@@ -165,7 +166,7 @@ Record priority against every task so your severity ratings mean something.</p>
 
 <p><strong>Scored per step</strong>, with one row per participant and the steps across. Week 4 used one row per participant per step; from Week 9 the table turns, so each participant reads as one line.</p>
 
-<p><strong>One change from Week 4:</strong> a task's score is now the <strong>mean</strong> of its steps, not its worst step. That way smaller improvements show between rounds. The worst step still shows in the Severity column.</p>
+<p><strong>One change from Week 4:</strong> a task's score is now the <strong>mean</strong> of its steps, not its worst step. That way smaller improvements show between rounds. The worst step still shows: look for the lowest score in the step columns.</p>
 
 <h4>Task outcome</h4>
 
@@ -214,40 +215,6 @@ device, so participants are always slower: the sheet flags a time amber at 3x yo
 dry run and red at 5x. These are starting values in two input cells, and you can change
 them. What matters is the ratio, not the seconds: a step that takes you 5 seconds and a
 participant 40 is a finding.</p>
-
-<h4>Issue severity</h4>
-
-<p>For every issue observed, rate it. Severity stays your judgement; the sheet only hints. A
-Sev cell turns yellow when a score of 1 (suggests a blocker on a Must-have), a score of 2
-(suggests major) or a red time (suggests minor) has a lower or missing severity.</p>
-
-<table style="border-collapse: collapse; width: 100%;" border="1">
-    <thead>
-        <tr>
-            <th style="padding: 8px; text-align: left;">Severity</th>
-            <th style="padding: 8px; text-align: left;">Meaning</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td style="padding: 8px;"><strong>4 &mdash; Blocker</strong></td>
-            <td style="padding: 8px;">Stops the user completing a Must-have task. Fix before the next round.</td>
-        </tr>
-        <tr>
-            <td style="padding: 8px;"><strong>3 &mdash; Major</strong></td>
-            <td style="padding: 8px;">Serious difficulty or repeated errors. Task completes, but painfully.</td>
-        </tr>
-        <tr>
-            <td style="padding: 8px;"><strong>2 &mdash; Minor</strong></td>
-            <td style="padding: 8px;">Slows the user down or causes momentary confusion.</td>
-        </tr>
-        <tr>
-            <td style="padding: 8px;"><strong>1 &mdash; Cosmetic</strong></td>
-            <td style="padding: 8px;">Noticed and mentioned, but did not affect the outcome.</td>
-        </tr>
-    </tbody>
-</table>
-
 <hr />
 
 <h3>Scoring, part 2: Emotion</h3>
@@ -356,13 +323,13 @@ one new tab each: "UT1 Dry Run" and "UT1", then "UT2 Dry Run", "UT2" and so on, 
         <tr>
             <th style="padding: 6px;">Participant</th>
             <th style="padding: 6px;">Profile</th>
-            <th style="padding: 6px;" colspan="12">T2 Set target turns (Must have)</th>
+            <th style="padding: 6px;" colspan="10">T2 Set target turns (Must have)</th>
         </tr>
         <tr>
             <th style="padding: 6px;"></th>
             <th style="padding: 6px;"></th>
-            <th style="padding: 6px;" colspan="6">S1 Turn the dial to the target</th>
-            <th style="padding: 6px;" colspan="6">S2 Confirm the target</th>
+            <th style="padding: 6px;" colspan="5">S1 Turn the dial to the target</th>
+            <th style="padding: 6px;" colspan="5">S2 Confirm the target</th>
         </tr>
         <tr>
             <th style="padding: 6px;"></th>
@@ -371,13 +338,11 @@ one new tab each: "UT1 Dry Run" and "UT1", then "UT2 Dry Run", "UT2" and so on, 
             <th style="padding: 6px;">Time</th>
             <th style="padding: 6px;">Emotion</th>
             <th style="padding: 6px;">Type</th>
-            <th style="padding: 6px;">Sev</th>
             <th style="padding: 6px;">Note</th>
             <th style="padding: 6px;">Score</th>
             <th style="padding: 6px;">Time</th>
             <th style="padding: 6px;">Emotion</th>
             <th style="padding: 6px;">Type</th>
-            <th style="padding: 6px;">Sev</th>
             <th style="padding: 6px;">Note</th>
         </tr>
     </thead>
@@ -391,9 +356,7 @@ one new tab each: "UT1 Dry Run" and "UT1", then "UT2 Dry Run", "UT2" and so on, 
             <td style="padding: 6px; font-style: italic;"></td>
             <td style="padding: 6px; font-style: italic;"></td>
             <td style="padding: 6px; font-style: italic;"></td>
-            <td style="padding: 6px; font-style: italic;"></td>
             <td style="padding: 6px; font-style: italic;">6s</td>
-            <td style="padding: 6px; font-style: italic;"></td>
             <td style="padding: 6px; font-style: italic;"></td>
             <td style="padding: 6px; font-style: italic;"></td>
             <td style="padding: 6px; font-style: italic;"></td>
@@ -405,11 +368,9 @@ one new tab each: "UT1 Dry Run" and "UT1", then "UT2 Dry Run", "UT2" and so on, 
             <td style="padding: 6px;">5s</td>
             <td style="padding: 6px;"></td>
             <td style="padding: 6px;"></td>
-            <td style="padding: 6px;"></td>
             <td style="padding: 6px;">Turned straight to 40.</td>
             <td style="padding: 6px;">4</td>
             <td style="padding: 6px;">7s</td>
-            <td style="padding: 6px;"></td>
             <td style="padding: 6px;"></td>
             <td style="padding: 6px;"></td>
             <td style="padding: 6px;">Pressed to confirm at once.</td>
@@ -421,13 +382,11 @@ one new tab each: "UT1 Dry Run" and "UT1", then "UT2 Dry Run", "UT2" and so on, 
             <td style="padding: 6px;">12s</td>
             <td style="padding: 6px;">+2 Delight</td>
             <td style="padding: 6px;">Interaction</td>
-            <td style="padding: 6px;">2</td>
             <td style="padding: 6px;">Turned the dial the wrong way first. Turned it back and forth several times after finishing the task, unprompted: "Oh, the clicks are nice."</td>
             <td style="padding: 6px;">2</td>
             <td style="padding: 6px;">48s</td>
             <td style="padding: 6px;">&minus;2 Frustration</td>
             <td style="padding: 6px;">Interaction</td>
-            <td style="padding: 6px;">3</td>
             <td style="padding: 6px;">Turned the dial to change the value but never pressed to confirm. Waited for the display to update on its own. Needed a hint. Pressed four times, then looked up at me and stopped: "Is it doing anything? I don't know if that worked."</td>
         </tr>
         <tr>
@@ -438,9 +397,7 @@ one new tab each: "UT1 Dry Run" and "UT1", then "UT2 Dry Run", "UT2" and so on, 
             <td style="padding: 6px; font-weight: bold;"></td>
             <td style="padding: 6px; font-weight: bold;"></td>
             <td style="padding: 6px; font-weight: bold;"></td>
-            <td style="padding: 6px; font-weight: bold;"></td>
             <td style="padding: 6px; font-weight: bold;">3.0</td>
-            <td style="padding: 6px; font-weight: bold;"></td>
             <td style="padding: 6px; font-weight: bold;"></td>
             <td style="padding: 6px; font-weight: bold;"></td>
             <td style="padding: 6px; font-weight: bold;"></td>
@@ -455,9 +412,7 @@ one new tab each: "UT1 Dry Run" and "UT1", then "UT2 Dry Run", "UT2" and so on, 
             <td style="padding: 6px; font-weight: bold;"></td>
             <td style="padding: 6px; font-weight: bold;"></td>
             <td style="padding: 6px; font-weight: bold;"></td>
-            <td style="padding: 6px; font-weight: bold;"></td>
             <td style="padding: 6px; font-weight: bold;">4.6x</td>
-            <td style="padding: 6px; font-weight: bold;"></td>
             <td style="padding: 6px; font-weight: bold;"></td>
             <td style="padding: 6px; font-weight: bold;"></td>
             <td style="padding: 6px; font-weight: bold;"></td>
@@ -472,34 +427,15 @@ one new tab each: "UT1 Dry Run" and "UT1", then "UT2 Dry Run", "UT2" and so on, 
             <td style="padding: 6px; font-weight: bold;"></td>
             <td style="padding: 6px; font-weight: bold;"></td>
             <td style="padding: 6px; font-weight: bold;"></td>
-            <td style="padding: 6px; font-weight: bold;"></td>
             <td style="padding: 6px; font-weight: bold;">&minus;2.0</td>
             <td style="padding: 6px; font-weight: bold;"></td>
             <td style="padding: 6px; font-weight: bold;"></td>
-            <td style="padding: 6px; font-weight: bold;"></td>
         </tr>
-        <tr>
-            <td style="padding: 6px; font-weight: bold;">Worst severity</td>
-            <td style="padding: 6px; font-weight: bold;"></td>
-            <td style="padding: 6px; font-weight: bold;"></td>
-            <td style="padding: 6px; font-weight: bold;"></td>
-            <td style="padding: 6px; font-weight: bold;"></td>
-            <td style="padding: 6px; font-weight: bold;"></td>
-            <td style="padding: 6px; font-weight: bold;">2</td>
-            <td style="padding: 6px; font-weight: bold;"></td>
-            <td style="padding: 6px; font-weight: bold;"></td>
-            <td style="padding: 6px; font-weight: bold;"></td>
-            <td style="padding: 6px; font-weight: bold;"></td>
-            <td style="padding: 6px; font-weight: bold;"></td>
-            <td style="padding: 6px; font-weight: bold;">3</td>
-            <td style="padding: 6px; font-weight: bold;"></td>
-        </tr>
+        
         <tr>
             <td style="padding: 6px; font-weight: bold;">Task mean</td>
             <td style="padding: 6px; font-weight: bold;"></td>
             <td style="padding: 6px; font-weight: bold;">3.3</td>
-            <td style="padding: 6px; font-weight: bold;"></td>
-            <td style="padding: 6px; font-weight: bold;"></td>
             <td style="padding: 6px; font-weight: bold;"></td>
             <td style="padding: 6px; font-weight: bold;"></td>
             <td style="padding: 6px; font-weight: bold;"></td>
@@ -519,10 +455,10 @@ That is the point of the whole instrument.</p>
 
 <p>Build the tab in this order:</p>
 <ol>
-    <li>Copy the steps from your dry run tab, task by task, into rows 1 to 3: the task and its priority, the steps, then Score / Time / Emotion / Type / Sev / Note under each step.</li>
+    <li>Copy the steps from your dry run tab, task by task, into rows 1 to 3: the task and its priority, the steps, then Score / Time / Emotion / Type / Note under each step.</li>
     <li>One row per participant, P1 to P5, with a Profile column (classmate or naive).</li>
-    <li>A score, a time, a severity and a note for every step. Every score gets a note. When you saw a reaction, an Emotion and a Type too, with what you saw and the participant's words in the Note.</li>
-    <li>Summary rows at the bottom: mean score per step, time ratio per step, mean emotion per step (Interaction only), worst severity per step, and the task mean as the mean of its steps.</li>
+    <li>A score, a time and a note for every step. Every score gets a note. When you saw a reaction, an Emotion and a Type too, with what you saw and the participant's words in the Note.</li>
+    <li>Summary rows at the bottom: mean score per step, time ratio per step, mean emotion per step (Interaction only), and the task mean as the mean of its steps.</li>
 </ol>
 
 <hr />
@@ -539,7 +475,6 @@ That is the point of the whole instrument.</p>
             <th style="padding: 6px;">UT1 mean</th>
             <th style="padding: 6px;">UT2 mean</th>
             <th style="padding: 6px;">UT3 mean</th>
-            <th style="padding: 6px;">Worst severity</th>
         </tr>
     </thead>
     <tbody>
@@ -548,7 +483,6 @@ That is the point of the whole instrument.</p>
             <td style="padding: 6px;">2.0</td>
             <td style="padding: 6px;">3.2</td>
             <td style="padding: 6px;">3.8</td>
-            <td style="padding: 6px;">3 &rarr; 2 &rarr; 1</td>
         </tr>
     </tbody>
 </table>
@@ -588,7 +522,7 @@ Include your naive participant here. Establish your baseline scores.</p>
 <h4>Round 2 &mdash; narrowing (Week 10, over the break)</h4>
 <p>Run a fresh dry run on the new prototype first (UT2 Dry Run): the object changed, so
 your own times change too. Re-test what scored well quickly, just to confirm it held. Spend the time you save going
-deeper where round 1 showed low scores or high severity: probe harder, watch more closely.
+deeper where round 1 showed low scores or slow times: probe harder, watch more closely.
 Keep the round 1 steps exactly as they were and score them the same way. Where you want more
 detail, add finer <strong>sub-steps</strong> as extra columns inside their step's group: score
 them, but leave them out of the task mean, so round 2 still compares with round 1. Name a sub-step after its step, for
