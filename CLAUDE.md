@@ -43,7 +43,7 @@ session, held online):
 | 9 | `week-09-low-fidelity-prototype-testing` | reading, in-class, assignment, user testing rubric |
 | 10 | `week-10-high-fidelity-prototype` | reading, in-class, assignment |
 | 11 | `week-11-thanksgiving-no-class` | empty, stays empty |
-| 12 | `week-12-final-build-integration` | in-class, assignment |
+| 12 | `week-12-final-build-integration` | in-class, assignment page (no separate submission; work is submitted on the final project assignment) |
 | 13 | `week-13-final-presentations` | in-class, assignment (portfolio) |
 | 14 | `week-14-portfolio-documentation` | in-class (online session) |
 
@@ -95,7 +95,17 @@ if you ever add a dated deadline to prose, keep it in step with the header.
 
 Longer-lived notes use the same comment style: `<!-- Imported from ... -->` for
 provenance, `<!-- KNOWN GAP: ... -->` for something that needs fixing before publishing,
-`<!-- RELINK REQUIRED: ... -->` for an image that must be repointed at Canvas.
+`<!-- RELINK REQUIRED: ... -->` for an image that must be repointed at Canvas, and
+`<!-- CANVAS SETTINGS: ... -->` for how the assignment is set up in Canvas.
+
+Every Canvas assignment file carries a CANVAS SETTINGS comment after its DUE comment (and
+after any provenance or review note), one field per line: Assignment Name, Points,
+Assignment Group, Display Grade as, "Do not count this assignment towards the final grade",
+Submission Type and Online Entry Options, Allowed Attempts, Group Assignment, Peer Reviews,
+Assign To, Due, and Available from / Until. Weekly project assignments (Weeks 8, 9, 10 and
+the Week 13 portfolio assignment) are Complete/Incomplete and not counted. The Week 13
+Final Project & Presentation assignment (`week-08-hmi-applied-arduino/final-project.html`)
+is the one counted, 100 points in the Final Project group.
 
 Keep to plain semantic HTML: `h3`/`h4` headings, `ul`/`ol`, `pre><code` for code blocks,
 `strong`/`em`, and links with `target="_blank" rel="noopener"`. Use `&lt;` and `&gt;` for
