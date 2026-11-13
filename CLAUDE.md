@@ -164,10 +164,11 @@ pins, platform mismatches) but do not rewrite pedagogy or restructure lessons.
   and can fail on locked files. Week 1 tells them to keep course work in `~/GitHub`.
 - UNO R4 upload "No device found on COMn": wrong or busy port. Week 7 F1 has the fix list
   (close Serial Monitor, replug, reselect port, data cable, double-tap RESET). Surfaced 26FA.
-- From Week 9 on, user-testing Table A has participants as rows and steps across, with an
-  "R1 Walkthrough" tab (the designer's own timed run of every step) as the time yardstick, then
-  R2 and R3 walkthroughs on each new prototype. Week 4's testing protocol keeps one row per
-  participant per step on purpose; it is already taught.
+- From Week 9 on, user testing uses one UT table per round ("UT1", "UT2", "UT3"):
+  participants as rows, steps across, with Score / Time / Emotion / Type / Sev / Note in each
+  step. A "UTn Dry Run" tab per round (the designer's expert dry run of every step) is the time
+  yardstick. There is no separate Table B. Week 4's testing protocol keeps its own Table A /
+  Table B on purpose; it is already taught.
 - Apple Silicon Macs need Rosetta 2 for the UNO R4 board package (its arm-none-eabi-gcc
   is Intel-only). Without it, upload fails with "bad CPU type in executable". Week 1 and
   Week 7 F1 give the one-line fix.
