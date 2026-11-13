@@ -40,7 +40,7 @@ session, held online):
 | 6 | `week-06-electronics-fundamentals` | reading, in-class, assignment |
 | 7 | `week-07-arduino-ide-websocket` | reading + images, in-class, assignment |
 | 8 | `week-08-hmi-applied-arduino` | reading, in-class, assignment, final project brief |
-| 9 | `week-09-low-fidelity-prototype-testing` | reading, in-class, assignment |
+| 9 | `week-09-low-fidelity-prototype-testing` | reading, in-class, assignment, user testing rubric |
 | 10 | `week-10-high-fidelity-prototype` | reading, in-class, assignment |
 | 11 | `week-11-thanksgiving-no-class` | empty, stays empty |
 | 12 | `week-12-final-build-integration` | in-class, assignment |
@@ -49,7 +49,8 @@ session, held online):
 
 Briefs that are assigned in one week and presented in a later one live in the folder of the
 week they are assigned: the midterm brief in Week 4 (`midterm-presentation.html`), the final
-project brief in Week 8 (`final-project.html`, when the final project starts).
+project brief in Week 8 (`final-project.html`, when the final project starts), and the
+user testing rubric in Week 9 (`user-testing-rubric.html`, round 1; reused in Weeks 10 and 12).
 
 Week 2's
 folder name still says "javascript-introduction" because its files genuinely cover a
