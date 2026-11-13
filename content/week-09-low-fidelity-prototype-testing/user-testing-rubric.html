@@ -2,7 +2,8 @@
 <!-- Paste the contents of this file into the Canvas HTML editor. -->
 <!-- Assigned in Week 9 (round 1) and used again in Weeks 10 and 12, so it lives in the Week 9 folder. Referenced by the Week 13 final project assignment,
      where "User testing and iteration evidence" is worth 20 of 100 points. -->
-<!-- Revised 13 Nov 2026: expert walkthrough, Table A with participants as rows. -->
+<!-- Revised 13 Nov 2026: expert walkthrough, Table A with participants as rows.
+     Revised 13 Nov 2026 (2): dry run; emotion merged into one UT table per round. -->
 
 <h2>User Testing: Rubric &amp; Protocol</h2>
 
@@ -206,11 +207,11 @@ something untrue.</p>
 
 <h4>Time on task</h4>
 
-<p>Before testing, do an <strong>expert walkthrough</strong>: run every step yourself on the
+<p>Before testing, do an <strong>expert dry run</strong>: run every step yourself on the
 prototype and time it (record the run and replay it if that is easier). That time goes in the
-walkthrough row. For each participant, the time ratio is their time over yours. You know the
+dry run row. For each participant, the time ratio is their time over yours. You know the
 device, so participants are always slower: the sheet flags a time amber at 3x your
-walkthrough and red at 5x. These are starting values in two input cells, and you can change
+dry run and red at 5x. These are starting values in two input cells, and you can change
 them. What matters is the ratio, not the seconds: a step that takes you 5 seconds and a
 participant 40 is a finding.</p>
 
@@ -251,7 +252,7 @@ Sev cell turns yellow when a score of 1 (suggests a blocker on a Must-have), a s
 
 <h3>Scoring, part 2: Emotion</h3>
 
-<p><strong>Logged per moment, not per task.</strong> This is the important difference.</p>
+<p><strong>Logged per step, not per task.</strong> This is the important difference.</p>
 
 <p>Emotion does not belong to a task &mdash; it belongs to a <em>component</em>. Inside a
 single task, the input field might delight someone and the confirmation button might
@@ -259,7 +260,11 @@ frustrate them thirty seconds later. If you score the task as a whole, those can
 you learn nothing. If you log them separately, you know exactly what to leave alone and
 exactly what to fix.</p>
 
-<p>So: whenever you see a reaction, log it against the specific element that caused it.</p>
+<p>So: whenever you see a reaction, log it at the step where it happened, in that step's
+Emotion and Type columns, and say in the Note which element caused it.</p>
+
+<p><strong>One emotion per participant per step</strong>: the strongest reaction you saw. If
+there were two, log the stronger one and describe both in the Note.</p>
 
 <table style="border-collapse: collapse; width: 100%;" border="1">
     <thead>
@@ -339,50 +344,57 @@ scoring +2, you are recording your own enthusiasm rather than theirs.</p>
 
 <h3>Recording</h3>
 
-<p>Two tables per round, plus your walkthrough, kept in your <strong>HMI document</strong>
+<p>One test table per round, plus your dry run, kept in your <strong>HMI document</strong>
 (the same Google Sheet), so tasks, steps and priorities come straight from your UX tab. Add
-one new tab each: "R1 Walkthrough", "R1 Table A", "R1 Table B", then "R2 Walkthrough",
-"R2 Table A" and so on, plus one <strong>"Comparison"</strong> tab for the round-over-round
-tables below.</p>
+one new tab each: "UT1 Dry Run" and "UT1", then "UT2 Dry Run", "UT2" and so on, plus one
+<strong>"Comparison"</strong> tab for the round-over-round tables below.</p>
 
-<h4>Table A &mdash; Functionality, one row per participant, steps across</h4>
+<h4>The UT table: one row per participant, steps across</h4>
 
 <table style="border-collapse: collapse; width: 100%;" border="1">
     <thead>
         <tr>
             <th style="padding: 6px;">Participant</th>
             <th style="padding: 6px;">Profile</th>
-            <th style="padding: 6px;" colspan="8">T2 Set target turns (Must have)</th>
+            <th style="padding: 6px;" colspan="12">T2 Set target turns (Must have)</th>
         </tr>
         <tr>
             <th style="padding: 6px;"></th>
             <th style="padding: 6px;"></th>
-            <th style="padding: 6px;" colspan="4">S1 Turn the dial to the target</th>
-            <th style="padding: 6px;" colspan="4">S2 Confirm the target</th>
+            <th style="padding: 6px;" colspan="6">S1 Turn the dial to the target</th>
+            <th style="padding: 6px;" colspan="6">S2 Confirm the target</th>
         </tr>
         <tr>
             <th style="padding: 6px;"></th>
             <th style="padding: 6px;"></th>
             <th style="padding: 6px;">Score</th>
             <th style="padding: 6px;">Time</th>
+            <th style="padding: 6px;">Emotion</th>
+            <th style="padding: 6px;">Type</th>
             <th style="padding: 6px;">Sev</th>
             <th style="padding: 6px;">Note</th>
             <th style="padding: 6px;">Score</th>
             <th style="padding: 6px;">Time</th>
+            <th style="padding: 6px;">Emotion</th>
+            <th style="padding: 6px;">Type</th>
             <th style="padding: 6px;">Sev</th>
             <th style="padding: 6px;">Note</th>
         </tr>
     </thead>
     <tbody>
         <tr>
-            <td style="padding: 6px; font-style: italic;">Walkthrough</td>
+            <td style="padding: 6px; font-style: italic;">Dry run</td>
             <td style="padding: 6px; font-style: italic;">You</td>
             <td style="padding: 6px; font-style: italic;"></td>
             <td style="padding: 6px; font-style: italic;">4s</td>
             <td style="padding: 6px; font-style: italic;"></td>
             <td style="padding: 6px; font-style: italic;"></td>
             <td style="padding: 6px; font-style: italic;"></td>
+            <td style="padding: 6px; font-style: italic;"></td>
+            <td style="padding: 6px; font-style: italic;"></td>
             <td style="padding: 6px; font-style: italic;">6s</td>
+            <td style="padding: 6px; font-style: italic;"></td>
+            <td style="padding: 6px; font-style: italic;"></td>
             <td style="padding: 6px; font-style: italic;"></td>
             <td style="padding: 6px; font-style: italic;"></td>
         </tr>
@@ -392,9 +404,13 @@ tables below.</p>
             <td style="padding: 6px;">4</td>
             <td style="padding: 6px;">5s</td>
             <td style="padding: 6px;"></td>
+            <td style="padding: 6px;"></td>
+            <td style="padding: 6px;"></td>
             <td style="padding: 6px;">Turned straight to 40.</td>
             <td style="padding: 6px;">4</td>
             <td style="padding: 6px;">7s</td>
+            <td style="padding: 6px;"></td>
+            <td style="padding: 6px;"></td>
             <td style="padding: 6px;"></td>
             <td style="padding: 6px;">Pressed to confirm at once.</td>
         </tr>
@@ -403,12 +419,16 @@ tables below.</p>
             <td style="padding: 6px;">Classmate</td>
             <td style="padding: 6px;">3</td>
             <td style="padding: 6px;">12s</td>
+            <td style="padding: 6px;">+2 Delight</td>
+            <td style="padding: 6px;">Interaction</td>
             <td style="padding: 6px;">2</td>
-            <td style="padding: 6px;">Turned the dial the wrong way first.</td>
+            <td style="padding: 6px;">Turned the dial the wrong way first. Turned it back and forth several times after finishing the task, unprompted: "Oh, the clicks are nice."</td>
             <td style="padding: 6px;">2</td>
             <td style="padding: 6px;">48s</td>
+            <td style="padding: 6px;">&minus;2 Frustration</td>
+            <td style="padding: 6px;">Interaction</td>
             <td style="padding: 6px;">3</td>
-            <td style="padding: 6px;">Turned the dial to change the value but never pressed to confirm. Waited for the display to update on its own. Needed a hint.</td>
+            <td style="padding: 6px;">Turned the dial to change the value but never pressed to confirm. Waited for the display to update on its own. Needed a hint. Pressed four times, then looked up at me and stopped: "Is it doing anything? I don't know if that worked."</td>
         </tr>
         <tr>
             <td style="padding: 6px; font-weight: bold;">Mean score</td>
@@ -417,7 +437,11 @@ tables below.</p>
             <td style="padding: 6px; font-weight: bold;"></td>
             <td style="padding: 6px; font-weight: bold;"></td>
             <td style="padding: 6px; font-weight: bold;"></td>
+            <td style="padding: 6px; font-weight: bold;"></td>
+            <td style="padding: 6px; font-weight: bold;"></td>
             <td style="padding: 6px; font-weight: bold;">3.0</td>
+            <td style="padding: 6px; font-weight: bold;"></td>
+            <td style="padding: 6px; font-weight: bold;"></td>
             <td style="padding: 6px; font-weight: bold;"></td>
             <td style="padding: 6px; font-weight: bold;"></td>
             <td style="padding: 6px; font-weight: bold;"></td>
@@ -430,7 +454,27 @@ tables below.</p>
             <td style="padding: 6px; font-weight: bold;"></td>
             <td style="padding: 6px; font-weight: bold;"></td>
             <td style="padding: 6px; font-weight: bold;"></td>
+            <td style="padding: 6px; font-weight: bold;"></td>
+            <td style="padding: 6px; font-weight: bold;"></td>
             <td style="padding: 6px; font-weight: bold;">4.6x</td>
+            <td style="padding: 6px; font-weight: bold;"></td>
+            <td style="padding: 6px; font-weight: bold;"></td>
+            <td style="padding: 6px; font-weight: bold;"></td>
+            <td style="padding: 6px; font-weight: bold;"></td>
+        </tr>
+        <tr>
+            <td style="padding: 6px; font-weight: bold;">Mean emotion (Interaction only)</td>
+            <td style="padding: 6px; font-weight: bold;"></td>
+            <td style="padding: 6px; font-weight: bold;"></td>
+            <td style="padding: 6px; font-weight: bold;"></td>
+            <td style="padding: 6px; font-weight: bold;">+2.0</td>
+            <td style="padding: 6px; font-weight: bold;"></td>
+            <td style="padding: 6px; font-weight: bold;"></td>
+            <td style="padding: 6px; font-weight: bold;"></td>
+            <td style="padding: 6px; font-weight: bold;"></td>
+            <td style="padding: 6px; font-weight: bold;"></td>
+            <td style="padding: 6px; font-weight: bold;">&minus;2.0</td>
+            <td style="padding: 6px; font-weight: bold;"></td>
             <td style="padding: 6px; font-weight: bold;"></td>
             <td style="padding: 6px; font-weight: bold;"></td>
         </tr>
@@ -439,7 +483,11 @@ tables below.</p>
             <td style="padding: 6px; font-weight: bold;"></td>
             <td style="padding: 6px; font-weight: bold;"></td>
             <td style="padding: 6px; font-weight: bold;"></td>
+            <td style="padding: 6px; font-weight: bold;"></td>
+            <td style="padding: 6px; font-weight: bold;"></td>
             <td style="padding: 6px; font-weight: bold;">2</td>
+            <td style="padding: 6px; font-weight: bold;"></td>
+            <td style="padding: 6px; font-weight: bold;"></td>
             <td style="padding: 6px; font-weight: bold;"></td>
             <td style="padding: 6px; font-weight: bold;"></td>
             <td style="padding: 6px; font-weight: bold;"></td>
@@ -457,68 +505,40 @@ tables below.</p>
             <td style="padding: 6px; font-weight: bold;"></td>
             <td style="padding: 6px; font-weight: bold;"></td>
             <td style="padding: 6px; font-weight: bold;"></td>
+            <td style="padding: 6px; font-weight: bold;"></td>
+            <td style="padding: 6px; font-weight: bold;"></td>
+            <td style="padding: 6px; font-weight: bold;"></td>
+            <td style="padding: 6px; font-weight: bold;"></td>
         </tr>
     </tbody>
 </table>
+
+<p>Read the dial step against the confirm step and you know what to do: the rotation feel
+scored +2, the confirmation &minus;2. Leave the dial alone, fix the confirmation feedback.
+That is the point of the whole instrument.</p>
 
 <p>Build the tab in this order:</p>
 <ol>
-    <li>Copy the steps from your walkthrough tab, task by task, into rows 1 to 3: the task and its priority, the steps, then Score / Time / Sev / Note under each step.</li>
+    <li>Copy the steps from your dry run tab, task by task, into rows 1 to 3: the task and its priority, the steps, then Score / Time / Emotion / Type / Sev / Note under each step.</li>
     <li>One row per participant, P1 to P5, with a Profile column (classmate or naive).</li>
-    <li>A score, a time, a severity and a note for every step. Every score gets a note.</li>
-    <li>Summary rows at the bottom: mean score per step, time ratio per step, worst severity per step, and the task mean as the mean of its steps.</li>
+    <li>A score, a time, a severity and a note for every step. Every score gets a note. When you saw a reaction, an Emotion and a Type too, with what you saw and the participant's words in the Note.</li>
+    <li>Summary rows at the bottom: mean score per step, time ratio per step, mean emotion per step (Interaction only), worst severity per step, and the task mean as the mean of its steps.</li>
 </ol>
-
-<h4>Table B &mdash; Emotion, one row per observed moment</h4>
-
-<table style="border-collapse: collapse; width: 100%;" border="1">
-    <thead>
-        <tr>
-            <th style="padding: 6px;">Element</th>
-            <th style="padding: 6px;">Type</th>
-            <th style="padding: 6px;">Participant</th>
-            <th style="padding: 6px;">Score</th>
-            <th style="padding: 6px;">Observed</th>
-            <th style="padding: 6px;">Verbatim</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td style="padding: 6px;">Dial &mdash; rotation feel</td>
-            <td style="padding: 6px;">Interaction</td>
-            <td style="padding: 6px;">P3</td>
-            <td style="padding: 6px;">+2</td>
-            <td style="padding: 6px;">Turned it back and forth several times after finishing the task, unprompted</td>
-            <td style="padding: 6px;">"Oh, the clicks are nice."</td>
-        </tr>
-        <tr>
-            <td style="padding: 6px;">Confirm button</td>
-            <td style="padding: 6px;">Interaction</td>
-            <td style="padding: 6px;">P3</td>
-            <td style="padding: 6px;">&minus;2</td>
-            <td style="padding: 6px;">Pressed four times, then looked up at me and stopped</td>
-            <td style="padding: 6px;">"Is it doing anything? I don't know if that worked."</td>
-        </tr>
-    </tbody>
-</table>
-
-<p>Read those two rows together and you know what to do: leave the dial alone, fix the
-confirmation feedback. That is the point of the whole instrument.</p>
 
 <hr />
 
 <h3>Comparing rounds</h3>
 
 <p>Functionality compares by <strong>task</strong>. Emotion compares by
-<strong>element</strong>.</p>
+<strong>step</strong> (Interaction only).</p>
 
 <table style="border-collapse: collapse; width: 100%;" border="1">
     <thead>
         <tr>
             <th style="padding: 6px;">Task</th>
-            <th style="padding: 6px;">R1 mean</th>
-            <th style="padding: 6px;">R2 mean</th>
-            <th style="padding: 6px;">R3 mean</th>
+            <th style="padding: 6px;">UT1 mean</th>
+            <th style="padding: 6px;">UT2 mean</th>
+            <th style="padding: 6px;">UT3 mean</th>
             <th style="padding: 6px;">Worst severity</th>
         </tr>
     </thead>
@@ -536,15 +556,15 @@ confirmation feedback. That is the point of the whole instrument.</p>
 <table style="border-collapse: collapse; width: 100%;" border="1">
     <thead>
         <tr>
-            <th style="padding: 6px;">Element (interaction only)</th>
-            <th style="padding: 6px;">R1</th>
-            <th style="padding: 6px;">R2</th>
-            <th style="padding: 6px;">R3</th>
+            <th style="padding: 6px;">Step (interaction only)</th>
+            <th style="padding: 6px;">UT1</th>
+            <th style="padding: 6px;">UT2</th>
+            <th style="padding: 6px;">UT3</th>
         </tr>
     </thead>
     <tbody>
         <tr>
-            <td style="padding: 6px;">Confirm button</td>
+            <td style="padding: 6px;">T2 S2 Confirm the target</td>
             <td style="padding: 6px;">&minus;2</td>
             <td style="padding: 6px;">&minus;1</td>
             <td style="padding: 6px;">+1</td>
@@ -552,7 +572,7 @@ confirmation feedback. That is the point of the whole instrument.</p>
     </tbody>
 </table>
 
-<p>That second table is the evidence of iteration. It shows a specific element, a specific
+<p>That second table is the evidence of iteration. It shows a specific step, a specific
 problem, and a measurable recovery.</p>
 
 <hr />
@@ -566,7 +586,7 @@ rough prototypes fail in obvious ways, and that is what makes them cheap to lear
 Include your naive participant here. Establish your baseline scores.</p>
 
 <h4>Round 2 &mdash; narrowing (Week 10, over the break)</h4>
-<p>Run a fresh walkthrough on the new prototype first (R2 Walkthrough): the object changed, so
+<p>Run a fresh dry run on the new prototype first (UT2 Dry Run): the object changed, so
 your own times change too. Re-test what scored well quickly, just to confirm it held. Spend the time you save going
 deeper where round 1 showed low scores or high severity: probe harder, watch more closely.
 Keep the round 1 steps exactly as they were and score them the same way. Where you want more
@@ -576,7 +596,7 @@ example S2a and S2b under S2, so they are easy to leave out of the mean. The lar
 functionality that is still struggling.</p>
 
 <h4>Round 3 &mdash; targeted (Week 12)</h4>
-<p>Run a fresh walkthrough on the new prototype first (R3 Walkthrough), because the object
+<p>Run a fresh dry run on the new prototype first (UT3 Dry Run), because the object
 changed again. Focus on what still scored badly. Same tasks, same rubric, so improvement is measurable
 rather than asserted. 6&ndash;8 participants, from outside product and industrial design. By now most problems have been combed out, and you are working on the
 hard ones. This is also the first round where desirability can be tested honestly, because
@@ -589,8 +609,8 @@ it is the first time the object looks like a product.</p>
 <p>With your final project, the night before you present in Week 13:</p>
 
 <ol>
-    <li>Your walkthrough and Tables A and B for all three rounds, as tabs in your HMI document</li>
-    <li>The round-over-round comparison &mdash; task scores and element scores, in its "Comparison" tab</li>
+    <li>Your dry run and your UT table for all three rounds, as tabs in your HMI document</li>
+    <li>The round-over-round comparison &mdash; task scores and emotion per step, in its "Comparison" tab</li>
     <li>An <strong>iteration log</strong>: what you found, what you changed, what happened
         to the score afterwards</li>
 </ol>
@@ -608,8 +628,8 @@ were confident about that a participant broke, and what you did about it.</p>
 
 <ul>
     <li>Tasks written out, taken from your HMI document, with priority marked</li>
-    <li>Walkthrough timed for every step, in your R1 Walkthrough tab</li>
-    <li>R1 Walkthrough, Table A and Table B set up as new tabs in your HMI document, ready to write into</li>
+    <li>Dry run timed for every step, in your UT1 Dry Run tab</li>
+    <li>"UT1 Dry Run" and "UT1" set up as new tabs in your HMI document, ready to write into</li>
     <li>A way to capture what happens &mdash; phone on a stand is fine. Ask first.</li>
     <li>A second person if possible: one runs the session, one records</li>
     <li>Your naive participant lined up for round 1</li>
