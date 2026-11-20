@@ -1,13 +1,25 @@
 <!-- Canvas page: Week 10 - High-Fidelity Prototype (Reading) -->
 <!-- Paste the contents of this file into the Canvas HTML editor. -->
 <!-- Reviewed 12 Nov 2026: round 2 keeps the round 1 steps; finer detail goes in sub-steps outside the task mean.
-     Reviewed 19 Nov 2026: sub-steps go across the top as extra steps, as in the A50 example sheet (participants are the rows). -->
+     Reviewed 19 Nov 2026: sub-steps go across the top as extra steps, as in the A50 example sheet (participants are the rows).
+     Revised 19 Nov 2026 (2): new section 1 on the form (right volume and proportions, form follows the HMI document); round 2 participants are strangers to the project. -->
 
 <h3>Introduction</h3>
 <p>This week your prototype moves off the cardboard and into its intended form. Round 2 tests whether the interactions still work on the real geometry: reach, grip, position, sequence. It is still visibly a print: no paint or finish yet, some tape is fine.</p>
 
 <hr />
-<h3>1. Designing an Enclosure Around Electronics</h3>
+<h3>1. From Rough Body to Real Form</h3>
+<p>In Week 9 the body was foam core, cardboard and tape: enough to find where things go. Now the form has to look and feel like the product. Colour, material and finish (CMF) come later; everything else should be right.</p>
+<ul>
+    <li><strong>Volume and proportions</strong>: the print should be the size and shape of the real product. Someone picking it up should recognise what it is without being told.</li>
+    <li><strong>Form follows function</strong>: open your HMI document. Every interaction in it needs a place on the form, and every feedback (light, sound, haptic) needs to reach the user where they are.</li>
+    <li><strong>Ergonomics</strong>: carry over what your ergonomic check taught you. The parts the user holds, wears or presses decide the shape; the electronics fit inside that shape, not the other way round.</li>
+    <li><strong>Everything in place</strong>: every button, light, port and board sits where the product will have it. Nothing hangs outside the shell.</li>
+    <li><strong>Round 1 findings</strong>: each change you planned at the gate review should be visible on the form.</li>
+</ul>
+
+<hr />
+<h3>2. Designing an Enclosure Around Electronics</h3>
 <ul>
     <li><strong>Clearance</strong>: FDM prints are not exact. Allow about <strong>0.2&ndash;0.5 mm</strong> per side where a part must slide into a printed pocket. Print a small fit test before the full shell.</li>
     <li><strong>Mounting the Arduino</strong>: the UNO has 3.2 mm mounting holes for M3 screws. Print standoffs into the base rather than gluing the board flat, so nothing on its underside shorts against anything.</li>
@@ -18,7 +30,7 @@
 </ul>
 
 <hr />
-<h3>2. Moving Off the Breadboard</h3>
+<h3>3. Moving Off the Breadboard</h3>
 <ul>
     <li>A full-size breadboard rarely fits inside a product. Options, from quickest to most robust: a <strong>mini breadboard</strong>, a <strong>solderable breadboard</strong> (same layout, solder instead of push-in), or <strong>perfboard</strong>. You already moved a circuit to a solderable breadboard in Week 6; the same method applies, one part at a time.</li>
     <li>Move one part at a time and test after each move. If it breaks, you know which change broke it.</li>
@@ -27,7 +39,7 @@
 </ul>
 
 <hr />
-<h3>3. Printing Without Losing a Week</h3>
+<h3>4. Printing Without Losing a Week</h3>
 <ul>
     <li><strong>Print the parts that carry interactions first</strong> (the panel with the controls), then the rest of the shell.</li>
     <li><strong>Orientation</strong> matters: a surface that a user touches looks best printed facing up or vertical, not on supports.</li>
@@ -35,5 +47,5 @@
 </ul>
 
 <hr />
-<h3>4. Round 2 Testing</h3>
-<p>Read <em>Round 2 &mdash; narrowing</em> on the <strong>User Testing Rubric &amp; Protocol</strong> page. Participants move outward: GradID students from other terms. Re-test tasks that scored well, quickly. Spend the time on the steps that scored lowest in round 1. Keep the round 1 steps as they were; add finer sub-steps as extra steps across the top of the table, next to the step they break down (S2a, S2b after S2), scored but left out of the task mean, so the rounds stay comparable.</p>
+<h3>5. Round 2 Testing</h3>
+<p>Read <em>Round 2 &mdash; narrowing</em> on the <strong>User Testing Rubric &amp; Protocol</strong> page. Participants move outward: GradID students from other terms, no one from this class and no one who knows your project. Re-test tasks that scored well, quickly. Spend the time on the steps that scored lowest in round 1. Keep the round 1 steps as they were; add finer sub-steps as extra steps across the top of the table, next to the step they break down (S2a, S2b after S2), scored but left out of the task mean, so the rounds stay comparable.</p>
